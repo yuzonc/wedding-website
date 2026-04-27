@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQs — Guo Jie & Yu Zon</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       Langkawi Guide — Sections
+       ======================================== */
+
+    .langkawi-section {
+      padding: 4rem 2rem;
+    }
+
+    .langkawi-section-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .langkawi-section-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--beige);
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .langkawi-section-title--dark {
+      color: var(--brown);
+    }
+
+    /* 3-card grid */
+    .langkawi-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .langkawi-card {
+      background: rgba(223, 217, 201, 0.06);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: transform 0.35s ease;
+    }
+
+    .langkawi-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .langkawi-card-img {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .langkawi-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .langkawi-card:hover .langkawi-card-img img {
+      transform: scale(1.05);
+    }
+
+    .langkawi-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--beige);
+      padding: 1.25rem 1.25rem 0.35rem;
+    }
+
+    .langkawi-card p {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--beige);
+      opacity: 0.65;
+      padding: 0 1.25rem 1.5rem;
+    }
+
+    /* Where to Eat — photo left, lists right */
+    .langkawi-food-split {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .langkawi-food-photo {
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .langkawi-food-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+      min-height: 300px;
+    }
+
+    .langkawi-food-lists {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .langkawi-food-col h4 {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--brown);
+      opacity: 0.4;
+      margin-bottom: 0.75rem;
+    }
+
+    .langkawi-food-col ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .langkawi-food-col li {
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--brown);
+      opacity: 0.75;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid rgba(72, 33, 23, 0.06);
+    }
+
+    .langkawi-food-col li:last-child {
+      border-bottom: none;
+    }
+
+    .langkawi-food-col li strong {
+      font-weight: 500;
+      opacity: 1;
+    }
+
+    /* Accommodation card */
+    .accom-card {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .accom-card-img {
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .accom-card-img img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .accom-card-body h4 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--brown);
+      margin-bottom: 0.75rem;
+    }
+    .accom-card-body p {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--brown);
+      opacity: 0.75;
+      margin-bottom: 1.25rem;
+    }
+    .accom-cta {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: var(--brown);
+      color: var(--beige);
+      padding: 1rem 2rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .accom-cta:hover {
+      background: var(--dark-olive);
+      transform: translateY(-2px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .accom-card {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+      .accom-card-img img { height: 200px; }
+      .accom-cta {
+        display: block;
+        text-align: center;
+        padding: 0.85rem 1.5rem;
+        font-size: 0.65rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .langkawi-cards {
+        grid-template-columns: 1fr;
+      }
+      .langkawi-card-img { height: 180px; }
+      .langkawi-food-split {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .langkawi-food-photo img { min-height: 200px; }
+      .langkawi-section { padding: 3rem 1.25rem; }
+      .langkawi-section-inner { max-width: 100%; }
+    }
+  </style>
+</head>
+<body style="background: var(--beige);">
+
+  <!-- Navigation -->
+  <nav class="nav scrolled" id="nav">
+    <a href="index.html" class="nav-logo">G &amp; Y</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <ul id="nav-menu">
+      <li class="nav-dropdown"><a href="story.html#timeline">Our Story</a><ul class="nav-sub"><li><a href="story.html#timeline">How We Met</a></li><li><a href="story.html#proposal">The Proposal</a></li></ul></li>
+      <li class="nav-dropdown"><a href="wedding.html#venue">Wedding</a><ul class="nav-sub"><li><a href="wedding.html#venue">Venue &amp; Date</a></li><li><a href="wedding.html#day">The Day</a></li><li><a href="wedding.html#afterparty">After Party</a></li></ul></li>
+      <li class="nav-dropdown"><a href="faqs.html#wedding">FAQs</a><ul class="nav-sub"><li><a href="faqs.html#wedding">Wedding</a></li><li><a href="faqs.html#langkawi">Langkawi Guide</a></li></ul></li>
+      <li class="nav-dropdown"><a href="journey.html#seasons">Our Journey</a><ul class="nav-sub"><li><a href="journey.html#seasons">Four Seasons</a></li><li><a href="journey.html#family">Family</a></li><li><a href="journey.html#milestones">Milestones</a></li></ul></li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="faqs.html#accommodation" class="nav-book">Book</a>
+      <a href="https://forms.gle/reDxaX2qkwteaL1HA" target="_blank" rel="noopener" class="nav-rsvp">RSVP</a>
+    </div>
+  </nav>
+  <main id="page-content">
+
+  <!-- ============================
+       SECTION 1: Wedding FAQs
+       ============================ -->
+
+  <header class="page-header" id="wedding">
+    <span class="script-label reveal">Questions?</span>
+    <h1 class="section-heading reveal">FAQs</h1>
+    <p class="page-subtitle reveal">Everything you need to know</p>
+  </header>
+
+  <section class="page-content" style="max-width: 800px;">
+
+    <!-- Group 1: Getting There -->
+    <div class="faq-divider"></div>
+
+    <div class="faq-group reveal">
+      <h3 class="faq-group-title">Getting There</h3>
+
+      <div class="faq-item">
+        <h4>How do I get to Langkawi?</h4>
+        <p>Fly into Langkawi International Airport. From Penang or Kedah, ferries are also an option.</p>
+      </div>
+
+      <div class="faq-divider-thin"></div>
+
+      <div class="faq-item">
+        <h4>When should I arrive?</h4>
+        <p>We'd recommend staying 3&ndash;4 days. Here's a rough guide:</p>
+        <ul class="faq-list-items">
+          <li><strong>29 Jan</strong> &mdash; Best arrival day for exploring (especially overseas guests)</li>
+          <li><strong>30 Jan by 12pm</strong> &mdash; If arriving on the day itself</li>
+          <!-- <li><strong>1 Feb</strong> &mdash; Recommended departure if joining the after-party on 31 Jan</li> -->
+        </ul>
+      </div>
+
+      <div class="faq-divider-thin"></div>
+
+      <div class="faq-item">
+        <h4>How do I get around?</h4>
+        <p>There's no public transport on the island. <strong>Grab</strong> works well for short trips. Renting a car is great if you want to explore at your own pace.</p>
+      </div>
+    </div>
+
+    <!-- Accommodation (prominent) -->
+    <div class="faq-divider"></div>
+
+    <div class="faq-group reveal" id="accommodation">
+      <h3 class="faq-group-title">Accommodation</h3>
+
+      <div class="accom-card">
+        <div class="accom-card-img">
+          <img src="assets/HOTEL PICTURE/island-view-room-exterior.jpg" alt="Pelangi Beach Resort">
+        </div>
+        <div class="accom-card-body">
+          <h4>Stay with us at Pelangi Beach Resort</h4>
+          <p>We've arranged a special discounted rate for our wedding guests. The celebrations will be held at the resort, so staying here means you're right where the action is. Please book early as rooms are limited.</p>
+          <a href="https://be.synxis.com/?adult=2&arrive=2027-01-27&chain=16451&child=0&currency=MYR&depart=2027-02-02&hotel=61664&level=hotel&locale=en-US&productcurrency=MYR&promo=WEDYG&rooms=1" target="_blank" rel="noopener" class="accom-cta">Book Your Room — Guest Rate</a>
+        </div>
+      </div>
+
+      <div class="faq-divider-thin"></div>
+
+      <div class="faq-item">
+        <h4>Other options</h4>
+        <p>Langkawi is a beautiful island with plenty of hotels and stays along <strong>Pantai Cenang</strong> and <strong>Pantai Tengah</strong>, or browse <strong>Airbnb</strong> for local villas. For a splurge: The Datai, St. Regis, Ritz-Carlton, Four Seasons.</p>
+      </div>
+    </div>
+
+    <!-- Group 2: The Wedding -->
+    <div class="faq-divider"></div>
+
+    <div class="faq-group reveal">
+      <h3 class="faq-group-title">The Wedding</h3>
+
+      <div class="faq-columns">
+        <div class="faq-item">
+          <h4>Can I bring a +1?</h4>
+          <p>Check your invite &mdash; if you're unsure, just ask us.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Are kids welcome?</h4>
+          <p>Yes! Just let us know in your RSVP so we can plan accordingly.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Indoor or outdoor?</h4>
+          <p>The tea ceremony will be indoors. The ceremony and dinner will be outdoors by the sea (weather permitting).</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>What shoes should I wear?</h4>
+          <p>Skip the stilettos &mdash; there will be grass and sand. Wedges, block heels, or sandals are your best bet.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Is the venue accessible?</h4>
+          <p>Yes &mdash; there's a buggy service to get you around the resort.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Can I take photos?</h4>
+          <p>Yes! We just ask that you hold off during the ceremony itself as we want you to be fully with us. We'll share an upload link after so everyone can share their shots.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>What about gifts?</h4>
+          <p>Your presence is the greatest gift. There will be a registry at the reception for those who wish to contribute.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Dietary requirements?</h4>
+          <p>Please note these in the RSVP form and we'll make sure you're looked after.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Group 3: Practical Info -->
+    <div class="faq-divider"></div>
+
+    <div class="faq-group reveal">
+      <h3 class="faq-group-title">Practical Info</h3>
+
+      <div class="faq-item">
+        <h4>What's the weather like?</h4>
+        <p>Tropical &mdash; expect <strong>27&ndash;33&deg;C</strong>. Pack sunscreen, light layers for aircon, and a small umbrella just in case.</p>
+      </div>
+
+      <div class="faq-divider-thin"></div>
+
+      <div class="faq-item">
+        <h4>Do I need a visa?</h4>
+        <p>Most nationalities can enter Malaysia visa-free for up to 90 days. Please check with your local embassy to confirm.</p>
+      </div>
+    </div>
+
+    <div class="faq-divider"></div>
+
+    <!-- Contact -->
+    <p class="faq-contact reveal" style="text-align: center; padding: 1.5rem 0;">More questions? Reach out to <strong>Guo Jie</strong> or <strong>Yu Zon</strong> anytime.</p>
+
+  </section>
+
+  <!-- ============================
+       SECTION 2: Langkawi Guide
+       ============================ -->
+
+  <header class="page-header" id="langkawi" style="background: var(--dark-olive);">
+    <span class="script-label reveal">Explore</span>
+    <h1 class="section-heading reveal">Langkawi Island</h1>
+    <p class="page-subtitle reveal">Guo Jie's hometown — and he wants you to fall in love with it</p>
+  </header>
+
+  <!-- WHAT TO DO -->
+  <section class="langkawi-section" style="background: var(--dark-olive);">
+    <div class="langkawi-section-inner">
+      <h2 class="langkawi-section-title reveal">What to Do</h2>
+      <!-- <p>An emerald archipelago of ninety-nine islands, Langkawi is a mystical tapestry of ancient rainforests and limestone peaks draped elegantly across the turquoise expanse of the Andaman Sea.</p> -->
+      <div class="langkawi-cards">
+        <div class="langkawi-card reveal">
+          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_1952.jpeg" alt="Sky Bridge" loading="lazy"></div>
+          <h3>SkyCab &amp; Sky Bridge</h3>
+          <p>Ride the cable car to the top of Gunung Mat Cincang for jaw-dropping views of the entire archipelago. A must-do.</p>
+        </div>
+        <div class="langkawi-card reveal">
+          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_9307.jpeg" alt="Eagle Square" loading="lazy"></div>
+          <h3>Eagle Square</h3>
+          <p>The iconic Langkawi landmark at the waterfront. Start here, take the obligatory photo, and explore the harbour.</p>
+        </div>
+        <div class="langkawi-card reveal">
+          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_1814.jpeg" alt="Beach life" loading="lazy"></div>
+          <h3>Island Hopping &amp; Beaches</h3>
+          <p>Hop between islands, swim in emerald waters, or simply park yourself on a beach with nowhere to be. Mangrove tours at Kilim Geoforest Park are incredible too.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE TO EAT -->
+  <section class="langkawi-section" style="background: var(--beige);">
+    <div class="langkawi-section-inner">
+      <h2 class="langkawi-section-title langkawi-section-title--dark reveal">Where to Eat</h2>
+      <div class="langkawi-food-split">
+        <div class="langkawi-food-photo reveal">
+          <img src="assets/Actual Pic-Video folder/Langkawi/IMG_1820.jpeg" alt="Eating together in Langkawi" loading="lazy">
+        </div>
+        <div class="langkawi-food-lists reveal">
+          <div class="langkawi-food-col">
+            <h4>Nearby</h4>
+            <ul>
+              <li><strong>Orkid Ria</strong> — Chinese-style seafood, great for groups</li>
+              <li><strong>Unkaizan</strong> — cosy spot for quality Japanese</li>
+              <li><strong>Hidden Langkawi</strong> — sunset drinks by the beach</li>
+              <li><strong>Golden Bamboo / Smiling Buffalo</strong> — brunch or coffee</li>
+              <li><strong>Yellow Beach Cafe</strong> — late-night drinks</li>
+            </ul>
+          </div>
+          <div class="langkawi-food-col">
+            <h4>Further Out</h4>
+            <ul>
+              <li><strong>Wonderland / Weng Fung / ZF Seafood</strong> — fresh seafood</li>
+              <li><strong>Wan Thai</strong> — authentic Thai, very popular</li>
+              <li><strong>Pizza Hill</strong> — hilltop omakase-style pizza</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BE LIKE A LOCAL -->
+  <section class="langkawi-section" style="background: var(--dark-olive);">
+    <div class="langkawi-section-inner">
+      <h2 class="langkawi-section-title reveal">Be Like a Local</h2>
+      <div class="langkawi-cards">
+        <div class="langkawi-card reveal">
+          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_2182.jpeg" alt="Langkawi balcony" loading="lazy"></div>
+          <h3>Experience the landscape</h3>
+          <p>Langkawi is a massive playground of 99 islands where you can hike through ancient rainforests and boat through limestone mangroves in the morning, then spend your afternoon relaxing by emerald rice paddies or on white-sand beaches. It’s a rare spot that packs everything from hidden freshwater lakes and natural hot springs into one easy-to-explore tropical escape.</p>
+        </div>
+        <div class="langkawi-card reveal">
+          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_9307.jpeg" alt="Exploring Langkawi" loading="lazy"></div>
+          <h3>Explore the Land of Legends</h3>
+          <p>Many sites are linked to folklore, most notably the Legend of Mahsuri, a woman who cursed the island for seven generations before its recent prosperity.</p>
+        </div>
+        <div class="langkawi-card reveal">
+          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_1952.jpeg" alt="Views" loading="lazy"></div>
+          <h3>Shop and save</h3>
+          <p>Since 1987, Langkawi has been a duty-free haven, making shopping for chocolate, alcohol, and perfumes much more affordable than on the mainland.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page Nav -->
+  <nav class="page-nav" style="background: var(--beige);">
+    <a href="wedding.html">
+      <span>&larr;</span>
+      <span class="page-nav-label">Wedding Details</span>
+    </a>
+    <a href="journey.html">
+      <span>Next</span>
+      <span class="page-nav-label">Our Journey &rarr;</span>
+    </a>
+  </nav>
+
+  </main>
+  <!-- Footer -->
+  <footer class="footer"><div class="footer-monogram"><span class="footer-monogram-letter">G</span><span class="footer-ampersand">&amp;</span><span class="footer-monogram-letter">Y</span></div><p class="footer-closing">See you in Langkawi</p><p class="footer-date">30 January 2027</p></footer>
+  <script src="script.js"></script>
+
+</body>
+</html>

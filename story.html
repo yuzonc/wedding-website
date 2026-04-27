@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story — Guo Jie & Yu Zon</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       Timeline — How We Met
+       ======================================== */
+
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 2rem 2rem;
+    }
+
+    /* The two track labels at the top */
+    .timeline-tracks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .timeline-track-label {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--brown);
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-track-origin {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brown);
+      opacity: 0.4;
+    }
+
+    /* Milestone rows */
+    .timeline-milestone {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 40px 1fr;
+      gap: 0;
+      margin-bottom: 3rem;
+      align-items: start;
+    }
+
+    /* Centre spine */
+    .timeline-milestone::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: -3rem;
+      width: 1px;
+      background: var(--brown);
+      opacity: 0.12;
+      transform: translateX(-50%);
+    }
+
+    .timeline-milestone:last-child::before {
+      display: none;
+    }
+
+    /* Dot on the spine */
+    .timeline-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1.5px solid var(--brown);
+      background: var(--beige);
+      margin: 0.6rem auto 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .timeline-dot--filled {
+      background: var(--brown);
+    }
+
+    /* Left and right content cells */
+    .timeline-left,
+    .timeline-right {
+      padding: 0 1.25rem;
+    }
+
+    .timeline-left {
+      text-align: right;
+    }
+
+    .timeline-right {
+      text-align: left;
+    }
+
+    .timeline-year {
+      font-family: var(--font-sans);
+      font-size: 0.55rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brown);
+      opacity: 0.35;
+      margin-bottom: 0.35rem;
+    }
+
+    .timeline-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--brown);
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-desc {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--brown);
+      opacity: 0.65;
+      font-style: italic;
+    }
+
+    /* Placeholder photos */
+    .timeline-photo {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border: 1.5px dashed rgba(72, 33, 23, 0.2);
+      border-radius: 4px;
+      background: rgba(72, 33, 23, 0.03);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.75rem;
+    }
+
+    .timeline-photo span {
+      font-family: var(--font-sans);
+      font-size: 0.55rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--brown);
+      opacity: 0.25;
+    }
+
+    /* Empty cell — keeps the grid aligned */
+    .timeline-empty {
+      min-height: 1px;
+    }
+
+    /* === Convergence milestone === */
+    .timeline-converge {
+      position: relative;
+      text-align: center;
+      margin: 2rem 0 3rem;
+      padding: 2.5rem 2rem;
+    }
+
+    .timeline-converge::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 100%;
+      background: var(--brown);
+      opacity: 0.12;
+    }
+
+    .timeline-converge-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--brown);
+      margin: 0 auto 1.25rem;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 0 0 4px var(--beige), 0 0 0 5.5px rgba(72, 33, 23, 0.15);
+    }
+
+    .timeline-converge-year {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--brown);
+      opacity: 0.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-converge-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--brown);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-converge-subtitle {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--brown);
+      opacity: 0.6;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-converge-photo {
+      max-width: 400px;
+      margin: 0 auto;
+      aspect-ratio: 16 / 10;
+      border: 1.5px dashed rgba(72, 33, 23, 0.2);
+      border-radius: 4px;
+      background: rgba(72, 33, 23, 0.03);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .timeline-converge-photo span {
+      font-family: var(--font-sans);
+      font-size: 0.55rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--brown);
+      opacity: 0.25;
+    }
+
+    /* === Single-track milestones (post-convergence) === */
+    .timeline-single {
+      position: relative;
+      max-width: 500px;
+      margin: 0 auto 3rem;
+      text-align: center;
+      padding: 0 2rem;
+    }
+
+    .timeline-single::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: -3rem;
+      width: 1px;
+      background: var(--brown);
+      opacity: 0.12;
+      transform: translateX(-50%);
+    }
+
+    .timeline-single:last-of-type::before {
+      display: none;
+    }
+
+    .timeline-single .timeline-dot {
+      margin: 0 auto 1rem;
+    }
+
+    .timeline-single .timeline-photo {
+      max-width: 340px;
+      margin: 0.75rem auto 0;
+    }
+
+    /* Converge visual: the V-lines */
+    .timeline-converge-lines {
+      position: relative;
+      height: 60px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .timeline-converge-lines::before,
+    .timeline-converge-lines::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 1px;
+      height: 100%;
+      background: var(--brown);
+      opacity: 0.12;
+    }
+
+    .timeline-converge-lines::before {
+      left: 0;
+      transform: rotate(10deg);
+      transform-origin: top center;
+    }
+
+    .timeline-converge-lines::after {
+      right: 0;
+      transform: rotate(-10deg);
+      transform-origin: top center;
+    }
+
+    /* === Responsive === */
+    @media (max-width: 600px) {
+      .timeline {
+        padding: 3rem 1rem 1rem;
+      }
+
+      .timeline-tracks {
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .timeline-track-label {
+        font-size: 1.1rem;
+      }
+
+      .timeline-milestone {
+        grid-template-columns: 1fr 30px 1fr;
+        margin-bottom: 2.5rem;
+      }
+
+      .timeline-left,
+      .timeline-right {
+        padding: 0 0.75rem;
+      }
+
+      .timeline-title {
+        font-size: 1rem;
+      }
+
+      .timeline-desc {
+        font-size: 0.85rem;
+      }
+
+      .timeline-converge {
+        padding: 2rem 1rem;
+      }
+
+      .timeline-single {
+        padding: 0 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav scrolled" id="nav">
+    <a href="index.html" class="nav-logo">G &amp; Y</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <ul id="nav-menu">
+      <li class="nav-dropdown"><a href="story.html#timeline">Our Story</a><ul class="nav-sub"><li><a href="story.html#timeline">How We Met</a></li><li><a href="story.html#proposal">The Proposal</a></li></ul></li>
+      <li class="nav-dropdown"><a href="wedding.html#venue">Wedding</a><ul class="nav-sub"><li><a href="wedding.html#venue">Venue &amp; Date</a></li><li><a href="wedding.html#day">The Day</a></li><li><a href="wedding.html#afterparty">After Party</a></li></ul></li>
+      <li class="nav-dropdown"><a href="faqs.html#wedding">FAQs</a><ul class="nav-sub"><li><a href="faqs.html#wedding">Wedding</a></li><li><a href="faqs.html#langkawi">Langkawi Guide</a></li></ul></li>
+      <li class="nav-dropdown"><a href="journey.html#seasons">Our Journey</a><ul class="nav-sub"><li><a href="journey.html#seasons">Four Seasons</a></li><li><a href="journey.html#family">Family</a></li><li><a href="journey.html#milestones">Milestones</a></li></ul></li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="faqs.html#accommodation" class="nav-book">Book</a>
+      <a href="https://forms.gle/reDxaX2qkwteaL1HA" target="_blank" rel="noopener" class="nav-rsvp">RSVP</a>
+    </div>
+  </nav>
+  <main id="page-content">
+
+  <!-- ============================================
+       SECTION: How We Met (Timeline)
+       ============================================ -->
+
+  <!-- Page Header -->
+  <header class="page-header" id="timeline">
+    <span class="script-label reveal">Our Story</span>
+    <h1 class="section-heading reveal">How We Met</h1>
+  </header>
+
+  <!-- Timeline -->
+  <section class="timeline">
+
+    <!-- Track labels -->
+    <div class="timeline-tracks reveal">
+      <div>
+        <div class="timeline-track-label">Guo Jie</div>
+        <div class="timeline-track-origin">Langkawi, Malaysia</div>
+      </div>
+      <div>
+        <div class="timeline-track-label">Yu Zon</div>
+        <div class="timeline-track-origin">Subang, Malaysia</div>
+      </div>
+    </div>
+
+    <!-- Milestone 1: Childhood -->
+    <div class="timeline-milestone reveal">
+      <div class="timeline-left">
+        <div class="timeline-year">Childhood</div>
+        <div class="timeline-title">Island boy</div>
+        <div class="timeline-desc">Growing up on the shores of Langkawi — barefoot, sun-kissed, surrounded by sea and sky.</div>
+        <div class="timeline-photo"><span>Photo</span></div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-right">
+        <div class="timeline-year">Childhood</div>
+        <div class="timeline-title">Suburban girl</div>
+        <div class="timeline-desc">A Subang Jaya upbringing — neighbourhood friends, weekend malls, and big family dinners.</div>
+        <div class="timeline-photo"><span>Photo</span></div>
+      </div>
+    </div>
+
+    <!-- Milestone 2: Secondary School -->
+    <div class="timeline-milestone reveal">
+      <div class="timeline-left">
+        <div class="timeline-year">Secondary School</div>
+        <div class="timeline-title">His own world</div>
+        <div class="timeline-desc">School on the island, dreams stretching far beyond the horizon.</div>
+        <div class="timeline-photo"><span>Photo</span></div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-right">
+        <div class="timeline-year">Secondary School</div>
+        <div class="timeline-title">Her own world</div>
+        <div class="timeline-desc">Books, friendships, and the quiet ambition of a girl who knew she was going places.</div>
+        <div class="timeline-photo"><span>Photo</span></div>
+      </div>
+    </div>
+
+    <!-- Convergence: University — UCL -->
+    <div class="timeline-converge reveal">
+      <div class="timeline-converge-dot"></div>
+      <div class="timeline-converge-year">University &mdash; UCL, London</div>
+      <div class="timeline-converge-title">Two paths, one city</div>
+      <div class="timeline-converge-subtitle">Two Malaysians, 10,000 km from home, ending up at the same university in London. This is where it all began.</div>
+      <div class="timeline-converge-photo"><span>Photo</span></div>
+    </div>
+
+    <!-- Post-convergence: single track -->
+
+    <!-- Milestone 4: Living in London -->
+    <div class="timeline-single reveal">
+      <div class="timeline-dot timeline-dot--filled"></div>
+      <div class="timeline-year">After University</div>
+      <div class="timeline-title">Living in London</div>
+      <div class="timeline-desc">From lecture halls to a shared life — building something real in a city that became home.</div>
+      <div class="timeline-photo"><span>Photo</span></div>
+    </div>
+
+    <!-- Milestone 5: Working together -->
+    <div class="timeline-single reveal">
+      <div class="timeline-dot timeline-dot--filled"></div>
+      <div class="timeline-year">The London Years</div>
+      <div class="timeline-title">Working &amp; growing together</div>
+      <div class="timeline-desc">Careers, adventures, a shared flat, and the slow, beautiful realisation that this was forever.</div>
+      <div class="timeline-photo"><span>Photo</span></div>
+    </div>
+
+  </section>
+
+  <!-- Visual Divider -->
+  <div style="height: 1px; background: rgba(72,33,23,0.1); max-width: 900px; margin: 0 auto;"></div>
+
+  <!-- ============================================
+       SECTION: The Proposal
+       ============================================ -->
+
+  <!-- Page Header -->
+  <header class="page-header" id="proposal">
+    <span class="script-label reveal">Our Story</span>
+    <h1 class="section-heading reveal">The Proposal</h1>
+    <p class="page-subtitle reveal">The reason why there's a wedding happening ...</p>
+  </header>
+
+  <!-- Proposal Narrative -->
+  <div class="page-content">
+    <div class="proposal-narrative">
+
+      <!-- Block 1 -->
+      <div class="proposal-block reveal">
+        <p>Guo Jie had been planning this Switzerland trip for months. He was "working late" while secretly putting together a proposal plan. Every detail, every backup plan, every scenario — except one. When we got to Switzerland, it was gloomy. The day before the proposal, it rained. And rained. And rained. Guo Jie is not religious at all, but that week, he prayed to every god he knew.</p>
+      </div>
+
+      <!-- Photo row: Before -->
+      <div class="proposal-photo-row proposal-photo-row--triple reveal">
+        <img src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/Before1.jpeg" alt="Before the proposal">
+        <img src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/Before2.jpeg" alt="Before the proposal">
+        <img src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/Before3.jpeg" alt="Before the proposal">
+      </div>
+
+      <!-- Block 2 -->
+      <div class="proposal-block reveal">
+        <p>The morning of the proposal, he woke up to the brightest, clearest sky Switzerland had seen in days. The ring he had designed in London was ready. He was ready.</p>
+      </div>
+
+
+
+      <!-- Block 3 -->
+      <div class="proposal-block reveal">
+        <p>They headed to Zermatt. The sun had brought everyone out — the train up to see the Matterhorn was packed. They almost didn't make it on, but of course, only one person was nervous about that.</p>
+      </div>
+
+      <!-- Highlight block -->
+      <div class="proposal-block proposal-block--highlight reveal">
+        <p>At the second stop, only two other people got off. Guo Jie said, <em>"We get off here."</em></p>
+        <p>Yu Zon, ever the smartypants: <em>"We shouldn't get off — what if we can't get on the next train?"</em></p>
+        <p>Uh oh. Guo Jie was sweating thanks to her critical thinking. But all he could say was: <em>"Just trust me. I did my research. It's nice up there."</em></p>
+      </div>
+
+      <!-- Block -->
+      <div class="proposal-block reveal">
+        <p>So they got off. And walked up the hill. And spotted a <a href="https://www.myswitzerland.com/en-gb/experiences/watch-and-feed-marmots/">marmot</a> along the way, because of course they did.</p>
+      </div>
+
+      <!-- Photo row: Setup -->
+      <div class="proposal-photo-row reveal">
+        <img src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/Setup1.JPG" alt="Setting up the moment">
+        <!-- <img src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/Setup2.JPG" alt="Setting up the moment"> -->
+      </div>
+
+      <!-- Block -->
+      <div class="proposal-block reveal">
+        <p>At the top: a vast, green field with the Matterhorn so close and so clear it didn't look real. Yu Zon immediately wanted to walk over to where three people with massive DSLRs were standing — <em>"They clearly know what they're doing."</em> Guo Jie asked her to keep walking forward instead.</p>
+      </div>
+
+      <!-- Highlight -->
+      <div class="proposal-block proposal-block--highlight reveal">
+        <p><em>"The mountain is so big — why do I need to take 26 steps forward?"</em></p>
+      </div>
+
+            <!-- Photo row: Setup -->
+      <div class="proposal-photo-row reveal">
+        <!-- <img src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/Setup1.JPG" alt="Setting up the moment"> -->
+        <img src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/Setup2.JPG" alt="Setting up the moment">
+      </div>
+
+      <!-- Block -->
+      <div class="proposal-block reveal">
+        <p>Guo Jie pulled out a tripod, asked for Yu Zon's phone, and set it up like he was framing a couples' photo. Normal enough. But when he brought the phone back, it wasn't a camera — it was a video. A montage of their years together.</p>
+      </div>
+
+      <!-- Photo row: During -->
+      <div class="proposal-photo-row proposal-photo-row--triple reveal">
+        <img src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/During1.JPG" alt="The proposal moment">
+        <img src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/During2.JPG" alt="The proposal moment">
+        <img src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/During3.JPG" alt="The proposal moment">
+      </div>
+
+      <!-- Emotional block -->
+      <div class="proposal-block proposal-block--emotional reveal">
+        <p>Yu Zon cried. A lot.</p>
+        <p>He knelt down. He asked the question.</p>
+        <p>She said yes.</p>
+      </div>
+
+      <!-- Block -->
+      <div class="proposal-block reveal">
+        <p>They held each other for a long time. Then Guo Jie waved over the secret photographer he'd hired — hiding nearby this whole time — and they celebrated with an engagement shoot on that beautiful green field, with the Matterhorn watching over them. Fumo was there!</p>
+      </div>
+
+      <!-- Photo row: After -->
+      <div class="proposal-photo-row proposal-photo-row--triple reveal">
+        <img src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/After1.JPG" alt="After she said yes">
+        <img src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/Post1.JPG" alt="Engagement photos">
+        <img src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/IMG_6743.JPG" alt="The green field">
+      </div>
+
+      <!-- Closing -->
+      <div class="proposal-closing reveal">
+        <p>That green field? It's where we took the photo you see on our landing page.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Page Nav -->
+  <nav class="page-nav">
+    <a href="index.html">
+      <span class="page-nav-label">&larr; Home</span>
+    </a>
+    <a href="wedding.html">
+      <span class="page-nav-label">Wedding Details &rarr;</span>
+    </a>
+  </nav>
+
+  </main>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-monogram"><span class="footer-monogram-letter">G</span><span class="footer-ampersand">&amp;</span><span class="footer-monogram-letter">Y</span></div>
+    <p class="footer-closing">See you in Langkawi</p>
+    <p class="footer-date">30 January 2027</p>
+  </footer>
+  <script src="script.js"></script>
+
+</body>
+</html>

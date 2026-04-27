@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding — Guo Jie & Yu Zon</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    .why-langkawi {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+    .why-langkawi-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--brown);
+      margin-bottom: 1rem;
+    }
+    .why-langkawi-text p {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--brown);
+      opacity: 0.75;
+    }
+    .why-langkawi-image {
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .why-langkawi-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+      transition: transform 0.6s ease;
+    }
+    .why-langkawi-image:hover img {
+      transform: scale(1.03);
+    }
+    .venue-details {
+      text-align: center;
+      padding: 2rem 0 3rem;
+    }
+    .venue-details-name {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 300;
+      color: var(--brown);
+      margin-bottom: 0.5rem;
+    }
+    .venue-details-date {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--brown);
+      opacity: 0.5;
+    }
+    .venue-map-wrapper {
+      margin: 2rem 0 3rem;
+      border-radius: 4px;
+      overflow: hidden;
+      line-height: 0;
+    }
+    .venue-map-wrapper iframe {
+      filter: grayscale(0.3) contrast(1.05);
+    }
+    .accommodation-other {
+      margin-top: 1.5rem;
+    }
+    .accommodation-other h4 {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brown);
+      opacity: 0.45;
+      margin-bottom: 0.75rem;
+    }
+    .accommodation-other p {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--brown);
+      opacity: 0.7;
+    }
+    .accommodation-other p strong {
+      font-weight: 500;
+      opacity: 1;
+    }
+    .book-room-cta {
+      display: block;
+      text-align: center;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: var(--brown);
+      color: var(--beige);
+      padding: 1.25rem 2rem;
+      margin: 1.5rem 0;
+      border: none;
+      transition: all 0.35s ease;
+    }
+    .book-room-cta:hover {
+      background: var(--dark-olive);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(72, 33, 23, 0.2);
+    }
+    @media (max-width: 600px) {
+      .why-langkawi {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav scrolled" id="nav">
+    <a href="index.html" class="nav-logo">G &amp; Y</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <ul id="nav-menu">
+      <li class="nav-dropdown"><a href="story.html#timeline">Our Story</a><ul class="nav-sub"><li><a href="story.html#timeline">How We Met</a></li><li><a href="story.html#proposal">The Proposal</a></li></ul></li>
+      <li class="nav-dropdown"><a href="wedding.html#venue">Wedding</a><ul class="nav-sub"><li><a href="wedding.html#venue">Venue &amp; Date</a></li><li><a href="wedding.html#day">The Day</a></li><li><a href="wedding.html#afterparty">After Party</a></li></ul></li>
+      <li class="nav-dropdown"><a href="faqs.html#wedding">FAQs</a><ul class="nav-sub"><li><a href="faqs.html#wedding">Wedding</a></li><li><a href="faqs.html#langkawi">Langkawi Guide</a></li></ul></li>
+      <li class="nav-dropdown"><a href="journey.html#seasons">Our Journey</a><ul class="nav-sub"><li><a href="journey.html#seasons">Four Seasons</a></li><li><a href="journey.html#family">Family</a></li><li><a href="journey.html#milestones">Milestones</a></li></ul></li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="faqs.html#accommodation" class="nav-book">Book</a>
+      <a href="https://forms.gle/reDxaX2qkwteaL1HA" target="_blank" rel="noopener" class="nav-rsvp">RSVP</a>
+    </div>
+  </nav>
+  <main id="page-content">
+
+  <!-- ======================== WEDDING HEADER ======================== -->
+
+  <div class="page-header">
+    <span class="script-label reveal">The</span>
+    <h1 class="section-heading reveal">Wedding</h1>
+    <p class="page-subtitle reveal">Pelangi Beach Resort &amp; Spa, Langkawi &middot; 30 January 2027</p>
+  </div>
+
+  <!-- ======================== VENUE ======================== -->
+
+  <!-- Venue Image -->
+  <div id="venue" class="venue-image" style="background-image: url('assets/HOTEL PICTURE/caption.jpg');">
+    <div class="venue-overlay"></div>
+    <div class="venue-text">
+      <h2 class="venue-heading reveal">Where &amp; When</h2>
+      <p class="venue-name reveal">Pelangi Beach Resort &amp; Spa</p>
+    </div>
+  </div>
+
+  <!-- Page Content -->
+  <div class="page-content">
+
+    <!-- Why Langkawi -->
+    <div class="why-langkawi reveal">
+      <div class="why-langkawi-text">
+        <h2>Why Langkawi?</h2>
+        <p>This is where Guo Jie grew up. A place where we can all gather to celebrate us — and to celebrate each other.</p>
+      </div>
+      <div class="why-langkawi-image">
+        <img src="assets/Actual Pic-Video folder/Langkawi/IMG_2182.jpeg" alt="Langkawi balcony selfie">
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ======================== DAY ======================== -->
+
+  <!-- Full-bleed header image -->
+  <div id="day" class="wedding-day-scene">
+    <div class="wedding-day-scene-overlay"></div>
+    <div class="wedding-day-scene-text">
+      <span class="script-label">The Wedding Day</span>
+      <h1 class="section-heading">30th January 2027</h1>
+    </div>
+  </div>
+
+  <!-- Events Grid -->
+  <div class="wedding-day">
+    <div class="wedding-day-inner">
+      <div class="events-grid">
+
+        <!-- Tea Ceremony -->
+        <div class="event-card reveal">
+          <h3>Tea Ceremony</h3>
+          <p class="event-time">2:30 PM — 4:00 PM</p>
+
+          <p class="event-desc">An intimate traditional tea ceremony to honour our families</p>
+          <p class="event-welcome">All guests welcome</p>
+        </div>
+
+        <!-- Free Time (gap card) -->
+        <div class="event-card event-card--gap reveal">
+          <p class="event-gap-time">4:00 PM — 6:00 PM</p>
+          <p class="event-gap-label">Free time</p>
+          <p class="event-gap-desc">Relax, freshen up, or enjoy the resort</p>
+        </div>
+
+        <!-- Beachside Ceremony -->
+        <div class="event-card reveal">
+          <h3>Beachside Ceremony</h3>
+          <p class="event-time">6:00 PM — 7:00 PM</p>
+
+          <p class="event-desc">A sunset ceremony on the beach with the Andaman Sea as our witness</p>
+          <p class="event-welcome">All guests welcome</p>
+        </div>
+
+        <!-- Reception Dinner -->
+        <div class="event-card reveal">
+          <h3>Reception Dinner</h3>
+          <p class="event-time">7:00 PM — 10:00 PM</p>
+
+          <p class="event-desc">An evening of feasting, laughter, and dancing under the stars</p>
+          <p class="event-welcome">All guests welcome</p>
+        </div>
+
+      </div>
+
+      <!-- Dress Code & Colour Palette -->
+      <div class="dress-code-section reveal">
+        <h3 class="dress-code-title">Dress Code</h3>
+        <p class="dress-code-desc">Tropical garden formal — think soft fabrics, linen suits, and sun-kissed elegance.</p>
+        
+        <h3 class="dress-code-title">Our colour palette</h3>
+        <p class="dress-code-desc">Wear what feels right within these tones.</p>
+ 
+        <div class="colour-palette">
+          <div class="colour-swatch" style="background: #4a5e3a;" title="Forest Green"></div>
+          <div class="colour-swatch" style="background: #c9a99a;" title="Dusty Rose"></div>
+          <div class="colour-swatch" style="background: #d4c4a8;" title="Champagne"></div>
+        
+        </div>
+        
+        <!-- <p class="colour-palette-label">Our colour palette — wear what feels right within these tones</p> -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================== AFTERPARTY ======================== -->
+
+  <!-- After Party Section -->
+  <div id="afterparty" class="after-party" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding-top: 6rem;">
+    <div class="after-party-content">
+
+      <!-- Friends Only Badge -->
+      <div class="friends-only-badge">
+        <span>Friends<br>Only</span>
+      </div>
+
+      <span class="script-label">The After Party</span>
+      <h1 class="section-heading">31st January 2027</h1>
+
+      <div class="after-party-divider"></div>
+
+      <div class="after-party-details">
+        <p class="detail-line"><strong>TIME</strong> &nbsp; 4pm — 8pm</p>
+        <p class="detail-line"><strong>DETAILS</strong> &nbsp; Will be announced closer to date...</p>
+      </div>
+
+      <p class="after-party-note">Expect sea, drinks, food and great company... let us know if you're coming in the RSVP</p>
+
+    </div>
+  </div>
+
+  <!-- Page Navigation -->
+  <div class="page-nav">
+    <a href="story.html">
+      <span>&larr;</span>
+      <span class="page-nav-label">Our Story</span>
+    </a>
+    <a href="faqs.html" style="text-align: right;">
+      <span>&rarr;</span>
+      <span class="page-nav-label">FAQs</span>
+    </a>
+  </div>
+
+  </main>
+  <!-- Footer -->
+  <footer class="footer"><div class="footer-monogram"><span class="footer-monogram-letter">G</span><span class="footer-ampersand">&amp;</span><span class="footer-monogram-letter">Y</span></div><p class="footer-closing">See you in Langkawi</p><p class="footer-date">30 January 2027</p></footer>
+  <script src="script.js"></script>
+</body>
+</html>

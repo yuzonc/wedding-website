@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guo Jie & Yu Zon — Wedding</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">GJ &amp; YZ</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="nav-menu">
+      <li class="nav-dropdown">
+        <a href="story.html">Our Story</a>
+        <ul class="nav-sub">
+          <li><a href="story.html#timeline">How We Met</a></li>
+          <li><a href="story.html#proposal">The Proposal</a></li>
+        </ul>
+      </li>
+      <li class="nav-dropdown">
+        <a href="wedding.html">Wedding</a>
+        <ul class="nav-sub">
+          <li><a href="wedding.html#venue">Venue &amp; Date</a></li>
+          <li><a href="wedding.html#day">The Day</a></li>
+          <li><a href="wedding.html#afterparty">After Party</a></li>
+        </ul>
+      </li>
+      <li class="nav-dropdown">
+        <a href="faqs.html">FAQs</a>
+        <ul class="nav-sub">
+          <li><a href="faqs.html#wedding">Wedding</a></li>
+          <li><a href="faqs.html#langkawi">Langkawi Guide</a></li>
+        </ul>
+      </li>
+      <li class="nav-dropdown">
+        <a href="journey.html">Memories</a>
+        <ul class="nav-sub">
+          <li><a href="journey.html#seasons">Through the Seasons</a></li>
+          <li><a href="journey.html#family">Family</a></li>
+          <li><a href="journey.html#milestones">Milestones</a></li>
+                  </ul>
+      </li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="faqs.html#accommodation" class="nav-book">Book a Room</a>
+      <a href="https://forms.gle/reDxaX2qkwteaL1HA" target="_blank" rel="noopener" class="nav-rsvp">RSVP</a>
+    </div>
+  </nav>
+
+  <main id="page-content">
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-names fade-in">Guo Jie &amp; Yu Zon</h1>
+      <p class="hero-subtitle fade-in">are getting married</p>
+      <p class="hero-location-script fade-in">Langkawi</p>
+      <p class="hero-date fade-in">30 January 2027</p>
+    </div>
+    <div class="scroll-indicator"><span></span></div>
+  </section>
+
+  <!-- Countdown strip -->
+  <div class="countdown-strip" id="countdown">
+    <div class="countdown-unit"><span id="cd-days">---</span><small>Days</small></div>
+    <div class="countdown-unit"><span id="cd-hours">--</span><small>Hours</small></div>
+    <div class="countdown-unit"><span id="cd-mins">--</span><small>Mins</small></div>
+    <div class="countdown-unit"><span id="cd-secs">--</span><small>Secs</small></div>
+  </div>
+
+  <!-- Chapter Navigation -->
+  <section class="chapters">
+
+    <!-- Wedding Details (hero tile, full width) -->
+    <a href="wedding.html" class="chapter-card chapter-card--hero reveal">
+      <div class="chapter-card-bg" style="background-image: url('assets/HOTEL PICTURE/caption.jpg');"></div>
+      <div class="chapter-card-overlay"></div>
+      <div class="chapter-card-content">
+        <h2 class="chapter-title">Wedding Details</h2>
+        <p class="chapter-desc">Everything you need to know — venue, schedule, dress code, and RSVP</p>
+        <span class="chapter-cta">Start here</span>
+      </div>
+    </a>
+
+    <!-- Three tiles row -->
+    <a href="story.html" class="chapter-card reveal">
+      <div class="chapter-card-bg" style="background-image: url('assets/Actual Pic-Video folder/Proposal Switzerland Trip/After1.JPG');"></div>
+      <div class="chapter-card-overlay"></div>
+      <div class="chapter-card-content">
+        <h2 class="chapter-title">Our Story</h2>
+        <p class="chapter-desc">How two people from different corners of Malaysia found each other in a different part of the world</p>
+      </div>
+    </a>
+
+    <a href="faqs.html" class="chapter-card reveal">
+      <div class="chapter-card-bg" style="background-image: url('assets/HOTEL PICTURE/resort-ground.jpg');"></div>
+      <div class="chapter-card-overlay"></div>
+      <div class="chapter-card-content">
+        <h2 class="chapter-title">FAQs &amp; Travel</h2>
+        <p class="chapter-desc">Getting there, where to stay, and what to do</p>
+      </div>
+    </a>
+
+    <a href="journey.html" class="chapter-card reveal">
+      <div class="chapter-card-bg" style="background-image: url('assets/Actual Pic-Video folder/Summer/IMG_6289.jpeg');"></div>
+      <div class="chapter-card-overlay"></div>
+      <div class="chapter-card-content">
+        <h2 class="chapter-title">Our Journey</h2>
+        <p class="chapter-desc">Stories from our adventures together over the years</p>
+      </div>
+    </a>
+
+  </section>
+
+  </main>
+
+  <!-- Music player (persistent, outside main) -->
+  <div class="music-float" id="music-float">
+    <button class="music-toggle" id="music-toggle" aria-label="Play our song">
+      <span id="music-icon">&#9835;</span
+      <span class="music-label" id="music-label">Play our song</span>
+    </button>
+    <div class="music-player" id="music-player">
+      <!-- <iframe width="100%" height="10" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1311036817&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe> -->
+      <!-- <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="ttps://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1311036817&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe> -->
+      <!-- <iframe src width="100%" height="100" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1311036817&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe src><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/user-580579907" title="Lily" target="_blank" style="color: #cccccc; text-decoration: none;">Lily</a> · <a href="https://soundcloud.com/user-580579907/so-this-is-love-sneha-cover" title="So This Is Love - Sneha cover" target="_blank" style="color: #cccccc; text-decoration: none;">So This Is Love - Sneha cover</a></div> -->
+      <iframe src="https://open.spotify.com/embed/track/492ctexUJMxJyYc8U247Po?utm_source=generator&theme=0" width="300" height="80px" frameBorder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius:12px;"></iframe>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-monogram">
+      <span class="footer-monogram-letter">GJ</span>
+      <span class="footer-ampersand">&amp;</span>
+      <span class="footer-monogram-letter">YZ</span>
+    </div>
+    <p class="footer-closing">See you in Langkawi</p>
+    <p class="footer-date">30 January 2027</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

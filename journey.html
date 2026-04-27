@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Journey — Guo Jie & Yu Zon</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* Friends page styles */
+    .friends-message {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+    }
+
+    .friends-message p {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.9;
+      color: var(--brown);
+      opacity: 0.75;
+    }
+
+    .friends-placeholder-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .friends-placeholder-box {
+      aspect-ratio: 4 / 3;
+      border: 2px dashed rgba(72, 33, 23, 0.2);
+      border-radius: 4px;
+      background: rgba(72, 33, 23, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .friends-placeholder-box span {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--brown);
+      opacity: 0.3;
+    }
+
+    @media (max-width: 600px) {
+      .friends-placeholder-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav scrolled" id="nav">
+    <a href="index.html" class="nav-logo">G &amp; Y</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <ul id="nav-menu">
+      <li class="nav-dropdown"><a href="story.html#timeline">Our Story</a><ul class="nav-sub"><li><a href="story.html#timeline">How We Met</a></li><li><a href="story.html#proposal">The Proposal</a></li></ul></li>
+      <li class="nav-dropdown"><a href="wedding.html#venue">Wedding</a><ul class="nav-sub"><li><a href="wedding.html#venue">Venue &amp; Date</a></li><li><a href="wedding.html#day">The Day</a></li><li><a href="wedding.html#afterparty">After Party</a></li></ul></li>
+      <li class="nav-dropdown"><a href="faqs.html#wedding">FAQs</a><ul class="nav-sub"><li><a href="faqs.html#wedding">Wedding</a></li><li><a href="faqs.html#langkawi">Langkawi Guide</a></li></ul></li>
+      <li class="nav-dropdown"><a href="journey.html#seasons">Our Journey</a><ul class="nav-sub"><li><a href="journey.html#seasons">Four Seasons</a></li><li><a href="journey.html#family">Family</a></li><li><a href="journey.html#milestones">Milestones</a></li></ul></li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="faqs.html#accommodation" class="nav-book">Book</a>
+      <a href="https://forms.gle/reDxaX2qkwteaL1HA" target="_blank" rel="noopener" class="nav-rsvp">RSVP</a>
+    </div>
+  </nav>
+  <main id="page-content">
+
+  <!-- Seasons Header -->
+  <header class="page-header" id="seasons">
+    <h1 class="section-heading" style="font-family: var(--font-display); font-style: italic;">Through Every Season</h1>
+    <p class="page-subtitle">If you want to know more about our adventures together...</p>
+    <p class="page-subtitle" style="margin-top: 1rem; opacity: 0.35;">Click on any photo to read the story behind it</p>
+  </header>
+
+  <!-- Spring -->
+  <section class="season season--spring">
+    <div class="season-header reveal">
+      <h2 class="season-name">Spring</h2>
+      <p class="season-caption">When everything began to bloom</p>
+    </div>
+
+    <div class="season-video-banner reveal">
+      <video class="autoplay-video" muted loop playsinline>
+        <source src="assets/Actual Pic-Video folder/Spring/Spring.mov" type="video/mp4">
+      </video>
+      <div class="video-caption">Cycled to Regent's Park during lockdown, and stumbled upon the (apparently very famous) cherry blossom lane. The feeling was super magical!</div>
+    </div>
+
+    <div class="season-cards">
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="assets/Actual Pic-Video folder/Spring/IMG_2373.JPG" alt="London, UK — our first spring">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">London, UK</p>
+            <p class="card-back-story">Spent our 4th anniversary in London watching Hamilton, but not before playing tourist with Big Ben and a red phone box.</p>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="assets/Actual Pic-Video folder/Spring/IMG_3730.jpeg" alt="Cherry blossoms in London">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">London, UK</p>
+            <p class="card-back-story">Cherry blossom season became our thing. Every year, without fail, we'd go on a sakura hunt together. This is how Yu Zon knows that every year, there's a kind lady who tracks the cherry blossoms in Greenwich Park and shares live updates...</p>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="assets/Actual Pic-Video folder/Spring/IMG_4039.jpeg" alt="Under cherry blossoms">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">London, UK</p>
+            <p class="card-back-story">Standing under a canopy of pink — our favourite spring tradition.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Summer (portrait video layout) -->
+  <section class="season season--summer">
+    <div class="season-header reveal">
+      <h2 class="season-name">Summer</h2>
+      <p class="season-caption">Chasing the sun together</p>
+    </div>
+
+    <div class="season-portrait-layout">
+      <div class="season-portrait-video reveal-photo">
+        <video class="autoplay-video" muted loop playsinline>
+          <source src="assets/Actual Pic-Video folder/Summer/IMG_5489.MOV" type="video/mp4">
+        </video>
+        <div class="video-caption">We were sitting on the steps of a square in Noto, Sicily with Ling and Heng as a local artist was singing La Donna Cannone and everyone was singing together with him. We can still hear and smell that sweet summer night.</div>
+      </div>
+      <div class="season-portrait-cards">
+        <div class="photo-card reveal-photo">
+          <div class="card-inner">
+            <div class="card-front"><img src="assets/Actual Pic-Video folder/Summer/IMG_6289.jpeg" alt="Plitvice Lakes, Croatia"></div>
+            <div class="card-back"><p class="card-back-location">Plitvice Lakes, Croatia</p><p class="card-back-story">The water really is that blue... blessed to see unreal views together.</p></div>
+          </div>
+        </div>
+        <div class="photo-card reveal-photo">
+          <div class="card-inner">
+            <div class="card-front"><img src="assets/Actual Pic-Video folder/Summer/IMG_2724.JPG" alt="Snowdonia, Wales" style="object-position: center 10%;"></div>
+            <div class="card-back"><p class="card-back-location">Snowdonia, Wales</p><p class="card-back-story">Hiked up a random mountain in Snowdonia with Nick, Sherman, and RJ. This was our first hike together!</p></div>
+          </div>
+        </div>
+        <div class="photo-card reveal-photo">
+          <div class="card-inner">
+            <div class="card-front"><img src="assets/Actual Pic-Video folder/Summer/IMG_8311.jpeg" alt="Mt Etna, Sicily"></div>
+            <div class="card-back"><p class="card-back-location">Mt Etna, Sicily</p><p class="card-back-story">Our first visit to an active volcano. Dark lava fields, dramatic clouds, and wind so strong we could barely stand. Unforgettable.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Autumn -->
+  <section class="season season--autumn">
+    <div class="season-header reveal">
+      <h2 class="season-name">Autumn</h2>
+      <p class="season-caption">Falling for each other, again and again</p>
+      </div>
+
+    <div class="season-video-banner reveal">
+      <video class="autoplay-video" muted loop playsinline>
+        <source src="assets/Actual Pic-Video folder/Autumn/Autumn.MOV" type="video/mp4">
+      </video>
+      <div class="video-caption">We were visiting Hyde Park to catch the last of the autumn leaves in London. GJ had the random idea to go on one of those pedal boats on the Serpentine. Spontaneous activities always turn into core memories for us!</div>
+    </div>
+
+    <div class="season-cards">
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="assets/Actual Pic-Video folder/Autumn/IMG_0559.jpeg" alt="Busan, South Korea">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">Busan, South Korea</p>
+            <p class="card-back-story">Arms wide open at Gamcheon Culture Village with the Little Prince statue. We felt like kids again.</p>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="assets/Actual Pic-Video folder/Autumn/358A3477.jpeg" alt="Lake District, UK" style="object-position: center 70%;">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">Lake District, UK</p>
+            <p class="card-back-story">The moment Guo Jie told Yu Zon she was so bad at throwing pebbles she should just leave the lake. Bet you never guessed that backstory ;).</p>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="assets/Actual Pic-Video folder/Autumn/Snapseed.jpg" alt="London, UK — golden autumn" style="object-position: center 30%;>
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">London, UK</p>
+            <p class="card-back-story">Our first visit to Hyde Park in autumn. This is when we fell in love with the season.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Winter (portrait video layout) -->
+  <section class="season season--winter">
+    <div class="season-header reveal">
+      <h2 class="season-name">Winter</h2>
+      <p class="season-caption">The cold that kept us close</p>
+    </div>
+
+    <div class="season-portrait-layout">
+      <div class="season-portrait-video reveal-photo">
+        <video class="autoplay-video" muted loop playsinline>
+          <source src="assets/Actual Pic-Video folder/Winter/Winter.mov" type="video/mp4">
+        </video>
+        <div class="video-caption">One night it was snowing like mad - we were living with Nick and Krystal in the Olympic Village at the time, and we decided to head down to Victory Park to build a snowman. This is us singing Do You Want to Build a Snowman (which was already kind of YZ's song at this point).</div>
+      </div>
+      <div class="season-portrait-cards">
+        <div class="photo-card reveal-photo">
+          <div class="card-inner">
+            <div class="card-front"><img src="assets/Actual Pic-Video folder/Winter/IMG_3610.jpeg" alt="Oslo"></div>
+            <div class="card-back"><p class="card-back-location">Oslo, Norway</p><p class="card-back-story">Our first skiing experience thanks to Hedda and Sigurd who guided us newbies. YZ fell approximately 47 times while GJ pretended not to count. Oh, she also crashed into a pizza restaurant at peak lunch hour, but that's a story for another day.</p></div>
+          </div>
+        </div>
+        <div class="photo-card reveal-photo">
+          <div class="card-inner">
+            <div class="card-front"><img src="assets/Actual Pic-Video folder/Winter/IMG_4528.jpeg" alt="Oslo, Norway"></div>
+            <div class="card-back"><p class="card-back-location">Oslo, Norway</p><p class="card-back-story">This was when GJ tagged along while YZ was on a work trip in Oslo. We watched one of the most beautiful sunsets ever on the rooftop of the Opera House. YZ felt like she was very creative for thinking of this photo op.</p></div>
+          </div>
+        </div>
+        <div class="photo-card reveal-photo">
+          <div class="card-inner">
+            <div class="card-front"><img src="assets/Actual Pic-Video folder/Winter/IMG_0370.jpeg" alt="New Year's Eve 2026"></div>
+            <div class="card-back"><p class="card-back-location">New Year's Day, London</p><p class="card-back-story">We waited four hours in the cold with friends to watch the NYE fireworks. It was worth every frozen minute — we rang in 2026 together.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- FAMILY -->
+  <!-- ============================================ -->
+
+  <!-- Family Header -->
+  <header class="page-header" id="family">
+
+    <h1 class="section-heading">Family</h1>
+    <p class="page-subtitle">The people who made us who we are</p>
+  </header>
+
+  <!-- Family Section -->
+  <section class="season season--family">
+
+    <!-- Hero Photo Banner (clickable) -->
+    <div class="season-photo-banner reveal photo-card-banner" onclick="this.classList.toggle('show-story')">
+      <img src="assets/Actual Pic-Video folder/Family/Main.jpeg" alt="Family photo">
+      <div class="banner-story-overlay">
+        <p class="card-back-location" style="color: var(--beige);">Langkawi, Malaysia</p>
+        <p class="card-back-story" style="color: var(--beige);">Guo Jie took Yu Zon's family around Langkawi — showing them the island he grew up on, the food, and the place that means the most to him.</p>
+      </div>
+    </div>
+
+    <!-- 4 Flip Cards -->
+    <div class="season-cards">
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="assets/Actual Pic-Video folder/Family/IMG_0174.jpeg" alt="Christmas morning" style="object-position: center 25%;">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">Home</p>
+            <p class="card-back-story">Christmas morning with Esther and Timothy. We always have a warm home (and board game cafe) in Liverpool thanks to them.</p>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="assets/Actual Pic-Video folder/Family/IMG_3948.jpeg" alt="Cherry blossoms with friends">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">London, UK</p>
+            <p class="card-back-story">The perfect afternoon — picnicking on the grass with family and cherry blossoms.</p>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="assets/Actual Pic-Video folder/Family/IMG_9183.jpeg" alt="Penang cendol">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">Penang, Malaysia</p>
+            <p class="card-back-story">Penang Road cendol is LITERALLY the best. Family trip to prove it.</p>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="assets/Actual Pic-Video folder/Family/IMG_9576.jpeg" alt="Gyeongbokgung Palace" style="object-position: center 60%;">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">Seoul, South Korea</p>
+            <p class="card-back-story">Visited Seoul and Busan on a Chow family trip. We ate so much on this trip, our album is almost entirely about food.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- MILESTONES -->
+  <!-- ============================================ -->
+
+  <!-- Milestones Header -->
+  <header class="page-header" id="milestones">
+
+    <h1 class="section-heading">Milestones</h1>
+    <p class="page-subtitle">The moments that marked the journey</p>
+  </header>
+
+  <!-- Milestones Section -->
+  <section class="season season--milestones">
+
+    <!-- Video Banner -->
+    <div class="season-video-banner reveal">
+      <video class="autoplay-video" muted loop playsinline>
+        <source src="assets/Actual Pic-Video folder/Milestone/First Valentines.MOV" type="video/mp4">
+      </video>
+      <div class="video-caption">Our First Valentine Together</div>
+    </div>
+
+    <!-- 5 Flip Cards — 3 + 2 centered layout -->
+    <div class="season-cards season-cards--milestones">
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="assets/Actual Pic-Video folder/Milestone/Birthday.jpeg" alt="Birthday celebration" style="object-position: center 20%;">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">Home</p>
+            <p class="card-back-story">Celebrated YZ's birthday with a children's day theme - complete with headbands, fast food, and plushies!</p>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="assets/Actual Pic-Video folder/Milestone/COVID.JPG" alt="Vaccination milestone">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">London, UK</p>
+            <p class="card-back-story">We made it through a pandemic together. The vaccination cards were quite literally the most romantic milestone of 2021.</p>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="assets/Actual Pic-Video folder/Milestone/Lantern.JPG" alt="Sky lantern in Shifen">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">Shifen, Taiwan</p>
+            <p class="card-back-story">We wrote our wishes on the lantern. Some of those wishes have already come true.</p>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="assets/Actual Pic-Video folder/Milestone/Graduation 1.JPG" alt="Her graduation">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">UCL, London</p>
+            <p class="card-back-story">Her graduation day. Flowers, champagne, and the next chapter — together.</p>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="assets/Actual Pic-Video folder/Milestone/Graduation 2.JPG" alt="His graduation">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">UCL, London</p>
+            <p class="card-back-story">The day he graduated. She stood beaming with the biggest bouquet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page Navigation -->
+  <div class="page-nav">
+    <a href="faqs.html">
+      <span class="page-nav-label">&larr; FAQs</span>
+    </a>
+    <a href="index.html">
+      <span class="page-nav-label">Back to Home &rarr;</span>
+    </a>
+  </div>
+
+  </main>
+  <!-- Footer -->
+  <footer class="footer"><div class="footer-monogram"><span class="footer-monogram-letter">G</span><span class="footer-ampersand">&amp;</span><span class="footer-monogram-letter">Y</span></div><p class="footer-closing">See you in Langkawi</p><p class="footer-date">30 January 2027</p></footer>
+  <script src="script.js"></script>
+
+</body>
+</html>
