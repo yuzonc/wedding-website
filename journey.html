@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#36350B">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Our Journey — Guo Jie & Yu Zon</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -65,13 +68,13 @@
 
   <!-- Navigation -->
   <nav class="nav scrolled" id="nav">
-    <a href="index.html" class="nav-logo">G &amp; Y</a>
+    <a href="index.html" class="nav-logo">GJ &amp; YZ</a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     <ul id="nav-menu">
       <li class="nav-dropdown"><a href="story.html#timeline">Our Story</a><ul class="nav-sub"><li><a href="story.html#timeline">How We Met</a></li><li><a href="story.html#proposal">The Proposal</a></li></ul></li>
       <li class="nav-dropdown"><a href="wedding.html#venue">Wedding</a><ul class="nav-sub"><li><a href="wedding.html#venue">Venue &amp; Date</a></li><li><a href="wedding.html#day">The Day</a></li><li><a href="wedding.html#afterparty">After Party</a></li></ul></li>
       <li class="nav-dropdown"><a href="faqs.html#wedding">FAQs</a><ul class="nav-sub"><li><a href="faqs.html#wedding">Wedding</a></li><li><a href="faqs.html#langkawi">Langkawi Guide</a></li></ul></li>
-      <li class="nav-dropdown"><a href="journey.html#seasons">Our Journey</a><ul class="nav-sub"><li><a href="journey.html#seasons">Four Seasons</a></li><li><a href="journey.html#family">Family</a></li><li><a href="journey.html#milestones">Milestones</a></li></ul></li>
+      <li class="nav-dropdown"><a href="journey.html#seasons">Memories</a><ul class="nav-sub"><li><a href="journey.html#seasons">Through the Seasons</a></li><li><a href="journey.html#family">Family</a></li><li><a href="journey.html#milestones">Milestones</a></li></ul></li>
     </ul>
     <div class="nav-ctas">
       <a href="faqs.html#accommodation" class="nav-book">Book</a>
@@ -80,12 +83,22 @@
   </nav>
   <main id="page-content">
 
-  <!-- Seasons Header -->
-  <header class="page-header" id="seasons">
-    <h1 class="section-heading" style="font-family: var(--font-display); font-style: italic;">Through Every Season</h1>
-    <p class="page-subtitle">If you want to know more about our adventures together...</p>
-    <p class="page-subtitle" style="margin-top: 1rem; opacity: 0.35;">Click on any photo to read the story behind it</p>
-  </header>
+  <!-- Memories Cover -->
+  <div class="memories-cover" id="seasons">
+    <div class="memories-cover-bg"></div>
+    <div class="memories-cover-overlay"></div>
+    <div class="memories-cover-content">
+      <span class="script-label">Our</span>
+      <h1 class="section-heading">Memories</h1>
+      <p class="memories-cover-subtitle">If you want to know more about our adventures together...</p>
+    </div>
+  </div>
+
+  <!-- Tap-to-read floating hint -->
+  <div class="tap-hint" id="tap-hint" aria-hidden="true">
+    <span class="tap-hint-icon">👆</span>
+    <span class="tap-hint-text">Tap any photo to read the story</span>
+  </div>
 
   <!-- Spring -->
   <section class="season season--spring">
@@ -95,7 +108,7 @@
     </div>
 
     <div class="season-video-banner reveal">
-      <video class="autoplay-video" muted loop playsinline>
+      <video class="autoplay-video" muted loop playsinline preload="metadata">
         <source src="assets/Actual Pic-Video folder/Spring/Spring.mov" type="video/mp4">
       </video>
       <div class="video-caption">Cycled to Regent's Park during lockdown, and stumbled upon the (apparently very famous) cherry blossom lane. The feeling was super magical!</div>
@@ -105,33 +118,33 @@
       <div class="photo-card reveal-photo">
         <div class="card-inner">
           <div class="card-front">
-            <img src="assets/Actual Pic-Video folder/Spring/IMG_2373.JPG" alt="London, UK — our first spring">
+            <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Spring/IMG_3730.jpeg" alt="Cherry blossoms in London">
           </div>
           <div class="card-back">
             <p class="card-back-location">London, UK</p>
-            <p class="card-back-story">Spent our 4th anniversary in London watching Hamilton, but not before playing tourist with Big Ben and a red phone box.</p>
+            <p class="card-back-story">Cherry blossom season became our thing. Every year, without fail, we'd go on a sakura hunt together.</p>
           </div>
         </div>
       </div>
       <div class="photo-card reveal-photo">
         <div class="card-inner">
           <div class="card-front">
-            <img src="assets/Actual Pic-Video folder/Spring/IMG_3730.jpeg" alt="Cherry blossoms in London">
+            <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Spring/IMG_4039.jpeg" alt="Under cherry blossoms">
           </div>
           <div class="card-back">
-            <p class="card-back-location">London, UK</p>
-            <p class="card-back-story">Cherry blossom season became our thing. Every year, without fail, we'd go on a sakura hunt together. This is how Yu Zon knows that every year, there's a kind lady who tracks the cherry blossoms in Greenwich Park and shares live updates...</p>
+            <p class="card-back-location">Greenwich Park, London</p>
+            <p class="card-back-story">Yu Zon is eternally grateful to the lady who has an entire website dedicated to tracking when the cherry blossoms are blooming in Greenwich Park.</p>
           </div>
         </div>
       </div>
       <div class="photo-card reveal-photo">
         <div class="card-inner">
           <div class="card-front">
-            <img src="assets/Actual Pic-Video folder/Spring/IMG_4039.jpeg" alt="Under cherry blossoms">
+            <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Spring/Spring1.jpg" alt="Cherry blossoms and magnolias in Notting Hill">
           </div>
           <div class="card-back">
-            <p class="card-back-location">London, UK</p>
-            <p class="card-back-story">Standing under a canopy of pink — our favourite spring tradition.</p>
+            <p class="card-back-location">Notting Hill, London</p>
+            <p class="card-back-story">We went cherry blossom and magnolia hunting in Notting Hill — looking at houses we can't afford, and laughing about how crazy it would be to live in a place like that one day.</p>
           </div>
         </div>
       </div>
@@ -147,7 +160,7 @@
 
     <div class="season-portrait-layout">
       <div class="season-portrait-video reveal-photo">
-        <video class="autoplay-video" muted loop playsinline>
+        <video class="autoplay-video" muted loop playsinline preload="metadata">
           <source src="assets/Actual Pic-Video folder/Summer/IMG_5489.mov" type="video/mp4">
         </video>
         <div class="video-caption">We were sitting on the steps of a square in Noto, Sicily with Ling and Heng as a local artist was singing La Donna Cannone and everyone was singing together with him. We can still hear and smell that sweet summer night.</div>
@@ -155,19 +168,19 @@
       <div class="season-portrait-cards">
         <div class="photo-card reveal-photo">
           <div class="card-inner">
-            <div class="card-front"><img src="assets/Actual Pic-Video folder/Summer/IMG_6289.jpeg" alt="Plitvice Lakes, Croatia"></div>
+            <div class="card-front"><img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Summer/IMG_6289.jpeg" alt="Plitvice Lakes, Croatia"></div>
             <div class="card-back"><p class="card-back-location">Plitvice Lakes, Croatia</p><p class="card-back-story">The water really is that blue... blessed to see unreal views together.</p></div>
           </div>
         </div>
         <div class="photo-card reveal-photo">
           <div class="card-inner">
-            <div class="card-front"><img src="assets/Actual Pic-Video folder/Summer/IMG_2724.JPG" alt="Snowdonia, Wales" style="object-position: center 10%;"></div>
+            <div class="card-front"><img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Summer/IMG_2724.JPG" alt="Snowdonia, Wales" style="object-position: center 10%;"></div>
             <div class="card-back"><p class="card-back-location">Snowdonia, Wales</p><p class="card-back-story">Hiked up a random mountain in Snowdonia with Nick, Sherman, and RJ. This was our first hike together!</p></div>
           </div>
         </div>
         <div class="photo-card reveal-photo">
           <div class="card-inner">
-            <div class="card-front"><img src="assets/Actual Pic-Video folder/Summer/IMG_8311.jpeg" alt="Mt Etna, Sicily"></div>
+            <div class="card-front"><img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Summer/IMG_8311.jpeg" alt="Mt Etna, Sicily"></div>
             <div class="card-back"><p class="card-back-location">Mt Etna, Sicily</p><p class="card-back-story">Our first visit to an active volcano. Dark lava fields, dramatic clouds, and wind so strong we could barely stand. Unforgettable.</p></div>
           </div>
         </div>
@@ -183,7 +196,7 @@
       </div>
 
     <div class="season-video-banner reveal">
-      <video class="autoplay-video" muted loop playsinline>
+      <video class="autoplay-video" muted loop playsinline preload="metadata">
         <source src="assets/Actual Pic-Video folder/Autumn/Autumn.mov" type="video/mp4">
       </video>
       <div class="video-caption">We were visiting Hyde Park to catch the last of the autumn leaves in London. GJ had the random idea to go on one of those pedal boats on the Serpentine. Spontaneous activities always turn into core memories for us!</div>
@@ -193,7 +206,7 @@
       <div class="photo-card reveal-photo">
         <div class="card-inner">
           <div class="card-front">
-            <img src="assets/Actual Pic-Video folder/Autumn/IMG_0559.jpeg" alt="Busan, South Korea">
+            <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Autumn/IMG_0559.jpeg" alt="Busan, South Korea">
           </div>
           <div class="card-back">
             <p class="card-back-location">Busan, South Korea</p>
@@ -204,7 +217,7 @@
       <div class="photo-card reveal-photo">
         <div class="card-inner">
           <div class="card-front">
-            <img src="assets/Actual Pic-Video folder/Autumn/358A3477.jpeg" alt="Lake District, UK" style="object-position: center 70%;">
+            <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Autumn/358A3477.jpeg" alt="Lake District, UK" style="object-position: center 70%;">
           </div>
           <div class="card-back">
             <p class="card-back-location">Lake District, UK</p>
@@ -215,11 +228,11 @@
       <div class="photo-card reveal-photo">
         <div class="card-inner">
           <div class="card-front">
-            <img src="assets/Actual Pic-Video folder/Autumn/Snapseed.jpg" alt="London, UK — golden autumn" style="object-position: center 30%;>
+            <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Autumn/Snapseed.jpg" alt="London, UK — golden autumn" style="object-position: center 30%;">
           </div>
           <div class="card-back">
             <p class="card-back-location">London, UK</p>
-            <p class="card-back-story">Our first visit to Hyde Park in autumn. This is when we fell in love with the season.</p>
+            <p class="card-back-story">Our first visit to Hyde Park in autumn — when we fell in love with the season, the crunch of leaves underfoot, and the way the sun turned everything gold.</p>
           </div>
         </div>
       </div>
@@ -235,7 +248,7 @@
 
     <div class="season-portrait-layout">
       <div class="season-portrait-video reveal-photo">
-        <video class="autoplay-video" muted loop playsinline>
+        <video class="autoplay-video" muted loop playsinline preload="metadata">
           <source src="assets/Actual Pic-Video folder/Winter/Winter.mov" type="video/mp4">
         </video>
         <div class="video-caption">One night it was snowing like mad - we were living with Nick and Krystal in the Olympic Village at the time, and we decided to head down to Victory Park to build a snowman. This is us singing Do You Want to Build a Snowman (which was already kind of YZ's song at this point).</div>
@@ -243,19 +256,19 @@
       <div class="season-portrait-cards">
         <div class="photo-card reveal-photo">
           <div class="card-inner">
-            <div class="card-front"><img src="assets/Actual Pic-Video folder/Winter/IMG_3610.jpeg" alt="Oslo"></div>
+            <div class="card-front"><img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Winter/IMG_3610.jpeg" alt="Oslo"></div>
             <div class="card-back"><p class="card-back-location">Oslo, Norway</p><p class="card-back-story">Our first skiing experience thanks to Hedda and Sigurd who guided us newbies. YZ fell approximately 47 times while GJ pretended not to count. Oh, she also crashed into a pizza restaurant at peak lunch hour, but that's a story for another day.</p></div>
           </div>
         </div>
         <div class="photo-card reveal-photo">
           <div class="card-inner">
-            <div class="card-front"><img src="assets/Actual Pic-Video folder/Winter/IMG_4528.jpeg" alt="Oslo, Norway"></div>
+            <div class="card-front"><img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Winter/IMG_4528.jpeg" alt="Oslo, Norway"></div>
             <div class="card-back"><p class="card-back-location">Oslo, Norway</p><p class="card-back-story">This was when GJ tagged along while YZ was on a work trip in Oslo. We watched one of the most beautiful sunsets ever on the rooftop of the Opera House. YZ felt like she was very creative for thinking of this photo op.</p></div>
           </div>
         </div>
         <div class="photo-card reveal-photo">
           <div class="card-inner">
-            <div class="card-front"><img src="assets/Actual Pic-Video folder/Winter/IMG_0370.jpeg" alt="New Year's Eve 2026"></div>
+            <div class="card-front"><img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Winter/IMG_0370.jpeg" alt="New Year's Eve 2026"></div>
             <div class="card-back"><p class="card-back-location">New Year's Day, London</p><p class="card-back-story">We waited four hours in the cold with friends to watch the NYE fireworks. It was worth every frozen minute — we rang in 2026 together.</p></div>
           </div>
         </div>
@@ -279,7 +292,7 @@
 
     <!-- Hero Photo Banner (clickable) -->
     <div class="season-photo-banner reveal photo-card-banner" onclick="this.classList.toggle('show-story')">
-      <img src="assets/Actual Pic-Video folder/Family/Main.jpeg" alt="Family photo">
+      <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Family/Main.jpeg" alt="Family photo">
       <div class="banner-story-overlay">
         <p class="card-back-location" style="color: var(--beige);">Langkawi, Malaysia</p>
         <p class="card-back-story" style="color: var(--beige);">Guo Jie took Yu Zon's family around Langkawi — showing them the island he grew up on, the food, and the place that means the most to him.</p>
@@ -291,7 +304,7 @@
       <div class="photo-card reveal-photo">
         <div class="card-inner">
           <div class="card-front">
-            <img src="assets/Actual Pic-Video folder/Family/IMG_0174.jpeg" alt="Christmas morning" style="object-position: center 25%;">
+            <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Family/IMG_0174.jpeg" alt="Christmas morning" style="object-position: center 25%;">
           </div>
           <div class="card-back">
             <p class="card-back-location">Home</p>
@@ -302,7 +315,7 @@
       <div class="photo-card reveal-photo">
         <div class="card-inner">
           <div class="card-front">
-            <img src="assets/Actual Pic-Video folder/Family/IMG_3948.jpeg" alt="Cherry blossoms with friends">
+            <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Family/IMG_3948.jpeg" alt="Cherry blossoms with friends">
           </div>
           <div class="card-back">
             <p class="card-back-location">London, UK</p>
@@ -313,7 +326,7 @@
       <div class="photo-card reveal-photo">
         <div class="card-inner">
           <div class="card-front">
-            <img src="assets/Actual Pic-Video folder/Family/IMG_9183.jpeg" alt="Penang cendol">
+            <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Family/IMG_9183.jpeg" alt="Penang cendol">
           </div>
           <div class="card-back">
             <p class="card-back-location">Penang, Malaysia</p>
@@ -324,7 +337,7 @@
       <div class="photo-card reveal-photo">
         <div class="card-inner">
           <div class="card-front">
-            <img src="assets/Actual Pic-Video folder/Family/IMG_9576.jpeg" alt="Gyeongbokgung Palace" style="object-position: center 60%;">
+            <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Family/IMG_9576.jpeg" alt="Gyeongbokgung Palace" style="object-position: center 60%;">
           </div>
           <div class="card-back">
             <p class="card-back-location">Seoul, South Korea</p>
@@ -351,66 +364,110 @@
 
     <!-- Video Banner -->
     <div class="season-video-banner reveal">
-      <video class="autoplay-video" muted loop playsinline>
+      <video class="autoplay-video" muted loop playsinline preload="metadata">
         <source src="assets/Actual Pic-Video folder/Milestone/First Valentines.mov" type="video/mp4">
       </video>
       <div class="video-caption">Our First Valentine Together</div>
     </div>
 
-    <!-- 5 Flip Cards — 3 + 2 centered layout -->
+    <!-- Milestone Flip Cards (3 x 3 grid) -->
     <div class="season-cards season-cards--milestones">
       <div class="photo-card reveal-photo">
         <div class="card-inner">
           <div class="card-front">
-            <img src="assets/Actual Pic-Video folder/Milestone/Birthday.jpeg" alt="Birthday celebration" style="object-position: center 20%;">
+            <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Milestone/First Trip.jpg" alt="Our first trip">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">First Trip</p>
+            <p class="card-back-story">The first time we packed our bags and went somewhere together — the first of many.</p>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Milestone/Birthday.jpeg" alt="Birthday celebration" style="object-position: center 20%;">
           </div>
           <div class="card-back">
             <p class="card-back-location">Home</p>
-            <p class="card-back-story">Celebrated YZ's birthday with a children's day theme - complete with headbands, fast food, and plushies!</p>
+            <p class="card-back-story">Celebrated YZ's birthday with a children's day theme — complete with headbands, fast food, and plushies!</p>
           </div>
         </div>
       </div>
       <div class="photo-card reveal-photo">
         <div class="card-inner">
           <div class="card-front">
-            <img src="assets/Actual Pic-Video folder/Milestone/COVID.JPG" alt="Vaccination milestone">
+            <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Milestone/First Ikea Trip.JPG" alt="First Ikea trip">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">First Ikea Trip</p>
+            <p class="card-back-story">A meatball lunch, a giant blue bag, and a flat full of furniture to put together. Properly grown-up.</p>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Milestone/COVID.JPG" alt="Vaccination milestone">
           </div>
           <div class="card-back">
             <p class="card-back-location">London, UK</p>
-            <p class="card-back-story">We made it through a pandemic together. The vaccination cards were quite literally the most romantic milestone of 2021.</p>
+            <p class="card-back-story">Made it through the pandemic together — our most romantic milestone of 2021.</p>
           </div>
         </div>
       </div>
       <div class="photo-card reveal-photo">
         <div class="card-inner">
           <div class="card-front">
-            <img src="assets/Actual Pic-Video folder/Milestone/Lantern.JPG" alt="Sky lantern in Shifen">
+            <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Milestone/First Run .jpg" alt="First run together">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">First Run</p>
+            <p class="card-back-story">The first run we ever did together. Lots more to come.</p>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Milestone/First musical theatre.JPG" alt="First musical theatre">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">West End, London</p>
+            <p class="card-back-story">Our first musical together — the start of a long-running tradition.</p>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Milestone/First Friends Wedding.JPG" alt="First friend's wedding">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">First Friend's Wedding</p>
+            <p class="card-back-story">Dressed up, dancing the night away — the first of our friends' weddings we celebrated together.</p>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Milestone/First Langkawi Visit.jpeg" alt="First Langkawi visit">
+          </div>
+          <div class="card-back">
+            <p class="card-back-location">Langkawi, Malaysia</p>
+            <p class="card-back-story">YZ's first visit to GJ's island — sea, sunsets, and the place that means the most to him.</p>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card reveal-photo">
+        <div class="card-inner">
+          <div class="card-front">
+            <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Milestone/Lantern.JPG" alt="Sky lantern in Shifen" style="object-position: center 35%;">
           </div>
           <div class="card-back">
             <p class="card-back-location">Shifen, Taiwan</p>
-            <p class="card-back-story">We wrote our wishes on the lantern. Some of those wishes have already come true.</p>
-          </div>
-        </div>
-      </div>
-      <div class="photo-card reveal-photo">
-        <div class="card-inner">
-          <div class="card-front">
-            <img src="assets/Actual Pic-Video folder/Milestone/Graduation 1.JPG" alt="Her graduation">
-          </div>
-          <div class="card-back">
-            <p class="card-back-location">UCL, London</p>
-            <p class="card-back-story">Her graduation day. Flowers, champagne, and the next chapter — together.</p>
-          </div>
-        </div>
-      </div>
-      <div class="photo-card reveal-photo">
-        <div class="card-inner">
-          <div class="card-front">
-            <img src="assets/Actual Pic-Video folder/Milestone/Graduation 2.JPG" alt="His graduation">
-          </div>
-          <div class="card-back">
-            <p class="card-back-location">UCL, London</p>
-            <p class="card-back-story">The day he graduated. She stood beaming with the biggest bouquet.</p>
+            <p class="card-back-story">We wrote our wishes on the lantern. Some have already come true.</p>
           </div>
         </div>
       </div>
@@ -428,8 +485,21 @@
   </div>
 
   </main>
+
+  <!-- Music player (persistent, outside main) -->
+  <div class="music-float" id="music-float">
+    <button class="music-toggle" id="music-toggle" aria-label="Play our song">
+      <span id="music-icon">&#9835;</span>
+      <span class="music-label" id="music-label">Play our song</span>
+    </button>
+    <div class="music-player" id="music-player">
+      <iframe class="music-iframe" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2228683682&color=%231b1917&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>
+      <div class="music-credit"><a href="https://soundcloud.com/yu-zon-c" title="Yu Zon" target="_blank" rel="noopener">Yu Zon</a> · <a href="https://soundcloud.com/yu-zon-c/sets/sing-a-song-of-love" title="sing a song of love" target="_blank" rel="noopener">sing a song of love</a></div>
+    </div>
+  </div>
+
   <!-- Footer -->
-  <footer class="footer"><div class="footer-monogram"><span class="footer-monogram-letter">G</span><span class="footer-ampersand">&amp;</span><span class="footer-monogram-letter">Y</span></div><p class="footer-closing">See you in Langkawi</p><p class="footer-date">30 January 2027</p></footer>
+  <footer class="footer"><div class="footer-monogram"><span class="footer-monogram-letter">GJ</span><span class="footer-ampersand">&amp;</span><span class="footer-monogram-letter">YZ</span></div><p class="footer-closing">See you in Langkawi</p><p class="footer-date">30 January 2027</p></footer>
   <script src="script.js"></script>
 
 </body>

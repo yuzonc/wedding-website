@@ -66,18 +66,25 @@ a {
   box-shadow: 0 1px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Nav logo */
+/* Nav logo — matches footer monogram (serif, light, no box) */
 .nav-logo {
   font-family: var(--font-serif);
-  font-size: 1rem;
+  font-size: 1.4rem;
   font-weight: 300;
   color: var(--beige);
-  letter-spacing: 0.1em;
-  opacity: 0.6;
+  letter-spacing: 0.12em;
+  opacity: 0.9;
   position: absolute;
   left: 2rem;
   top: 50%;
   transform: translateY(-50%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 11;
+}
+
+.nav-logo:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.04);
 }
 
 .nav ul {
@@ -238,27 +245,23 @@ a {
   overflow: hidden;
 }
 
-/* Background image — animates in with a slow zoom */
+/* Background image — fades in cleanly, no parallax to avoid scroll flicker */
 .hero::before {
   content: '';
   position: absolute;
-  inset: -20px;
+  inset: 0;
   background:
     url('assets/IMG_6155.JPG')
-    center calc(20% + var(--parallax-y, 0px)) / cover no-repeat;
-  animation: heroImageReveal 2s ease-out forwards;
+    center 20% / cover no-repeat;
+  animation: heroImageReveal 1.6s ease-out forwards;
   z-index: 0;
+  opacity: 0;
+  backface-visibility: hidden;
 }
 
 @keyframes heroImageReveal {
-  0% {
-    transform: scale(1.08);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 /* Gradient overlay — strong at bottom for text contrast */
@@ -411,8 +414,8 @@ a {
 /* --- Floating music player --- */
 .music-float {
   position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
+  bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  right: calc(1.5rem + env(safe-area-inset-right, 0px));
   z-index: 900;
 }
 
@@ -465,6 +468,36 @@ a {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  width: 320px;
+  background: #1b1917;
+}
+
+.music-iframe {
+  display: block;
+  width: 100%;
+  height: 300px;
+  border: none;
+}
+
+.music-credit {
+  font-family: var(--font-sans);
+  font-size: 0.55rem;
+  color: rgba(223, 217, 201, 0.55);
+  padding: 0.45rem 0.75rem;
+  background: #1b1917;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.music-credit a {
+  color: rgba(223, 217, 201, 0.75);
+  text-decoration: none;
+}
+
+.music-credit a:hover {
+  color: var(--beige);
+  text-decoration: underline;
 }
 
 .music-float.open .music-player {
@@ -931,16 +964,14 @@ a {
   margin: 1rem auto 0;
 }
 
-/* Milestones: 5 cards — 3 top, 2 centered bottom */
+/* Milestones: 3 x 3 grid (9 cards), square photos */
 .season-cards--milestones {
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 
-.season-cards--milestones .photo-card:nth-child(1) { grid-column: 1 / 3; }
-.season-cards--milestones .photo-card:nth-child(2) { grid-column: 3 / 5; }
-.season-cards--milestones .photo-card:nth-child(3) { grid-column: 5 / 7; }
-.season-cards--milestones .photo-card:nth-child(4) { grid-column: 2 / 4; }
-.season-cards--milestones .photo-card:nth-child(5) { grid-column: 4 / 6; }
+.season-cards--milestones .photo-card {
+  aspect-ratio: 1 / 1;
+}
 
 /* Milestones section colors */
 .season--milestones {
@@ -2438,10 +2469,16 @@ a {
 @media (max-width: 600px) {
 
   /* Nav hamburger */
-  .nav { padding: 0; }
-  .nav-logo { left: 1rem; font-size: 0.85rem; }
-  .nav-ctas { right: 3.5rem; gap: 0.35rem; }
-  .nav-book, .nav-rsvp { font-size: 0.45rem; padding: 0.35rem 0.6rem; }
+  .nav { padding: 0.5rem 0; min-height: 56px; }
+  .nav.scrolled { padding: 0.5rem 0; }
+  .nav-logo {
+    left: 0.9rem;
+    font-size: 1.05rem;
+    letter-spacing: 0.1em;
+  }
+  .nav-ctas { right: 3.25rem; gap: 0.3rem; }
+  .nav-book, .nav-rsvp { font-size: 0.45rem; padding: 0.35rem 0.55rem; }
+  .nav-toggle { padding: 0.6rem; position: absolute; right: 0.25rem; top: 50%; transform: translateY(-50%); }
 
   .nav > ul {
     display: none;
@@ -2504,13 +2541,31 @@ a {
   .countdown-strip { gap: 1.25rem; padding: 1.25rem 1rem; }
   .countdown-unit span { font-size: 1.4rem; }
 
-  /* Music player */
-  .music-float { bottom: 0.75rem; right: 0.75rem; }
-  .music-toggle { padding: 0.45rem 0.75rem; font-size: 0.5rem; }
-  .music-toggle #music-icon { font-size: 0.85rem; }
+  /* Music player — minimal icon-only floating button on mobile */
+  .music-float {
+    bottom: calc(0.6rem + env(safe-area-inset-bottom, 0px));
+    right: calc(0.6rem + env(safe-area-inset-right, 0px));
+    opacity: 0.55;
+  }
+  .music-float:hover, .music-float.open { opacity: 1; }
+  .music-toggle {
+    padding: 0;
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .music-toggle #music-icon { font-size: 0.85rem; line-height: 1; }
   .music-label { display: none; }
-  .music-player { max-width: 250px; }
-  .music-player iframe { width: 250px; height: 80px; }
+  .music-player {
+    width: calc(100vw - 1.2rem);
+    max-width: 280px;
+    right: 0;
+  }
+  .music-iframe { height: 240px; }
+  .music-credit { font-size: 0.5rem; padding: 0.35rem 0.6rem; }
 
   /* Page layout */
   .page-header { padding: 6rem 1.5rem 3rem; }
@@ -2620,6 +2675,71 @@ a {
   .hero, .hero::before { min-height: 100svh; }
 }
 
+/* --- Body scroll lock when mobile menu is open --- */
+body.menu-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* --- Mobile-specific polish --- */
+@media (max-width: 600px) {
+  /* Bigger tap targets on nav links */
+  .nav > ul a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  .nav-sub a { min-height: 36px; }
+
+  /* Book / RSVP buttons: keep small visual size but ensure 36px tap height */
+  .nav-book, .nav-rsvp {
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+  }
+
+  /* Hamburger toggle large hit area without changing visual size */
+  .nav-toggle {
+    width: 44px;
+    height: 44px;
+    padding: 11px;
+  }
+
+  /* Music toggle: ensure square 40+ tap target while staying small visually */
+  .music-toggle { min-width: 40px; min-height: 40px; }
+
+  /* Slightly larger base font for readability on small phones */
+  body { font-size: 16px; }
+
+  /* Avoid orphaned long words breaking layout */
+  .card-back-story,
+  .timeline-desc,
+  .proposal-block p,
+  .faq-item p { word-break: break-word; overflow-wrap: anywhere; }
+
+  /* Smoother momentum scrolling on iOS for any internal scrollers */
+  .nav > ul.open { -webkit-overflow-scrolling: touch; }
+
+  /* Photo card hover scale stays at 1 on touch (no hover state) */
+  .photo-card:not(.flipped):hover .card-front img,
+  .why-langkawi-image:hover img,
+  .langkawi-card:hover .langkawi-card-img img,
+  .accom-card-img:hover img,
+  .timeline-photo--filled:hover img,
+  .chapter-card:hover .chapter-card-bg {
+    transform: none;
+  }
+}
+
+/* Mute hover-driven transforms on coarse pointer (touch) devices regardless of width */
+@media (hover: none) {
+  .photo-card:not(.flipped):hover .card-front img { transform: none; }
+  .chapter-card:hover .chapter-card-bg { transform: none; }
+  .nav-logo:hover { transform: translateY(-50%); }
+}
+
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -2631,4 +2751,384 @@ a {
   .hero::before { animation: none; opacity: 1; transform: none; }
   .hero-overlay { animation: none; opacity: 1; }
   .reveal, .reveal-photo, .fade-in { opacity: 1; transform: none; }
+}
+
+/* ================================================
+   New / additional styles (added)
+   ================================================ */
+
+/* Family section: 2x2 grid, matches the size of 3-col season cards */
+.season--family .season-cards {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 720px;
+}
+
+/* Dress code paragraph block */
+.dress-code-details {
+  max-width: 620px;
+  margin: 1rem auto 0;
+  text-align: left;
+}
+
+.dress-code-line {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--beige);
+  opacity: 0.85;
+  margin-bottom: 1rem;
+}
+
+.dress-code-line strong {
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  opacity: 1;
+}
+
+.dress-code-avoid {
+  opacity: 0.6;
+}
+
+.dress-code-tagline {
+  text-align: center;
+  font-size: 1.05rem;
+  opacity: 0.75;
+  margin-top: 1.25rem;
+}
+
+/* Wedding RSVP CTA section */
+.rsvp-cta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 480px;
+  background: var(--beige);
+}
+
+.rsvp-cta-image {
+  position: relative;
+  overflow: hidden;
+  background: rgba(72, 33, 23, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rsvp-cta-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+}
+
+.rsvp-cta-image-placeholder-label {
+  position: absolute;
+  z-index: 1;
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--brown);
+  opacity: 0.4;
+}
+
+.rsvp-cta-image--placeholder {
+  border: 2px dashed rgba(72, 33, 23, 0.18);
+}
+
+.rsvp-cta-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 3rem;
+}
+
+.rsvp-cta-content .script-label {
+  color: var(--brown);
+  opacity: 0.65;
+}
+
+.rsvp-cta-content .section-heading {
+  color: var(--brown);
+  margin-bottom: 1.5rem;
+}
+
+.rsvp-cta-desc {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--brown);
+  opacity: 0.8;
+  margin-bottom: 2rem;
+  max-width: 420px;
+  align-self: center;
+}
+
+.rsvp-cta-desc strong {
+  font-weight: 500;
+}
+
+.rsvp-cta-btn {
+  display: inline-block;
+  align-self: center;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  background: var(--brown);
+  color: var(--beige);
+  padding: 1.1rem 2.5rem;
+  border: none;
+  transition: all 0.35s ease;
+  margin-bottom: 1.5rem;
+}
+
+.rsvp-cta-btn:hover {
+  background: var(--dark-olive);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(72, 33, 23, 0.25);
+}
+
+.rsvp-cta-note {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--brown);
+  opacity: 0.65;
+}
+
+.rsvp-cta-note strong {
+  font-weight: 500;
+}
+
+/* Memories cover (replaces simple page-header on journey page) */
+.memories-cover {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.memories-cover-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    url('assets/Actual Pic-Video folder/memories-cover.jpg'),
+    url('assets/Actual Pic-Video folder/Summer/IMG_6289.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+.memories-cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(54,53,11,0.35) 0%, rgba(54,53,11,0.65) 100%);
+}
+
+.memories-cover-content {
+  position: relative;
+  z-index: 2;
+  padding: 6rem 1.5rem 3rem;
+  color: var(--beige);
+}
+
+.memories-cover-content .script-label {
+  color: var(--beige);
+  opacity: 0.75;
+}
+
+.memories-cover-content .section-heading {
+  color: var(--beige);
+  margin-bottom: 0.5rem;
+}
+
+.memories-cover-subtitle {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--beige);
+  opacity: 0.75;
+  max-width: 460px;
+  margin: 0.5rem auto 0;
+}
+
+/* Tap-to-read floating hint (Memories page) */
+.tap-hint {
+  position: fixed;
+  left: 50%;
+  bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  z-index: 850;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(72, 33, 23, 0.92);
+  color: var(--beige);
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+  animation: tapHintBob 2.4s ease-in-out infinite;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.tap-hint-icon {
+  font-size: 1rem;
+  animation: tapHintTap 1.4s ease-in-out infinite;
+}
+
+.tap-hint--hidden,
+.tap-hint--seen {
+  opacity: 0;
+  transform: translateX(-50%) translateY(20px);
+  pointer-events: none;
+}
+
+@keyframes tapHintBob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-6px); }
+}
+
+@keyframes tapHintTap {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.18); }
+}
+
+/* Timeline graduation photos */
+.timeline-graduation-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin: 0.75rem auto 0;
+  max-width: 360px;
+}
+
+.timeline-graduation-photos img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Proposal video banner (Sky Bridge) */
+.proposal-video-banner {
+  margin: 2rem 0 2.5rem;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  height: 360px;
+  background: rgba(72, 33, 23, 0.08);
+}
+
+.proposal-video-banner video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Proposal photo positioning fixes */
+.proposal-photo-row img.proposal-photo--lower {
+  object-position: center 70%;
+}
+
+.proposal-photo-row img.proposal-photo--green-field {
+  object-position: center 35%;
+}
+
+/* Extra breathing room below a photo row when needed */
+.proposal-photo-row--spaced {
+  margin-bottom: 3.5rem;
+}
+
+@media (max-width: 600px) {
+  .proposal-photo-row--spaced { margin-bottom: 2.25rem; }
+}
+
+/* Portrait variant — wider gap, taller boxes that respect portrait shape */
+.proposal-photo-row--portrait {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  margin: 2.5rem 0 0.75rem;
+}
+
+.proposal-photo-row--portrait img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center 30%;
+  border-radius: 4px;
+  box-shadow: 0 4px 18px rgba(72, 33, 23, 0.12);
+}
+
+.proposal-photo-caption {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--brown);
+  opacity: 0.7;
+  text-align: center;
+  margin: 0.5rem auto 2.5rem;
+  max-width: 620px;
+  line-height: 1.65;
+}
+
+@media (max-width: 600px) {
+  .proposal-photo-row img {
+    height: 280px;
+    object-position: center 30%;
+  }
+  .proposal-photo-row img.proposal-photo--lower {
+    object-position: center 40%;
+  }
+  .proposal-photo-row img.proposal-photo--green-field {
+    object-position: center 55%;
+    height: 320px;
+  }
+
+  .proposal-photo-row--portrait {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .proposal-photo-row--portrait img {
+    height: auto;
+    aspect-ratio: 3 / 4;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .proposal-photo-caption { font-size: 0.9rem; margin-bottom: 2rem; }
+
+  .proposal-video-banner { height: 240px; border-radius: 0; }
+
+  .memories-cover { min-height: 45vh; }
+  .memories-cover-content { padding: 5rem 1rem 2rem; }
+
+  .rsvp-cta { grid-template-columns: 1fr; min-height: auto; }
+  .rsvp-cta-image { height: 220px; order: 0; }
+  .rsvp-cta-content { padding: 2.5rem 1.5rem 3rem; order: 1; }
+
+  .tap-hint {
+    font-size: 0.6rem;
+    padding: 0.6rem 1rem;
+    bottom: 4.25rem;
+  }
+
+  .timeline-graduation-photos { max-width: 280px; }
 }
