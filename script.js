@@ -290,10 +290,11 @@ function initMusic() {
 
   if (!musicFloat || !musicToggle) return;
 
-  const ICON_PLAY = '♫';   // ♫
-  const ICON_PAUSE = '⏸';  // ⏸
+  const ICON_PLAY = '♫';
 
-  // Set initial visual state (will be updated once widget reports state)
+  // Set initial visual state (will be updated once widget reports state).
+  // The pause state is rendered via CSS (two bars on .music-toggle.playing),
+  // so we never replace this character — we only toggle the .playing class.
   if (musicIcon) musicIcon.textContent = ICON_PLAY;
   if (musicLabel) musicLabel.textContent = 'Play music';
   musicToggle.setAttribute('aria-label', 'Play our song');
@@ -348,7 +349,6 @@ function initMusic() {
     widget.bind(SC.Widget.Events.PLAY, () => {
       localStorage.setItem(MUSIC_KEYS.playing, 'true');
       musicToggle.classList.add('playing');
-      if (musicIcon) musicIcon.textContent = ICON_PAUSE;
       if (musicLabel) musicLabel.textContent = 'Pause';
       musicToggle.setAttribute('aria-label', 'Pause music');
       widget.getCurrentSoundIndex((idx) => {
@@ -359,7 +359,6 @@ function initMusic() {
     widget.bind(SC.Widget.Events.PAUSE, () => {
       localStorage.setItem(MUSIC_KEYS.playing, 'false');
       musicToggle.classList.remove('playing');
-      if (musicIcon) musicIcon.textContent = ICON_PLAY;
       if (musicLabel) musicLabel.textContent = 'Play music';
       musicToggle.setAttribute('aria-label', 'Play our song');
     });

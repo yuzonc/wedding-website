@@ -443,11 +443,33 @@ a {
 
 .music-toggle #music-icon {
   font-size: 1rem;
+  display: inline-block;
+  position: relative;
+  line-height: 1;
 }
 
+/* Pause state: hide the ♫ glyph and draw two vertical bars via pseudo-elements. */
 .music-toggle.playing #music-icon {
+  width: 12px;
+  height: 14px;
+  font-size: 0;
+  color: transparent;
   animation: musicPulse 1s ease-in-out infinite;
 }
+
+.music-toggle.playing #music-icon::before,
+.music-toggle.playing #music-icon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--beige);
+  border-radius: 1px;
+}
+
+.music-toggle.playing #music-icon::before { left: 1px; }
+.music-toggle.playing #music-icon::after { right: 1px; }
 
 @keyframes musicPulse {
   0%, 100% { opacity: 1; }
@@ -2472,9 +2494,14 @@ a {
     gap: 0;
     background: rgba(54, 53, 11, 0.97);
     backdrop-filter: blur(16px);
-    position: absolute;
+    position: fixed;
     top: 0; left: 0; right: 0;
-    padding: 4.5rem 2rem 2rem;
+    max-height: 100vh;
+    max-height: 100dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding: 4.5rem 2rem calc(2rem + env(safe-area-inset-bottom, 0px));
   }
 
   .nav > ul.open { display: flex; }
