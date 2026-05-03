@@ -39,6 +39,19 @@
       color: var(--brown);
     }
 
+    .langkawi-section-intro {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.8;
+      color: var(--beige);
+      opacity: 0.75;
+      text-align: center;
+      max-width: 640px;
+      margin: -1.25rem auto 2rem;
+    }
+
     /* 3-card grid */
     .langkawi-cards {
       display: grid;
@@ -62,14 +75,17 @@
       overflow: hidden;
     }
 
-    .langkawi-card-img img {
+    .langkawi-card-img img,
+    .langkawi-card-img video {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.6s ease;
+      display: block;
     }
 
-    .langkawi-card:hover .langkawi-card-img img {
+    .langkawi-card:hover .langkawi-card-img img,
+    .langkawi-card:hover .langkawi-card-img video {
       transform: scale(1.05);
     }
 
@@ -243,8 +259,8 @@
     <a href="index.html" class="nav-logo">GJ &amp; YZ</a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     <ul id="nav-menu">
-      <li class="nav-dropdown"><a href="story.html#timeline">Our Story</a><ul class="nav-sub"><li><a href="story.html#timeline">How We Met</a></li><li><a href="story.html#proposal">The Proposal</a></li></ul></li>
       <li class="nav-dropdown"><a href="wedding.html#venue">Wedding</a><ul class="nav-sub"><li><a href="wedding.html#venue">Venue &amp; Date</a></li><li><a href="wedding.html#day">The Day</a></li><li><a href="wedding.html#afterparty">After Party</a></li></ul></li>
+      <li class="nav-dropdown"><a href="story.html#timeline">Our Story</a><ul class="nav-sub"><li><a href="story.html#timeline">How We Met</a></li><li><a href="story.html#proposal">The Proposal</a></li></ul></li>
       <li class="nav-dropdown"><a href="faqs.html#wedding">FAQs</a><ul class="nav-sub"><li><a href="faqs.html#wedding">Wedding</a></li><li><a href="faqs.html#langkawi">Langkawi Guide</a></li></ul></li>
       <li class="nav-dropdown"><a href="journey.html#seasons">Memories</a><ul class="nav-sub"><li><a href="journey.html#seasons">Through the Seasons</a></li><li><a href="journey.html#family">Family</a></li><li><a href="journey.html#milestones">Milestones</a></li></ul></li>
     </ul>
@@ -275,19 +291,20 @@
 
       <div class="faq-item">
         <h4>How do I get to Langkawi?</h4>
-        <p>Fly into Langkawi International Airport. From Penang or Kedah, ferries are also an option.</p>
+        <p>We recommend flying into Langkawi International Airport.</p>
+        <p>If you're coming from Penang or Kedah, ferries are also an option (though they run less frequently).</p>
       </div>
 
       <div class="faq-divider-thin"></div>
 
       <div class="faq-item">
-        <h4>When should I arrive?</h4>
-        <p>We'd recommend staying 3&ndash;4 days. Here's a rough guide:</p>
+        <h4>When should I arrive and/or leave?</h4>
+        <p>We'd suggest staying 3&ndash;4 days. Here's a rough guide:</p>
         <ul class="faq-list-items">
-          <li><strong>29 Jan</strong> &mdash; Best arrival day for exploring (especially overseas guests)</li>
-          <li><strong>30 Jan by 12pm</strong> &mdash; If arriving on the day itself</li>
-          <!-- <li><strong>1 Feb</strong> &mdash; Recommended departure if joining the after-party on 31 Jan</li> -->
+          <li><strong>29 Jan</strong> &mdash; Best arrival day for exploring (especially for overseas guests)</li>
+          <li><strong>30 Jan (by 12pm)</strong> &mdash; Works if you want to arrive on the day</li>
         </ul>
+        <p>For friends, if you're keen to join our after-party on <strong>31 Jan</strong> (we'd love that!), you might consider leaving Langkawi on <strong>1 Feb</strong>.</p>
       </div>
 
       <div class="faq-divider-thin"></div>
@@ -309,8 +326,9 @@
           <img loading="lazy" decoding="async" src="assets/HOTEL PICTURE/island-view-room-exterior.jpg" alt="Pelangi Beach Resort">
         </div>
         <div class="accom-card-body">
-          <h4>Stay with us at Pelangi Beach Resort</h4>
-          <p>We've arranged a special discounted rate for our wedding guests. The celebrations will be held at the resort, so staying here means you're right where the action is. Please book early as rooms are limited.</p>
+          <h4>Where should I stay in Langkawi?</h4>
+          <p><strong>Stay with us at Pelangi Beach Resort.</strong> This is where everything will be happening, so staying here means you won't miss a moment. We've arranged a special rate for our guests — just be sure to book early as rooms are limited.</p>
+          <p>Any questions, just reach out to <strong>Yu Zon</strong> or <strong>Guo Jie</strong>.</p>
           <a href="https://be.synxis.com/?adult=2&arrive=2027-01-27&chain=16451&child=0&currency=MYR&depart=2027-02-02&hotel=61664&level=hotel&locale=en-US&productcurrency=MYR&promo=WEDYG&rooms=1" target="_blank" rel="noopener" class="accom-cta">Book Your Room — Guest Rate</a>
         </div>
       </div>
@@ -332,7 +350,7 @@
       <div class="faq-columns">
         <div class="faq-item">
           <h4>Can I bring a +1?</h4>
-          <p>Check your invite &mdash; if you're unsure, just ask us.</p>
+          <p>Please refer to your invitation, and feel free to check with us if you're unsure or would like to bring your significant other.</p>
         </div>
 
         <div class="faq-item">
@@ -347,7 +365,7 @@
 
         <div class="faq-item">
           <h4>What shoes should I wear?</h4>
-          <p>Skip the stilettos &mdash; there will be grass and sand. Wedges, block heels, or sandals are your best bet.</p>
+          <p>Grass + sand ahead &mdash; so best to skip the stilettos. Wedges, block heels, or sandals will keep you comfortable all day. (No slippers please!)</p>
         </div>
 
         <div class="faq-item">
@@ -412,22 +430,41 @@
   <section class="langkawi-section" style="background: var(--dark-olive);">
     <div class="langkawi-section-inner">
       <h2 class="langkawi-section-title reveal">What to Do</h2>
-      <!-- <p>An emerald archipelago of ninety-nine islands, Langkawi is a mystical tapestry of ancient rainforests and limestone peaks draped elegantly across the turquoise expanse of the Andaman Sea.</p> -->
       <div class="langkawi-cards">
+        <div class="langkawi-card reveal">
+          <div class="langkawi-card-img">
+            <video class="autoplay-video" muted loop playsinline preload="metadata">
+              <source src="assets/Actual Pic-Video folder/Langkawi/drive_boat.mov" type="video/quicktime">
+              <source src="assets/Actual Pic-Video folder/Langkawi/drive_boat.mov" type="video/mp4">
+            </video>
+          </div>
+          <h3>Mangrove Tour</h3>
+          <p>Explore Kilim Geoforest Park — a beautiful mix of nature and wildlife. Spot eagles up close, cruise through the mangroves, and take in the unique landscape. Some tours also offer simple fishing or snorkelling. <em>(If you're lucky, your boat driver might let you take the wheel — only if you're as skilled as Yu Zon. Safety first!)</em></p>
+        </div>
         <div class="langkawi-card reveal">
           <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_1952.jpeg" alt="Sky Bridge" loading="lazy"></div>
           <h3>SkyCab &amp; Sky Bridge</h3>
-          <p>Ride the cable car to the top of Gunung Mat Cincang for jaw-dropping views of the entire archipelago. A must-do.</p>
+          <p>Take the cable car up Gunung Mat Cincang (the oldest mountains in Southeast Asia) for panoramic views across the entire Langkawi archipelago.</p>
         </div>
         <div class="langkawi-card reveal">
           <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_9307.jpeg" alt="Eagle Square" loading="lazy"></div>
           <h3>Eagle Square</h3>
-          <p>The iconic Langkawi landmark at the waterfront. Start here, take the obligatory photo, and explore the harbour.</p>
+          <p>A classic Langkawi photo spot — worth a visit if you're heading into town, with plenty of local restaurants nearby to check out.</p>
         </div>
         <div class="langkawi-card reveal">
-          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_1814.jpeg" alt="Beach life" loading="lazy"></div>
-          <h3>Island Hopping &amp; Beaches</h3>
-          <p>Hop between islands, swim in emerald waters, or simply park yourself on a beach with nowhere to be. Mangrove tours at Kilim Geoforest Park are incredible too.</p>
+          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_1814.jpeg" alt="Cenang Beach" loading="lazy"></div>
+          <h3>Water Sports at Cenang Beach</h3>
+          <p>Head over to Cenang Beach for plenty of water sports fun — from jet skiing and parasailing to banana boat rides. Most importantly, always put safety first and enjoy responsibly!</p>
+        </div>
+        <div class="langkawi-card reveal">
+          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_2182.jpeg" alt="Island hopping" loading="lazy"></div>
+          <h3>Island Hopping</h3>
+          <p>Hop between a few of the nearby islands — Langkawi is actually made up of 104 islands! A fun way to explore hidden beaches, swim in clear waters, and enjoy the scenery from the sea. <em>(Guo Jie personally recommends the Mangrove Tour over Island Hopping.)</em></p>
+        </div>
+        <div class="langkawi-card reveal">
+          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_1820.jpeg" alt="Indoor activities" loading="lazy"></div>
+          <h3>Indoor &amp; Kid-Friendly</h3>
+          <p>Visit the Underwater World or Langkawi Wildlife Park — both great options for a relaxed day out, especially for families and kids. You'll get to see a variety of marine life and animals up close.</p>
         </div>
       </div>
     </div>
@@ -436,7 +473,7 @@
   <!-- WHERE TO EAT -->
   <section class="langkawi-section" style="background: var(--beige);">
     <div class="langkawi-section-inner">
-      <h2 class="langkawi-section-title langkawi-section-title--dark reveal">Where to Eat</h2>
+      <h2 class="langkawi-section-title langkawi-section-title--dark reveal">What to Eat / Drink</h2>
       <div class="langkawi-food-split">
         <div class="langkawi-food-photo reveal">
           <img src="assets/Actual Pic-Video folder/Langkawi/IMG_1820.jpeg" alt="Eating together in Langkawi" loading="lazy">
@@ -455,9 +492,10 @@
           <div class="langkawi-food-col">
             <h4>Further Out</h4>
             <ul>
-              <li><strong>Wonderland / Weng Fung / ZF Seafood</strong> — fresh seafood</li>
+              <li><strong>Wonderland / Weng Fung / ZF Seafood</strong> — Chinese-style seafood</li>
               <li><strong>Wan Thai</strong> — authentic Thai, very popular</li>
               <li><strong>Pizza Hill</strong> — hilltop omakase-style pizza</li>
+              <li><strong>Scarborough Fish &amp; Chips</strong> (Tanjung Rhu) — laid-back beachside spot with great vibes</li>
             </ul>
           </div>
         </div>
@@ -469,21 +507,22 @@
   <section class="langkawi-section" style="background: var(--dark-olive);">
     <div class="langkawi-section-inner">
       <h2 class="langkawi-section-title reveal">Be Like a Local</h2>
+      <p class="langkawi-section-intro reveal">Or you can choose to just slow down like Guo Jie does when he's back home! Take it easy, enjoy the island pace, and just chill.</p>
       <div class="langkawi-cards">
         <div class="langkawi-card reveal">
-          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_2182.jpeg" alt="Langkawi balcony" loading="lazy"></div>
-          <h3>Experience the landscape</h3>
-          <p>Langkawi is a massive playground of 99 islands where you can hike through ancient rainforests and boat through limestone mangroves in the morning, then spend your afternoon relaxing by emerald rice paddies or on white-sand beaches. It’s a rare spot that packs everything from hidden freshwater lakes and natural hot springs into one easy-to-explore tropical escape.</p>
+          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_1820.jpeg" alt="Café hopping" loading="lazy"></div>
+          <h3>Café hopping</h3>
+          <p>Langkawi has plenty of relaxed cafés worth exploring. Some favourites include <strong>Golden Bamboo Café</strong>, <strong>Smiling Buffalo</strong>, and <strong>Paloh Restaurant &amp; Bar</strong> at Temple Tree Hotel.</p>
         </div>
         <div class="langkawi-card reveal">
-          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_9307.jpeg" alt="Exploring Langkawi" loading="lazy"></div>
-          <h3>Explore the Land of Legends</h3>
-          <p>Many sites are linked to folklore, most notably the Legend of Mahsuri, a woman who cursed the island for seven generations before its recent prosperity.</p>
+          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_2182.jpeg" alt="Massage and wellness" loading="lazy"></div>
+          <h3>Massage &amp; wellness</h3>
+          <p>Treat yourself to a massage or spa session — either at your hotel or around the Cenang Beach area. <strong>Alun-Alun Spa</strong> is a popular option nearby.</p>
         </div>
         <div class="langkawi-card reveal">
-          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_1952.jpeg" alt="Views" loading="lazy"></div>
-          <h3>Shop and save</h3>
-          <p>Since 1987, Langkawi has been a duty-free haven, making shopping for chocolate, alcohol, and perfumes much more affordable than on the mainland.</p>
+          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_1814.jpeg" alt="Beach stroll and sunset" loading="lazy"></div>
+          <h3>Beach stroll &amp; sunset</h3>
+          <p>Take a slow walk along the beach, grab a coconut drink (or alcohol — reminder: duty-free), and just sit back to enjoy the sea breeze and sunset.</p>
         </div>
       </div>
     </div>
@@ -491,13 +530,11 @@
 
   <!-- Page Nav -->
   <nav class="page-nav" style="background: var(--beige);">
-    <a href="wedding.html">
-      <span>&larr;</span>
-      <span class="page-nav-label">Wedding Details</span>
+    <a href="story.html">
+      <span class="page-nav-label">&larr; Our Story</span>
     </a>
     <a href="journey.html">
-      <span>Next</span>
-      <span class="page-nav-label">Our Journey &rarr;</span>
+      <span class="page-nav-label">Memories &rarr;</span>
     </a>
   </nav>
 

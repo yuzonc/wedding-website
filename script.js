@@ -23,7 +23,9 @@ function initPage() {
     if (hero) {
       nav.classList.remove('scrolled');
       function updateNav() {
-        nav.classList.toggle('scrolled', window.scrollY > 100);
+        const scrolled = window.scrollY > 100;
+        nav.classList.toggle('scrolled', scrolled);
+        hero.classList.toggle('scrolled-past', scrolled);
       }
       window.addEventListener('scroll', updateNav, { passive: true });
       updateNav();
@@ -138,7 +140,27 @@ function initPage() {
     document.querySelectorAll('.photo-card').forEach(card => {
       card.addEventListener('click', dismiss, { once: true });
     });
-    setTimeout(() => tapHint.classList.add('tap-hint--seen'), 12000);
+
+    // Only start the auto-dismiss timer once the user has actually scrolled
+    // into a section with cards — otherwise the hint vanishes before they arrive.
+    const firstSeason = document.querySelector('.season');
+    let timerStarted = false;
+    const startTimer = () => {
+      if (timerStarted) return;
+      timerStarted = true;
+      setTimeout(() => tapHint.classList.add('tap-hint--seen'), 28000);
+    };
+    if (firstSeason && 'IntersectionObserver' in window) {
+      const hintObserver = new IntersectionObserver((entries) => {
+        if (entries.some(e => e.isIntersecting)) {
+          startTimer();
+          hintObserver.disconnect();
+        }
+      }, { threshold: 0.2 });
+      hintObserver.observe(firstSeason);
+    } else {
+      startTimer();
+    }
   }
 }
 
@@ -262,18 +284,19 @@ const MUSIC_KEYS = {
 function initMusic() {
   const musicFloat = document.getElementById('music-float');
   const musicToggle = document.getElementById('music-toggle');
+  const musicIcon = document.getElementById('music-icon');
+  const musicLabel = document.getElementById('music-label');
   const iframe = document.querySelector('.music-iframe');
 
   if (!musicFloat || !musicToggle) return;
 
-  // Toggle the visible player panel
-  musicToggle.addEventListener('click', () => {
-    musicFloat.classList.toggle('open');
-    const label = document.getElementById('music-label');
-    if (label) {
-      label.textContent = musicFloat.classList.contains('open') ? 'Close' : 'Play our song';
-    }
-  });
+  const ICON_PLAY = '♫';   // ♫
+  const ICON_PAUSE = '⏸';  // ⏸
+
+  // Set initial visual state (will be updated once widget reports state)
+  if (musicIcon) musicIcon.textContent = ICON_PLAY;
+  if (musicLabel) musicLabel.textContent = 'Play music';
+  musicToggle.setAttribute('aria-label', 'Play our song');
 
   if (!iframe) return;
 
@@ -281,6 +304,14 @@ function initMusic() {
   const setupWidget = () => {
     if (!window.SC || !window.SC.Widget) return;
     const widget = SC.Widget(iframe);
+
+    // Click toggles play/pause directly — no expanded panel
+    musicToggle.addEventListener('click', () => {
+      widget.isPaused((paused) => {
+        if (paused) widget.play();
+        else widget.pause();
+      });
+    });
 
     widget.bind(SC.Widget.Events.READY, () => {
       const savedPos = parseFloat(localStorage.getItem(MUSIC_KEYS.position) || '0');
@@ -317,6 +348,9 @@ function initMusic() {
     widget.bind(SC.Widget.Events.PLAY, () => {
       localStorage.setItem(MUSIC_KEYS.playing, 'true');
       musicToggle.classList.add('playing');
+      if (musicIcon) musicIcon.textContent = ICON_PAUSE;
+      if (musicLabel) musicLabel.textContent = 'Pause';
+      musicToggle.setAttribute('aria-label', 'Pause music');
       widget.getCurrentSoundIndex((idx) => {
         if (typeof idx === 'number') cachedIndex = idx;
       });
@@ -325,6 +359,9 @@ function initMusic() {
     widget.bind(SC.Widget.Events.PAUSE, () => {
       localStorage.setItem(MUSIC_KEYS.playing, 'false');
       musicToggle.classList.remove('playing');
+      if (musicIcon) musicIcon.textContent = ICON_PLAY;
+      if (musicLabel) musicLabel.textContent = 'Play music';
+      musicToggle.setAttribute('aria-label', 'Play our song');
     });
 
     widget.bind(SC.Widget.Events.FINISH, () => {

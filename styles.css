@@ -459,54 +459,26 @@ a {
   font-weight: 500;
 }
 
+/* Hidden SoundCloud player — kept in DOM so the Widget API can control it */
 .music-player {
-  display: none;
   position: absolute;
-  bottom: 100%;
-  right: 0;
-  margin-bottom: 0.75rem;
-  border-radius: 12px;
+  width: 1px;
+  height: 1px;
   overflow: hidden;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-  width: 320px;
-  background: #1b1917;
+  opacity: 0;
+  pointer-events: none;
+  bottom: 0;
+  right: 0;
 }
 
 .music-iframe {
   display: block;
-  width: 100%;
+  width: 320px;
   height: 300px;
   border: none;
 }
 
-.music-credit {
-  font-family: var(--font-sans);
-  font-size: 0.55rem;
-  color: rgba(223, 217, 201, 0.55);
-  padding: 0.45rem 0.75rem;
-  background: #1b1917;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.music-credit a {
-  color: rgba(223, 217, 201, 0.75);
-  text-decoration: none;
-}
-
-.music-credit a:hover {
-  color: var(--beige);
-  text-decoration: underline;
-}
-
-.music-float.open .music-player {
-  display: block;
-}
-
-.music-float.open .music-label {
-  display: none;
-}
+.music-credit { display: none; }
 
 /* --- Chapter Cards (Landing Page) --- */
 .chapters {
@@ -720,37 +692,51 @@ a {
 /* Scroll indicator */
 .scroll-indicator {
   position: absolute;
-  bottom: 2rem;
+  bottom: 2.25rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+  color: var(--beige);
+  opacity: 0.85;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  animation: scrollIndicatorBob 2.4s ease-in-out infinite;
 }
 
-.scroll-indicator span {
+.scroll-indicator:hover {
+  opacity: 1;
+}
+
+.scroll-indicator-label {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+}
+
+.scroll-indicator-chevron {
   display: block;
-  width: 20px;
-  height: 32px;
-  border: 1.5px solid rgba(223, 217, 201, 0.4);
-  border-radius: 10px;
-  position: relative;
+  width: 14px;
+  height: 14px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
 }
 
-.scroll-indicator span::after {
-  content: '';
-  position: absolute;
-  top: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 3px;
-  height: 6px;
-  background: rgba(223, 217, 201, 0.6);
-  border-radius: 2px;
-  animation: scrollPulse 2s ease-in-out infinite;
+.hero.scrolled-past .scroll-indicator {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(12px);
 }
 
-@keyframes scrollPulse {
-  0%, 100% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  50% { opacity: 0.3; transform: translateX(-50%) translateY(8px); }
+@keyframes scrollIndicatorBob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
 }
 
 /* --- Seasons Gallery --- */
@@ -1100,7 +1086,7 @@ a {
 }
 .season--family .season-name { color: var(--brown); }
 .season--family .season-caption { color: var(--brown); opacity: 0.6; }
-.season--family .card-back { background: var(--brown); }
+.season--family .card-back { background: rgba(72, 33, 23, 0.82); }
 .season--family .season-cards { grid-template-columns: repeat(4, 1fr); }
 
 /* --- The Proposal Section --- */
@@ -2559,13 +2545,6 @@ a {
   }
   .music-toggle #music-icon { font-size: 0.85rem; line-height: 1; }
   .music-label { display: none; }
-  .music-player {
-    width: calc(100vw - 1.2rem);
-    max-width: 280px;
-    right: 0;
-  }
-  .music-iframe { height: 240px; }
-  .music-credit { font-size: 0.5rem; padding: 0.35rem 0.6rem; }
 
   /* Page layout */
   .page-header { padding: 6rem 1.5rem 3rem; }
@@ -2617,9 +2596,13 @@ a {
   .season-portrait-cards .photo-card { aspect-ratio: 3/2; }
 
   /* Card overlay text on mobile */
-  .card-back { padding: 1rem; }
-  .card-back-story { font-size: 0.85rem; }
-  .card-back-location { font-size: 0.5rem; margin-bottom: 0.5rem; }
+  .card-back { padding: 0.75rem; }
+  .card-back-story { font-size: 0.78rem; line-height: 1.55; -webkit-line-clamp: 9; }
+  .card-back-location { font-size: 0.5rem; margin-bottom: 0.4rem; letter-spacing: 0.2em; }
+
+  /* Family + Milestones cards need taller backs on phone for the longer stories */
+  .season--family .photo-card,
+  .season-cards--milestones .photo-card { aspect-ratio: 4 / 3; }
 
   /* Venue */
   .venue-image { height: 45vh; min-height: 280px; }
