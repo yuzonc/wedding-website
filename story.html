@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#36350B">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Our Story — Guo Jie & Yu Zon</title>
+  <title data-i18n="page.title.story">Our Story — Guo Jie & Yu Zon</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -273,6 +273,8 @@
       background: transparent;
       aspect-ratio: 1 / 1;
       max-width: 360px;
+      position: relative;
+      z-index: 2;
     }
     .timeline-converge-photo.timeline-photo--filled img {
       width: 100%;
@@ -280,6 +282,13 @@
       object-fit: cover;
       object-position: center 30%;
       border-radius: 4px;
+    }
+
+    /* Single-track post-convergence photos sit above the spine line too */
+    .timeline-single .timeline-photo,
+    .timeline-single .timeline-graduation-photos {
+      position: relative;
+      z-index: 2;
     }
 
     /* === Single-track milestones (post-convergence) === */
@@ -397,14 +406,19 @@
     <a href="index.html" class="nav-logo">GJ &amp; YZ</a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     <ul id="nav-menu">
-      <li class="nav-dropdown"><a href="wedding.html#venue">Wedding</a><ul class="nav-sub"><li><a href="wedding.html#venue">Venue &amp; Date</a></li><li><a href="wedding.html#day">The Day</a></li><li><a href="wedding.html#afterparty">After Party</a></li></ul></li>
-      <li class="nav-dropdown"><a href="story.html#timeline">Our Story</a><ul class="nav-sub"><li><a href="story.html#timeline">How We Met</a></li><li><a href="story.html#proposal">The Proposal</a></li></ul></li>
-      <li class="nav-dropdown"><a href="faqs.html#wedding">FAQs</a><ul class="nav-sub"><li><a href="faqs.html#wedding">Wedding</a></li><li><a href="faqs.html#langkawi">Langkawi Guide</a></li></ul></li>
-      <li class="nav-dropdown"><a href="journey.html#seasons">Memories</a><ul class="nav-sub"><li><a href="journey.html#seasons">Through the Seasons</a></li><li><a href="journey.html#family">Family</a></li><li><a href="journey.html#milestones">Milestones</a></li></ul></li>
+      <li class="nav-dropdown"><a href="wedding.html#venue" data-i18n="nav.wedding">Wedding</a><ul class="nav-sub"><li><a href="wedding.html#venue" data-i18n="nav.sub.venue">Venue &amp; Date</a></li><li><a href="wedding.html#day" data-i18n="nav.sub.day">The Day</a></li><li><a href="wedding.html#afterparty" data-i18n="nav.sub.afterparty">After Party</a></li></ul></li>
+      <li class="nav-dropdown"><a href="story.html#timeline" data-i18n="nav.story">Our Story</a><ul class="nav-sub"><li><a href="story.html#timeline" data-i18n="nav.sub.met">How We Met</a></li><li><a href="story.html#proposal" data-i18n="nav.sub.proposal">The Proposal</a></li></ul></li>
+      <li class="nav-dropdown"><a href="faqs.html#wedding" data-i18n="nav.faqs">FAQs</a><ul class="nav-sub"><li><a href="faqs.html#wedding" data-i18n="nav.sub.weddingFaq">Wedding</a></li><li><a href="faqs.html#langkawi" data-i18n="nav.sub.langkawi">Langkawi Guide</a></li></ul></li>
+      <li class="nav-dropdown"><a href="journey.html#seasons" data-i18n="nav.memories">Memories</a><ul class="nav-sub"><li><a href="journey.html#seasons" data-i18n="nav.sub.seasons">Through the Seasons</a></li><li><a href="journey.html#family" data-i18n="nav.sub.family">Family</a></li><li><a href="journey.html#milestones" data-i18n="nav.sub.milestones">Milestones</a></li></ul></li>
     </ul>
     <div class="nav-ctas">
-      <a href="faqs.html#accommodation" class="nav-book">Book</a>
-      <a href="https://forms.gle/reDxaX2qkwteaL1HA" target="_blank" rel="noopener" class="nav-rsvp">RSVP</a>
+      <a href="faqs.html#accommodation" class="nav-book" data-i18n="nav.cta.bookShort">Book</a>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button class="lang-btn" data-lang="en" type="button" aria-pressed="true">EN</button>
+        <span class="lang-divider" aria-hidden="true">|</span>
+        <button class="lang-btn" data-lang="zh" type="button" aria-pressed="false">ZH</button>
+      </div>
+      <a href="https://forms.gle/reDxaX2qkwteaL1HA" target="_blank" rel="noopener" class="nav-rsvp" data-i18n="nav.cta.rsvp">RSVP</a>
     </div>
   </nav>
   <main id="page-content">
@@ -415,8 +429,8 @@
 
   <!-- Page Header -->
   <header class="page-header" id="timeline">
-    <span class="script-label reveal">Our Story</span>
-    <h1 class="section-heading reveal">How We Met</h1>
+    <span class="script-label reveal" data-i18n="story.met.script">Our Story</span>
+    <h1 class="section-heading reveal" data-i18n="story.met.heading">How We Met</h1>
   </header>
 
   <!-- Timeline -->
@@ -425,28 +439,28 @@
     <!-- Track labels -->
     <div class="timeline-tracks reveal">
       <div>
-        <div class="timeline-track-label">Guo Jie</div>
-        <div class="timeline-track-origin">Langkawi, Malaysia</div>
+        <div class="timeline-track-label" data-i18n="timeline.gj.name">Guo Jie</div>
+        <div class="timeline-track-origin" data-i18n="timeline.gj.loc">Langkawi, Malaysia</div>
       </div>
       <div>
-        <div class="timeline-track-label">Yu Zon</div>
-        <div class="timeline-track-origin">Subang, Malaysia</div>
+        <div class="timeline-track-label" data-i18n="timeline.yz.name">Yu Zon</div>
+        <div class="timeline-track-origin" data-i18n="timeline.yz.loc">Subang, Malaysia</div>
       </div>
     </div>
 
     <!-- Milestone 1: Childhood -->
     <div class="timeline-milestone reveal">
       <div class="timeline-left">
-        <div class="timeline-year">Childhood</div>
-        <div class="timeline-title">Island boy</div>
-        <div class="timeline-desc">Growing up on the shores of Langkawi — sun-kissed, surrounded by sea and sky.</div>
+        <div class="timeline-year" data-i18n="timeline.m1.year">Childhood</div>
+        <div class="timeline-title" data-i18n="timeline.m1.gjTitle">Island boy</div>
+        <div class="timeline-desc" data-i18n="timeline.m1.gjDesc">Growing up on the shores of Langkawi — sun-kissed, surrounded by sea and sky.</div>
         <div class="timeline-photo timeline-photo--filled"><img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Timeline/Island boy.jpeg" alt="Guo Jie as a child in Langkawi"></div>
       </div>
       <div class="timeline-dot"></div>
       <div class="timeline-right">
-        <div class="timeline-year">Childhood</div>
-        <div class="timeline-title">Suburban girl</div>
-        <div class="timeline-desc">A Subang Jaya upbringing — neighbourhood friends, weekend malls, and big family dinners.</div>
+        <div class="timeline-year" data-i18n="timeline.m1.year">Childhood</div>
+        <div class="timeline-title" data-i18n="timeline.m1.yzTitle">Suburban girl</div>
+        <div class="timeline-desc" data-i18n="timeline.m1.yzDesc">A Subang Jaya upbringing — neighbourhood friends, weekend malls, and big family dinners.</div>
         <div class="timeline-photo timeline-photo--filled"><img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Timeline/Suburban girl.JPG" alt="Yu Zon as a child in Subang"></div>
       </div>
     </div>
@@ -454,16 +468,16 @@
     <!-- Milestone 2: Secondary School -->
     <div class="timeline-milestone reveal">
       <div class="timeline-left">
-        <div class="timeline-year">Secondary School</div>
-        <div class="timeline-title">His own world</div>
-        <div class="timeline-desc">Island school days — where competition existed, mostly in who had the best childhood stories to tell later.</div>
+        <div class="timeline-year" data-i18n="timeline.m2.year">Secondary School</div>
+        <div class="timeline-title" data-i18n="timeline.m2.gjTitle">His own world</div>
+        <div class="timeline-desc" data-i18n="timeline.m2.gjDesc">Island school days — where competition existed, mostly in who had the best childhood stories to tell later.</div>
         <div class="timeline-photo timeline-photo--filled"><img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Timeline/GJ secondary school.JPG" alt="Guo Jie in secondary school"></div>
       </div>
       <div class="timeline-dot"></div>
       <div class="timeline-right">
-        <div class="timeline-year">Secondary School</div>
-        <div class="timeline-title">Her own world</div>
-        <div class="timeline-desc">SMKSU. Head librarian and top student. A cabinet full of academic trophies. The brainy one... and unapologetic about it.</div>
+        <div class="timeline-year" data-i18n="timeline.m2.year">Secondary School</div>
+        <div class="timeline-title" data-i18n="timeline.m2.yzTitle">Her own world</div>
+        <div class="timeline-desc" data-i18n="timeline.m2.yzDesc">SMKSU. Head librarian and top student. A cabinet full of academic trophies. The brainy one... and unapologetic about it.</div>
         <div class="timeline-photo timeline-photo--filled"><img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Timeline/YZ secondary school.JPG" alt="Yu Zon in secondary school"></div>
       </div>
     </div>
@@ -471,18 +485,18 @@
     <!-- Convergence: University — UCL -->
     <div class="timeline-converge reveal">
       <div class="timeline-converge-dot"></div>
-      <div class="timeline-converge-year">University &mdash; UCL, London</div>
-      <div class="timeline-converge-title">Two paths, one city</div>
-      <div class="timeline-converge-subtitle">Two Malaysians, 10,000 km from home, on different courses (civil engineering and psychology). The friendship came first. Everything else followed at its own pace.</div>
+      <div class="timeline-converge-year" data-i18n="timeline.m3.year">University &mdash; UCL, London</div>
+      <div class="timeline-converge-title" data-i18n="timeline.m3.title">Two paths, one city</div>
+      <div class="timeline-converge-subtitle" data-i18n="timeline.m3.subtitle">Two Malaysians, 10,000 km from home, on different courses (civil engineering and psychology). The friendship came first. Everything else followed at its own pace.</div>
       <div class="timeline-converge-photo timeline-photo--filled"><img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Timeline/Two Paths One City.JPG" alt="Two paths, one city — UCL"></div>
     </div>
 
     <!-- Graduation — same uni, one year apart -->
     <div class="timeline-single reveal">
       <div class="timeline-dot timeline-dot--filled"></div>
-      <div class="timeline-year">UCL — Three Years Apart</div>
-      <div class="timeline-title">Two graduations, one Portico</div>
-      <div class="timeline-desc">Her ceremony came first in 2019. His was delayed by the pandemic and happened in 2022. The same UCL Portico, the same matching photo, the same cheer for each other.</div>
+      <div class="timeline-year" data-i18n="timeline.m4.year">UCL — Three Years Apart</div>
+      <div class="timeline-title" data-i18n="timeline.m4.title">Two graduations, one Portico</div>
+      <div class="timeline-desc" data-i18n="timeline.m4.desc">Her ceremony came first in 2019. His was delayed by the pandemic and happened in 2022. The same UCL Portico, the same matching photo, the same cheer for each other.</div>
       <div class="timeline-graduation-photos">
         <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Milestone/Graduation 1.JPG" alt="Yu Zon graduation">
         <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Milestone/Graduation 2.JPG" alt="Guo Jie graduation">
@@ -494,18 +508,18 @@
     <!-- Milestone 4: Living in London -->
     <div class="timeline-single reveal">
       <div class="timeline-dot timeline-dot--filled"></div>
-      <div class="timeline-year">After University</div>
-      <div class="timeline-title">Living in London</div>
-      <div class="timeline-desc">A tiny Russell Square flat, shared with Nick through lockdown. GJ cooked. YZ ate. We learned each other in the small ways you only learn when you can't leave.</div>
+      <div class="timeline-year" data-i18n="timeline.m5.year">After University</div>
+      <div class="timeline-title" data-i18n="timeline.m5.title">Living in London</div>
+      <div class="timeline-desc" data-i18n="timeline.m5.desc">A tiny Russell Square flat, shared with Nick through lockdown. GJ cooked. YZ ate. We learned each other in the small ways you only learn when you can't leave.</div>
       <div class="timeline-photo timeline-photo--filled"><img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Timeline/Living in London.jpeg" alt="Living in London together"></div>
     </div>
 
     <!-- Milestone 5: Working together -->
     <div class="timeline-single reveal">
       <div class="timeline-dot timeline-dot--filled"></div>
-      <div class="timeline-year">The London Years</div>
-      <div class="timeline-title">Working &amp; growing together</div>
-      <div class="timeline-desc">Pophams on Saturdays. Board games at night. Supermarket runs that always took twice as long as they should. Over the years, we learnt that romance is mostly the small things done together, again and again.</div>
+      <div class="timeline-year" data-i18n="timeline.m6.year">The London Years</div>
+      <div class="timeline-title" data-i18n="timeline.m6.title">Working &amp; growing together</div>
+      <div class="timeline-desc" data-i18n="timeline.m6.desc">Pophams on Saturdays. Board games at night. Supermarket runs that always took twice as long as they should. Over the years, we learnt that romance is mostly the small things done together, again and again.</div>
       <div class="timeline-photo timeline-photo--filled"><img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Timeline/Working, Growing together.jpeg" alt="Working and growing together in London"></div>
     </div>
 
@@ -520,9 +534,9 @@
 
   <!-- Page Header -->
   <header class="page-header" id="proposal">
-    <span class="script-label reveal">Our Story</span>
-    <h1 class="section-heading reveal">The Proposal</h1>
-    <p class="page-subtitle reveal">The reason why there's a wedding happening ...</p>
+    <span class="script-label reveal" data-i18n="story.proposal.script">Our Story</span>
+    <h1 class="section-heading reveal" data-i18n="story.proposal.heading">The Proposal</h1>
+    <p class="page-subtitle reveal" data-i18n="story.proposal.subtitle">The reason why there's a wedding happening ...</p>
   </header>
 
   <!-- Proposal Narrative -->
@@ -531,7 +545,7 @@
 
       <!-- Block 1 -->
       <div class="proposal-block reveal">
-        <p>Guo Jie had been planning this Switzerland trip for months. He was "working late" while secretly putting together a proposal plan. Every detail, every backup plan, every scenario, except one. When we got to Switzerland, it was gloomy. The day before the proposal, it rained. And rained. And rained. Guo Jie is not religious at all, but that week, he prayed to every god he knew.</p>
+        <p data-i18n="proposal.block1">Guo Jie had been planning this Switzerland trip for months. He was "working late" while secretly putting together a proposal plan. Every detail, every backup plan, every scenario, except one. When we got to Switzerland, it was gloomy. The day before the proposal, it rained. And rained. And rained. Guo Jie is not religious at all, but that week, he prayed to every god he knew.</p>
       </div>
 
       <!-- Raining in Switzerland video -->
@@ -539,12 +553,12 @@
         <video class="autoplay-video" muted loop playsinline preload="metadata">
           <source src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/Raining in Switzerland.MP4" type="video/mp4">
         </video>
-        <div class="video-caption">It rained. And rained. And rained.</div>
+        <div class="video-caption" data-i18n="proposal.video1">It rained. And rained. And rained.</div>
       </div>
 
       <!-- YZ POV — bridging beat -->
       <div class="proposal-block reveal">
-        <p>Yu Zon, blissfully unaware, was actually loving the rain. On a train past a lake the day before, she'd turned to Guo Jie: <em>"Don't you think the rain adds an extra layer to the scenery?"</em> He smiled. He did not think so, absolutely not.</p>
+        <p data-i18n-html="proposal.block2">Yu Zon, blissfully unaware, was actually loving the rain. On a train past a lake the day before, she'd turned to Guo Jie: <em>"Don't you think the rain adds an extra layer to the scenery?"</em> He smiled. He did not think so, absolutely not.</p>
       </div>
       
 
@@ -554,32 +568,32 @@
         <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/Before2.jpeg" alt="Before the proposal">
         <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/Before3.jpeg" alt="Before the proposal">
       </div>
-      <p class="proposal-photo-caption reveal"><em>Guo Jie bought a tripod for this trip and he took a lot of nice photos, rain or sun. (The tripod is linked to the next part of the story...)</em></p>
+      <p class="proposal-photo-caption reveal" data-i18n-html="proposal.photo1"><em>Guo Jie bought a tripod for this trip and he took a lot of nice photos, rain or sun. (The tripod is linked to the next part of the story...)</em></p>
 
 
 
       <!-- Block 2 — Morning + white dress -->
       <div class="proposal-block reveal">
-        <p>29 May 2025. The morning broke clear. He told her, very casually, not to wear the striking blue dress she had picked out the day before. <em>"The white one will look better against the mountain."</em> She thought that didn't make sense since the Matterhorn was going to be covered in snow and look white too... but she decided to go with it as the blue dress was slightly harder to hike in anyway.</p>
+        <p data-i18n-html="proposal.block3">29 May 2025. The morning broke clear. He told her, very casually, not to wear the striking blue dress she had picked out the day before. <em>"The white one will look better against the mountain."</em> She thought that didn't make sense since the Matterhorn was going to be covered in snow and look white too... but she decided to go with it as the blue dress was slightly harder to hike in anyway.</p>
       </div>
 
 
 
       <!-- Block 3 -->
       <div class="proposal-block reveal">
-        <p>We headed to Zermatt. The sun had brought everyone out, and the train up to see the Matterhorn was packed. We almost didn't make it on, but of course, only one of us was nervous about that.</p>
+        <p data-i18n="proposal.block4">We headed to Zermatt. The sun had brought everyone out, and the train up to see the Matterhorn was packed. We almost didn't make it on, but of course, only one of us was nervous about that.</p>
       </div>
 
       <!-- Highlight block -->
       <div class="proposal-block proposal-block--highlight reveal">
-        <p>At the second stop, only two other people got off. Guo Jie said, <em>"We get off here."</em></p>
-        <p>Yu Zon, ever the smartypants: <em>"We shouldn't get off, what if we can't get on the next train?"</em></p>
-        <p>Uh oh. Guo Jie was sweating thanks to her critical thinking. But all he could say was: <em>"Just trust me. I did my research. It's nice up there."</em></p>
+        <p data-i18n-html="proposal.dialogue1">At the second stop, only two other people got off. Guo Jie said, <em>"We get off here."</em></p>
+        <p data-i18n-html="proposal.dialogue2">Yu Zon, ever the smartypants: <em>"We shouldn't get off, what if we can't get on the next train?"</em></p>
+        <p data-i18n-html="proposal.dialogue3">Uh oh. Guo Jie was sweating thanks to her critical thinking. But all he could say was: <em>"Just trust me. I did my research. It's nice up there."</em></p>
       </div>
 
       <!-- Block -->
       <div class="proposal-block reveal">
-        <p>So we got off. And walked up the hill. And spotted a <a href="https://www.myswitzerland.com/en-gb/experiences/watch-and-feed-marmots/">marmot</a> along the way, because of course we did.</p>
+        <p data-i18n-html="proposal.block5">So we got off. And walked up the hill. And spotted a <a href="https://www.myswitzerland.com/en-gb/experiences/watch-and-feed-marmots/">marmot</a> along the way, because of course we did.</p>
       </div>
 
       <!-- Marmot video -->
@@ -587,12 +601,12 @@
         <video class="autoplay-video" muted loop playsinline preload="metadata">
           <source src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/marmot.mp4" type="video/mp4">
         </video>
-        <div class="video-caption">The marmot, mid-snack.</div>
+        <div class="video-caption" data-i18n="proposal.video2">The marmot, mid-snack.</div>
       </div>
 
       <!-- Block -->
       <div class="proposal-block reveal">
-        <p>At the top: a vast, green field with the Matterhorn so close and so clear it didn't look real. Yu Zon immediately wanted to walk over to where three people with massive DSLRs were standing. <em>"They clearly know what they're doing."</em> Guo Jie asked her to keep walking forward instead.</p>
+        <p data-i18n-html="proposal.block6">At the top: a vast, green field with the Matterhorn so close and so clear it didn't look real. Yu Zon immediately wanted to walk over to where three people with massive DSLRs were standing. <em>"They clearly know what they're doing."</em> Guo Jie asked her to keep walking forward instead.</p>
       </div>
 
       <!-- Photo row: Setup -->
@@ -603,12 +617,12 @@
 
       <!-- Highlight -->
       <div class="proposal-block proposal-block--highlight reveal">
-        <p><em>"The mountain is so big, why do I need to take 26 steps forward?"</em></p>
+        <p data-i18n-html="proposal.highlight1"><em>"The mountain is so big, why do I need to take 26 steps forward?"</em></p>
       </div>
 
       <!-- Block -->
       <div class="proposal-block reveal">
-        <p>Guo Jie pulled out the very same tripod he'd been using to take pics over the last few days, asked for Yu Zon's phone, and set it up like he was framing a couples' photo. Totally normal... (By day six of being photographed against every conceivable backdrop, Yu Zon had stopped paying attention to the tripod entirely. Which was the whole point.)</p>
+        <p data-i18n="proposal.block7">Guo Jie pulled out the very same tripod he'd been using to take pics over the last few days, asked for Yu Zon's phone, and set it up like he was framing a couples' photo. Totally normal... (By day six of being photographed against every conceivable backdrop, Yu Zon had stopped paying attention to the tripod entirely. Which was the whole point.)</p>
       </div>
 
       <!-- Photo row: Setup -->
@@ -618,7 +632,7 @@
 
       <!-- Block -->
       <div class="proposal-block reveal">
-        <p>But when he brought the phone back, it wasn't a camera. It was a video. A montage of our years together.</p>
+        <p data-i18n="proposal.block8">But when he brought the phone back, it wasn't a camera. It was a video. A montage of our years together.</p>
       </div>
 
       <!-- Photo row: During -->
@@ -630,30 +644,30 @@
 
       <!-- Emotional block -->
       <div class="proposal-block proposal-block--emotional reveal">
-        <p>Yu Zon cried. A lot.</p>
-        <p>He knelt down. He asked the question.</p>
-        <p>She said yes.</p>
+        <p data-i18n="proposal.emotion1">Yu Zon cried. A lot.</p>
+        <p data-i18n="proposal.emotion2">He knelt down. He asked the question.</p>
+        <p data-i18n="proposal.emotion3">She said yes.</p>
       </div>
 
       <!-- Highlight: surreal moment -->
       <div class="proposal-block proposal-block--highlight reveal">
-        <p><em>"It felt like the whole world faded away. Just us and the mountain."</em></p>
+        <p data-i18n-html="proposal.highlight2"><em>"It felt like the whole world faded away. Just us and the mountain."</em></p>
       </div>
 
       <!-- Photographer reveal -->
       <div class="proposal-block reveal">
-        <p>What Yu Zon didn't know: Guo Jie had been emailing Katherina, a photographer based in Zermatt, for months. Location, timing, angles, all coordinated. She'd been hiding in the trees about 20 metres away the whole time.</p>
+        <p data-i18n="proposal.block9">What Yu Zon didn't know: Guo Jie had been emailing Katherina, a photographer based in Zermatt, for months. Location, timing, angles, all coordinated. She'd been hiding in the trees about 20 metres away the whole time.</p>
       </div>
 
       <!-- Aftermath / Fumo -->
       <div class="proposal-block reveal">
-        <p>We held each other for a long time. Then Guo Jie waved Katherina out from the trees, and we celebrated with an engagement shoot on that beautiful green field, the Matterhorn watching over us. And our special pet Fumo was there too.</p>
+        <p data-i18n="proposal.block10">We held each other for a long time. Then Guo Jie waved Katherina out from the trees, and we celebrated with an engagement shoot on that beautiful green field, the Matterhorn watching over us. And our special pet Fumo was there too.</p>
       </div>
 
       <!-- Behind the scenes: Katherina -->
       <figure class="proposal-bts reveal">
         <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/Katherina.jpg" alt="Us with Katherina, our secret photographer">
-        <figcaption>Us with Katherina, the photographer behind every proposal photo on this page.</figcaption>
+        <figcaption data-i18n="proposal.bts">Us with Katherina, the photographer behind every proposal photo on this page.</figcaption>
       </figure>
 
       <!-- Photo row: After (portrait, with breathing room — matches Before row) -->
@@ -665,12 +679,12 @@
 
       <!-- After the yes -->
       <div class="proposal-block reveal">
-        <p>We sat in the field for two hours, calling every parent and best friend we had. Forgot all about lunch. Guo Jie's scalp got sunburnt (we only found out the next day). We got back on the train and rode all the way to the top, where the Matterhorn looked impossible up close. Strangers spotted Yu Zon's bouquet and stopped to congratulate us. By the time we got back to the hotel, the day still didn't feel real. We were so happy we went to celebrate with a spa treatment in the hotel!</p>
+        <p data-i18n="proposal.block11">We sat in the field for two hours, calling every parent and best friend we had. Forgot all about lunch. Guo Jie's scalp got sunburnt (we only found out the next day). We got back on the train and rode all the way to the top, where the Matterhorn looked impossible up close. Strangers spotted Yu Zon's bouquet and stopped to congratulate us. By the time we got back to the hotel, the day still didn't feel real. We were so happy we went to celebrate with a spa treatment in the hotel!</p>
       </div>
 
       <!-- Closing -->
       <div class="proposal-closing reveal">
-        <p>That green field? It's where we took the photo you see on our landing page.</p>
+        <p data-i18n="proposal.closing">That green field? It's where we took the photo you see on our landing page.</p>
       </div>
 
     </div>
@@ -679,10 +693,10 @@
   <!-- Page Nav -->
   <nav class="page-nav">
     <a href="wedding.html">
-      <span class="page-nav-label">&larr; Wedding Details</span>
+      <span class="page-nav-label" data-i18n="pagenav.storyPrev">&larr; Wedding Details</span>
     </a>
     <a href="faqs.html">
-      <span class="page-nav-label">FAQs &rarr;</span>
+      <span class="page-nav-label" data-i18n="pagenav.storyNext">FAQs &rarr;</span>
     </a>
   </nav>
 
@@ -690,9 +704,10 @@
 
   <!-- Music player (persistent, outside main) -->
   <div class="music-float" id="music-float">
-    <button class="music-toggle" id="music-toggle" aria-label="Play our song">
+    <span class="music-hint" id="music-hint" aria-hidden="true" data-i18n="musicHint">Play our song! →</span>
+    <button class="music-toggle" id="music-toggle" aria-label="Play our song" data-i18n-aria="music.ariaPlay">
       <span id="music-icon">&#9835;</span>
-      <span class="music-label" id="music-label">Play our song</span>
+      <span class="music-label" id="music-label" data-i18n="music.play">Play music</span>
     </button>
     <div class="music-player" id="music-player">
       <iframe class="music-iframe" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2228683682&color=%231b1917&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>
@@ -703,8 +718,8 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-monogram"><span class="footer-monogram-letter">GJ</span><span class="footer-ampersand">&amp;</span><span class="footer-monogram-letter">YZ</span></div>
-    <p class="footer-closing">See you in Langkawi</p>
-    <p class="footer-date">30 January 2027</p>
+    <p class="footer-closing" data-i18n="footer.closing">See you in Langkawi</p>
+    <p class="footer-date" data-i18n="footer.date">30 January 2027</p>
   </footer>
   <script src="script.js"></script>
 

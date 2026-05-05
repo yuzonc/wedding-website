@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#36350B">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Guo Jie & Yu Zon — Wedding</title>
+  <title data-i18n="page.title.index">Guo Jie & Yu Zon — Wedding</title>
   <link rel="preload" as="image" href="assets/IMG_6155.JPG" fetchpriority="high">
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,39 +23,44 @@
     </button>
     <ul id="nav-menu">
       <li class="nav-dropdown">
-        <a href="wedding.html">Wedding</a>
+        <a href="wedding.html" data-i18n="nav.wedding">Wedding</a>
         <ul class="nav-sub">
-          <li><a href="wedding.html#venue">Venue &amp; Date</a></li>
-          <li><a href="wedding.html#day">The Day</a></li>
-          <li><a href="wedding.html#afterparty">After Party</a></li>
+          <li><a href="wedding.html#venue" data-i18n="nav.sub.venue">Venue &amp; Date</a></li>
+          <li><a href="wedding.html#day" data-i18n="nav.sub.day">The Day</a></li>
+          <li><a href="wedding.html#afterparty" data-i18n="nav.sub.afterparty">After Party</a></li>
         </ul>
       </li>
       <li class="nav-dropdown">
-        <a href="story.html">Our Story</a>
+        <a href="story.html" data-i18n="nav.story">Our Story</a>
         <ul class="nav-sub">
-          <li><a href="story.html#timeline">How We Met</a></li>
-          <li><a href="story.html#proposal">The Proposal</a></li>
+          <li><a href="story.html#timeline" data-i18n="nav.sub.met">How We Met</a></li>
+          <li><a href="story.html#proposal" data-i18n="nav.sub.proposal">The Proposal</a></li>
         </ul>
       </li>
       <li class="nav-dropdown">
-        <a href="faqs.html">FAQs</a>
+        <a href="faqs.html" data-i18n="nav.faqs">FAQs</a>
         <ul class="nav-sub">
-          <li><a href="faqs.html#wedding">Wedding</a></li>
-          <li><a href="faqs.html#langkawi">Langkawi Guide</a></li>
+          <li><a href="faqs.html#wedding" data-i18n="nav.sub.weddingFaq">Wedding</a></li>
+          <li><a href="faqs.html#langkawi" data-i18n="nav.sub.langkawi">Langkawi Guide</a></li>
         </ul>
       </li>
       <li class="nav-dropdown">
-        <a href="journey.html">Memories</a>
+        <a href="journey.html" data-i18n="nav.memories">Memories</a>
         <ul class="nav-sub">
-          <li><a href="journey.html#seasons">Through the Seasons</a></li>
-          <li><a href="journey.html#family">Family</a></li>
-          <li><a href="journey.html#milestones">Milestones</a></li>
+          <li><a href="journey.html#seasons" data-i18n="nav.sub.seasons">Through the Seasons</a></li>
+          <li><a href="journey.html#family" data-i18n="nav.sub.family">Family</a></li>
+          <li><a href="journey.html#milestones" data-i18n="nav.sub.milestones">Milestones</a></li>
                   </ul>
       </li>
     </ul>
     <div class="nav-ctas">
-      <a href="faqs.html#accommodation" class="nav-book">Book a Room</a>
-      <a href="https://forms.gle/reDxaX2qkwteaL1HA" target="_blank" rel="noopener" class="nav-rsvp">RSVP</a>
+      <a href="faqs.html#accommodation" class="nav-book" data-i18n="nav.cta.book">Book a Room</a>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button class="lang-btn" data-lang="en" type="button" aria-pressed="true">EN</button>
+        <span class="lang-divider" aria-hidden="true">|</span>
+        <button class="lang-btn" data-lang="zh" type="button" aria-pressed="false">ZH</button>
+      </div>
+      <a href="https://forms.gle/reDxaX2qkwteaL1HA" target="_blank" rel="noopener" class="nav-rsvp" data-i18n="nav.cta.rsvp">RSVP</a>
     </div>
   </nav>
 
@@ -65,23 +70,23 @@
   <section class="hero" id="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1 class="hero-names fade-in">Guo Jie &amp; Yu Zon</h1>
-      <p class="hero-subtitle fade-in">are getting married</p>
-      <p class="hero-location-script fade-in">Langkawi</p>
-      <p class="hero-date fade-in">30 January 2027</p>
+      <h1 class="hero-names fade-in" data-i18n="hero.names">Guo Jie &amp; Yu Zon</h1>
+      <p class="hero-subtitle fade-in" data-i18n="hero.subtitle">are getting married</p>
+      <p class="hero-location-script fade-in" data-i18n="hero.location">Langkawi</p>
+      <p class="hero-date fade-in" data-i18n="hero.date">30 January 2027</p>
     </div>
     <a href="#countdown" class="scroll-indicator" aria-label="Scroll to next section">
-      <span class="scroll-indicator-label">Scroll</span>
+      <span class="scroll-indicator-label" data-i18n="scrollIndicator">Scroll</span>
       <span class="scroll-indicator-chevron" aria-hidden="true"></span>
     </a>
   </section>
 
   <!-- Countdown strip -->
   <div class="countdown-strip" id="countdown">
-    <div class="countdown-unit"><span id="cd-days">---</span><small>Days</small></div>
-    <div class="countdown-unit"><span id="cd-hours">--</span><small>Hours</small></div>
-    <div class="countdown-unit"><span id="cd-mins">--</span><small>Mins</small></div>
-    <div class="countdown-unit"><span id="cd-secs">--</span><small>Secs</small></div>
+    <div class="countdown-unit"><span id="cd-days">---</span><small data-i18n="countdown.days">Days</small></div>
+    <div class="countdown-unit"><span id="cd-hours">--</span><small data-i18n="countdown.hours">Hours</small></div>
+    <div class="countdown-unit"><span id="cd-mins">--</span><small data-i18n="countdown.mins">Mins</small></div>
+    <div class="countdown-unit"><span id="cd-secs">--</span><small data-i18n="countdown.secs">Secs</small></div>
   </div>
 
   <!-- Chapter Navigation -->
@@ -92,9 +97,9 @@
       <div class="chapter-card-bg" style="background-image: url('assets/HOTEL PICTURE/caption.jpg');"></div>
       <div class="chapter-card-overlay"></div>
       <div class="chapter-card-content">
-        <h2 class="chapter-title">Wedding Details</h2>
-        <p class="chapter-desc">Everything you need to know — venue, schedule, dress code, and RSVP</p>
-        <span class="chapter-cta">Start here</span>
+        <h2 class="chapter-title" data-i18n="card.wedding.title">Wedding Details</h2>
+        <p class="chapter-desc" data-i18n="card.wedding.desc">Everything you need to know — venue, schedule, dress code, and RSVP</p>
+        <span class="chapter-cta" data-i18n="card.wedding.cta">Start here</span>
       </div>
     </a>
 
@@ -103,8 +108,8 @@
       <div class="chapter-card-bg" style="background-image: url('assets/Actual Pic-Video folder/Proposal Switzerland Trip/After1.JPG');"></div>
       <div class="chapter-card-overlay"></div>
       <div class="chapter-card-content">
-        <h2 class="chapter-title">Our Story</h2>
-        <p class="chapter-desc">How two people from different corners of Malaysia found each other in a different part of the world</p>
+        <h2 class="chapter-title" data-i18n="card.story.title">Our Story</h2>
+        <p class="chapter-desc" data-i18n="card.story.desc">How two people from different corners of Malaysia found each other in a different part of the world</p>
       </div>
     </a>
 
@@ -112,8 +117,8 @@
       <div class="chapter-card-bg" style="background-image: url('assets/HOTEL PICTURE/resort-ground.jpg');"></div>
       <div class="chapter-card-overlay"></div>
       <div class="chapter-card-content">
-        <h2 class="chapter-title">FAQs &amp; Travel</h2>
-        <p class="chapter-desc">Getting there, where to stay, and what to do</p>
+        <h2 class="chapter-title" data-i18n="card.faqs.title">FAQs &amp; Travel</h2>
+        <p class="chapter-desc" data-i18n="card.faqs.desc">Getting there, where to stay, and what to do</p>
       </div>
     </a>
 
@@ -121,8 +126,8 @@
       <div class="chapter-card-bg" style="background-image: url('assets/Actual Pic-Video folder/memories-cover.jpg'), url('assets/Actual Pic-Video folder/Summer/IMG_6289.jpeg');"></div>
       <div class="chapter-card-overlay"></div>
       <div class="chapter-card-content">
-        <h2 class="chapter-title">Memories</h2>
-        <p class="chapter-desc">Stories from our adventures together over the years</p>
+        <h2 class="chapter-title" data-i18n="card.memories.title">Memories</h2>
+        <p class="chapter-desc" data-i18n="card.memories.desc">Stories from our adventures together over the years</p>
       </div>
     </a>
 
@@ -132,9 +137,10 @@
 
   <!-- Music player (persistent, outside main) -->
   <div class="music-float" id="music-float">
-    <button class="music-toggle" id="music-toggle" aria-label="Play our song">
+    <span class="music-hint" id="music-hint" aria-hidden="true" data-i18n="musicHint">Play our song! →</span>
+    <button class="music-toggle" id="music-toggle" aria-label="Play our song" data-i18n-aria="music.ariaPlay">
       <span id="music-icon">&#9835;</span>
-      <span class="music-label" id="music-label">Play our song</span>
+      <span class="music-label" id="music-label" data-i18n="music.play">Play music</span>
     </button>
     <div class="music-player" id="music-player">
       <iframe class="music-iframe" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2228683682&color=%231b1917&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>
@@ -149,8 +155,8 @@
       <span class="footer-ampersand">&amp;</span>
       <span class="footer-monogram-letter">YZ</span>
     </div>
-    <p class="footer-closing">See you in Langkawi</p>
-    <p class="footer-date">30 January 2027</p>
+    <p class="footer-closing" data-i18n="footer.closing">See you in Langkawi</p>
+    <p class="footer-date" data-i18n="footer.date">30 January 2027</p>
   </footer>
 
   <script src="script.js"></script>

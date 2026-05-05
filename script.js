@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPage();
   initRouter();
   initMusic();
+  initI18n();
 });
 
 // ========================================
@@ -243,6 +244,9 @@ async function navigate(page, hash, isPopState) {
     // Update document title
     document.title = doc.title;
 
+    // Re-apply translations to swapped content
+    if (window.__applyI18n) window.__applyI18n();
+
     // Update URL
     if (!isPopState) {
       history.pushState(null, '', page + (hash ? '#' + hash : ''));
@@ -286,9 +290,26 @@ function initMusic() {
   const musicToggle = document.getElementById('music-toggle');
   const musicIcon = document.getElementById('music-icon');
   const musicLabel = document.getElementById('music-label');
+  const musicHint = document.getElementById('music-hint');
   const iframe = document.querySelector('.music-iframe');
 
   if (!musicFloat || !musicToggle) return;
+
+  // Music hint — show on first visit, dismiss on first toggle click or after 12s.
+  // Persist dismissal in localStorage so it doesn't keep showing across pages.
+  const HINT_KEY = 'gjyz-music-hint-seen';
+  const hideHint = () => {
+    if (musicHint) musicHint.classList.add('music-hint--hidden');
+    localStorage.setItem(HINT_KEY, '1');
+  };
+  if (musicHint) {
+    if (localStorage.getItem(HINT_KEY) === '1' || localStorage.getItem(MUSIC_KEYS.playing) === 'true') {
+      musicHint.classList.add('music-hint--hidden');
+    } else {
+      musicToggle.addEventListener('click', hideHint, { once: true });
+      setTimeout(hideHint, 12000);
+    }
+  }
 
   const ICON_PLAY = '♫';
 
@@ -366,6 +387,17 @@ function initMusic() {
     widget.bind(SC.Widget.Events.FINISH, () => {
       // Track ended; reset position so next track starts from its beginning
       localStorage.setItem(MUSIC_KEYS.position, '0');
+
+      // Loop back to track 1 if we just finished the last track in the playlist
+      widget.getCurrentSoundIndex((idx) => {
+        widget.getSounds((sounds) => {
+          if (typeof idx === 'number' && Array.isArray(sounds) && idx >= sounds.length - 1) {
+            widget.skip(0);
+            // Skip is async — give it a beat before play() so the new track is queued
+            setTimeout(() => widget.play(), 300);
+          }
+        });
+      });
     });
 
     // Force a final state flush as the page goes away.
@@ -402,5 +434,131 @@ function initMusic() {
       script.onload = setupWidget;
       document.head.appendChild(script);
     }
+  }
+}
+
+// ========================================
+// I18N — English ↔ Traditional Chinese (Taiwan)
+// English content lives in HTML (default). Chinese is loaded from i18n/zh.json.
+// Each translatable element has a data-i18n="dot.path" attribute pointing into
+// the JSON. Variants:
+//   data-i18n        → replace textContent
+//   data-i18n-html   → replace innerHTML (for content with embedded <strong>/<em>)
+//   data-i18n-aria   → replace aria-label
+//   data-i18n-alt    → replace alt
+//   data-i18n-title  → replace title attribute
+// ========================================
+const I18N_KEY = 'gjyz-lang';
+const SUPPORTED_LANGS = ['en', 'zh'];
+let zhDict = null;
+let currentLang = 'en';
+const originalText = new WeakMap();
+const originalHtml = new WeakMap();
+const originalAttr = new WeakMap();
+
+function getNested(obj, path) {
+  return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj);
+}
+
+function detectInitialLang() {
+  const stored = localStorage.getItem(I18N_KEY);
+  if (stored && SUPPORTED_LANGS.includes(stored)) return stored;
+  const browser = (navigator.language || '').toLowerCase();
+  if (browser.startsWith('zh')) return 'zh';
+  return 'en';
+}
+
+function applyI18n() {
+  const lang = currentLang;
+
+  // textContent
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    if (!originalText.has(el)) originalText.set(el, el.textContent);
+    if (lang === 'en') {
+      el.textContent = originalText.get(el);
+    } else {
+      const value = getNested(zhDict, el.dataset.i18n);
+      if (value != null) el.textContent = value;
+    }
+  });
+
+  // innerHTML
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    if (!originalHtml.has(el)) originalHtml.set(el, el.innerHTML);
+    if (lang === 'en') {
+      el.innerHTML = originalHtml.get(el);
+    } else {
+      const value = getNested(zhDict, el.dataset.i18nHtml);
+      if (value != null) el.innerHTML = value;
+    }
+  });
+
+  // attributes (aria-label, alt, title)
+  const attrMap = [
+    ['data-i18n-aria', 'aria-label', 'i18nAria'],
+    ['data-i18n-alt', 'alt', 'i18nAlt'],
+    ['data-i18n-title', 'title', 'i18nTitle'],
+  ];
+  attrMap.forEach(([selector, attr, datasetKey]) => {
+    document.querySelectorAll(`[${selector}]`).forEach(el => {
+      if (!originalAttr.has(el)) originalAttr.set(el, {});
+      const stash = originalAttr.get(el);
+      if (!(attr in stash)) stash[attr] = el.getAttribute(attr) || '';
+      if (lang === 'en') {
+        el.setAttribute(attr, stash[attr]);
+      } else {
+        const value = getNested(zhDict, el.dataset[datasetKey]);
+        if (value != null) el.setAttribute(attr, value);
+      }
+    });
+  });
+
+  // <html lang="">
+  document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
+
+  // Sync toggle UI
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+    btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
+  });
+}
+
+// Expose for the SPA router to call after page swap
+window.__applyI18n = applyI18n;
+
+async function setLang(lang) {
+  if (!SUPPORTED_LANGS.includes(lang)) return;
+  if (lang === 'zh' && !zhDict) {
+    try {
+      const res = await fetch('i18n/zh.json');
+      if (!res.ok) throw new Error('Failed to load zh.json');
+      zhDict = await res.json();
+    } catch (err) {
+      console.error('i18n load failed', err);
+      return;
+    }
+  }
+  currentLang = lang;
+  localStorage.setItem(I18N_KEY, lang);
+  applyI18n();
+}
+
+async function initI18n() {
+  const initial = detectInitialLang();
+
+  // Wire up toggle clicks (delegated, so it survives SPA nav)
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.lang-btn');
+    if (!btn) return;
+    e.preventDefault();
+    setLang(btn.dataset.lang);
+  });
+
+  // Apply initial language
+  if (initial === 'zh') {
+    await setLang('zh');
+  } else {
+    currentLang = 'en';
+    applyI18n();
   }
 }

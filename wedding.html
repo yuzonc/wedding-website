@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#36350B">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Wedding — Guo Jie & Yu Zon</title>
+  <title data-i18n="page.title.wedding">Wedding — Guo Jie & Yu Zon</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -138,14 +138,19 @@
     <a href="index.html" class="nav-logo">GJ &amp; YZ</a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     <ul id="nav-menu">
-      <li class="nav-dropdown"><a href="wedding.html#venue">Wedding</a><ul class="nav-sub"><li><a href="wedding.html#venue">Venue &amp; Date</a></li><li><a href="wedding.html#day">The Day</a></li><li><a href="wedding.html#afterparty">After Party</a></li></ul></li>
-      <li class="nav-dropdown"><a href="story.html#timeline">Our Story</a><ul class="nav-sub"><li><a href="story.html#timeline">How We Met</a></li><li><a href="story.html#proposal">The Proposal</a></li></ul></li>
-      <li class="nav-dropdown"><a href="faqs.html#wedding">FAQs</a><ul class="nav-sub"><li><a href="faqs.html#wedding">Wedding</a></li><li><a href="faqs.html#langkawi">Langkawi Guide</a></li></ul></li>
-      <li class="nav-dropdown"><a href="journey.html#seasons">Memories</a><ul class="nav-sub"><li><a href="journey.html#seasons">Through the Seasons</a></li><li><a href="journey.html#family">Family</a></li><li><a href="journey.html#milestones">Milestones</a></li></ul></li>
+      <li class="nav-dropdown"><a href="wedding.html#venue" data-i18n="nav.wedding">Wedding</a><ul class="nav-sub"><li><a href="wedding.html#venue" data-i18n="nav.sub.venue">Venue &amp; Date</a></li><li><a href="wedding.html#day" data-i18n="nav.sub.day">The Day</a></li><li><a href="wedding.html#afterparty" data-i18n="nav.sub.afterparty">After Party</a></li></ul></li>
+      <li class="nav-dropdown"><a href="story.html#timeline" data-i18n="nav.story">Our Story</a><ul class="nav-sub"><li><a href="story.html#timeline" data-i18n="nav.sub.met">How We Met</a></li><li><a href="story.html#proposal" data-i18n="nav.sub.proposal">The Proposal</a></li></ul></li>
+      <li class="nav-dropdown"><a href="faqs.html#wedding" data-i18n="nav.faqs">FAQs</a><ul class="nav-sub"><li><a href="faqs.html#wedding" data-i18n="nav.sub.weddingFaq">Wedding</a></li><li><a href="faqs.html#langkawi" data-i18n="nav.sub.langkawi">Langkawi Guide</a></li></ul></li>
+      <li class="nav-dropdown"><a href="journey.html#seasons" data-i18n="nav.memories">Memories</a><ul class="nav-sub"><li><a href="journey.html#seasons" data-i18n="nav.sub.seasons">Through the Seasons</a></li><li><a href="journey.html#family" data-i18n="nav.sub.family">Family</a></li><li><a href="journey.html#milestones" data-i18n="nav.sub.milestones">Milestones</a></li></ul></li>
     </ul>
     <div class="nav-ctas">
-      <a href="faqs.html#accommodation" class="nav-book">Book</a>
-      <a href="https://forms.gle/reDxaX2qkwteaL1HA" target="_blank" rel="noopener" class="nav-rsvp">RSVP</a>
+      <a href="faqs.html#accommodation" class="nav-book" data-i18n="nav.cta.bookShort">Book</a>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button class="lang-btn" data-lang="en" type="button" aria-pressed="true">EN</button>
+        <span class="lang-divider" aria-hidden="true">|</span>
+        <button class="lang-btn" data-lang="zh" type="button" aria-pressed="false">ZH</button>
+      </div>
+      <a href="https://forms.gle/reDxaX2qkwteaL1HA" target="_blank" rel="noopener" class="nav-rsvp" data-i18n="nav.cta.rsvp">RSVP</a>
     </div>
   </nav>
   <main id="page-content">
@@ -153,9 +158,9 @@
   <!-- ======================== WEDDING HEADER ======================== -->
 
   <div class="page-header">
-    <span class="script-label reveal">The</span>
-    <h1 class="section-heading reveal">Wedding</h1>
-    <p class="page-subtitle reveal">Pelangi Beach Resort &amp; Spa, Langkawi &middot; 30 January 2027</p>
+    <span class="script-label reveal" data-i18n="wedding.header.script">The</span>
+    <h1 class="section-heading reveal" data-i18n="wedding.header.heading">Wedding</h1>
+    <p class="page-subtitle reveal" data-i18n="wedding.header.subtitle">Pelangi Beach Resort &amp; Spa, Langkawi &middot; 30 January 2027</p>
   </div>
 
   <!-- ======================== VENUE ======================== -->
@@ -164,8 +169,8 @@
   <div id="venue" class="venue-image" style="background-image: url('assets/HOTEL PICTURE/caption.jpg');">
     <div class="venue-overlay"></div>
     <div class="venue-text">
-      <h2 class="venue-heading reveal">Where &amp; When</h2>
-      <p class="venue-name reveal">Pelangi Beach Resort &amp; Spa</p>
+      <h2 class="venue-heading reveal" data-i18n="wedding.venue.heading">Where &amp; When</h2>
+      <p class="venue-name reveal" data-i18n="wedding.venue.name">Pelangi Beach Resort &amp; Spa</p>
     </div>
   </div>
 
@@ -175,8 +180,8 @@
     <!-- Why Langkawi -->
     <div class="why-langkawi reveal">
       <div class="why-langkawi-text">
-        <h2>Why Langkawi?</h2>
-        <p>This is where Guo Jie grew up. A place where we can all gather to celebrate us — and to celebrate each other.</p>
+        <h2 data-i18n="wedding.why.title">Why Langkawi?</h2>
+        <p data-i18n="wedding.why.body">This is where Guo Jie grew up. A place where we can all gather to celebrate us — and to celebrate each other.</p>
       </div>
       <div class="why-langkawi-image">
         <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Langkawi/IMG_2182.jpeg" alt="Langkawi balcony selfie">
@@ -191,8 +196,8 @@
   <div id="day" class="wedding-day-scene">
     <div class="wedding-day-scene-overlay"></div>
     <div class="wedding-day-scene-text">
-      <span class="script-label">The Wedding Day</span>
-      <h1 class="section-heading">30th January 2027</h1>
+      <span class="script-label" data-i18n="wedding.day.script">The Wedding Day</span>
+      <h1 class="section-heading" data-i18n="wedding.day.heading">30th January 2027</h1>
     </div>
   </div>
 
@@ -203,59 +208,59 @@
 
         <!-- Chinese Tea Ceremony -->
         <div class="event-card reveal">
-          <h3>Chinese Tea Ceremony</h3>
-          <p class="event-time">2:30 PM — 4:00 PM</p>
+          <h3 data-i18n="wedding.events.tea.title">Chinese Tea Ceremony</h3>
+          <p class="event-time" data-i18n="wedding.events.tea.time">2:30 PM — 4:00 PM</p>
 
-          <p class="event-desc">An intimate traditional tea ceremony to honour our families</p>
-          <p class="event-welcome">For Family, Friends and Guests welcome to join</p>
+          <p class="event-desc" data-i18n="wedding.events.tea.desc">An intimate traditional tea ceremony to honour our families</p>
+          <p class="event-welcome" data-i18n-html="wedding.events.tea.welcome">For family<br><small>(friends and guests are welcome to join)</small></p>
         </div>
 
         <!-- Free Time (gap card) -->
         <div class="event-card event-card--gap reveal">
-          <p class="event-gap-time">4:00 PM — 6:00 PM</p>
-          <p class="event-gap-label">Free time</p>
-          <p class="event-gap-desc">Relax, freshen up, or enjoy the resort</p>
+          <p class="event-gap-time" data-i18n="wedding.events.gap.time">4:00 PM — 6:00 PM</p>
+          <p class="event-gap-label" data-i18n="wedding.events.gap.label">Free time</p>
+          <p class="event-gap-desc" data-i18n="wedding.events.gap.desc">Relax, freshen up, or enjoy the resort</p>
         </div>
 
         <!-- Beachside Ceremony -->
         <div class="event-card reveal">
-          <h3>Beachside Ceremony</h3>
-          <p class="event-time">6:00 PM — 7:00 PM</p>
+          <h3 data-i18n="wedding.events.ceremony.title">Beachside Ceremony</h3>
+          <p class="event-time" data-i18n="wedding.events.ceremony.time">6:00 PM — 7:00 PM</p>
 
-          <p class="event-desc">A sunset ceremony on the beach with the Andaman Sea as our witness</p>
-          <p class="event-welcome">For All Guests</p>
+          <p class="event-desc" data-i18n="wedding.events.ceremony.desc">A sunset ceremony on the beach with the Andaman Sea as our witness</p>
+          <p class="event-welcome" data-i18n="wedding.events.ceremony.welcome">For All Guests</p>
         </div>
 
         <!-- Reception Dinner -->
         <div class="event-card reveal">
-          <h3>Reception Dinner</h3>
-          <p class="event-time">7:00 PM — 10:00 PM</p>
+          <h3 data-i18n="wedding.events.reception.title">Reception Dinner</h3>
+          <p class="event-time" data-i18n="wedding.events.reception.time">7:00 PM — 10:00 PM</p>
 
-          <p class="event-desc">An evening of feasting, laughter, and dancing under the stars</p>
-          <p class="event-welcome">For All Guests</p>
+          <p class="event-desc" data-i18n="wedding.events.reception.desc">An evening of feasting, laughter, and dancing under the stars</p>
+          <p class="event-welcome" data-i18n="wedding.events.reception.welcome">For All Guests</p>
         </div>
 
       </div>
 
       <!-- Dress Code & Colour Palette -->
       <div class="dress-code-section reveal">
-        <h3 class="dress-code-title">Dress Code: Beach Semi-Formal / Smart Casual</h3>
-        <p class="dress-code-desc">Our wedding will be held outdoors by the beach, so we'd love everyone to dress comfortably while still looking polished.</p>
+        <h3 class="dress-code-title" data-i18n="wedding.dress.title">Dress Code: Beach Semi-Formal / Smart Casual</h3>
+        <p class="dress-code-desc" data-i18n="wedding.dress.desc">Our wedding will be held outdoors by the beach, so we'd love everyone to dress comfortably while still looking polished.</p>
 
         <div class="dress-code-details">
-          <p class="dress-code-line"><strong>Gentlemen:</strong> Collared shirts (short or long sleeve) with chinos or tailored trousers. Light, breathable fabrics and dressy shoes or loafers are recommended.</p>
-          <p class="dress-code-line"><strong>Ladies:</strong> Dresses, skirts, dressy sets, or tailored trousers paired with a nice top — all equally welcome. Think light, breezy, and elegant for a beach setting. Sandals, wedges, or block heels work best.</p>
-          <p class="dress-code-line dress-code-avoid"><em>Please avoid shorts, flip flops, stilettos, and full suits.</em></p>
-          <p class="dress-code-line dress-code-tagline"><em>Think relaxed, elegant, and comfortable by the sea</em></p>
+          <p class="dress-code-line" data-i18n-html="wedding.dress.gentlemen"><strong>Gentlemen:</strong> Collared shirts (short or long sleeve) with chinos or tailored trousers. Light, breathable fabrics and dressy shoes or loafers are recommended.</p>
+          <p class="dress-code-line" data-i18n-html="wedding.dress.ladies"><strong>Ladies:</strong> Dresses, skirts, dressy sets, or tailored trousers paired with a nice top — all equally welcome. Think light, breezy, and elegant for a beach setting. Sandals, wedges, or block heels work best.</p>
+          <p class="dress-code-line dress-code-avoid" data-i18n-html="wedding.dress.avoid"><em>Please avoid shorts, flip flops, stilettos, and full suits.</em></p>
+          <p class="dress-code-line dress-code-tagline" data-i18n-html="wedding.dress.tagline"><em>Think relaxed, elegant, and comfortable by the sea</em></p>
         </div>
 
-        <h3 class="dress-code-title" style="margin-top: 2.5rem;">Our colour palette</h3>
-        <p class="dress-code-desc">Wear what feels right within these tones.</p>
+        <h3 class="dress-code-title" style="margin-top: 2.5rem;" data-i18n="wedding.colour.title">Our colour palette</h3>
+        <p class="dress-code-desc" data-i18n="wedding.colour.desc">Wear what feels right within these tones.</p>
 
         <div class="colour-palette">
-          <div class="colour-swatch" style="background: #4a5e3a;" title="Forest Green"></div>
-          <div class="colour-swatch" style="background: #c9a99a;" title="Dusty Rose"></div>
-          <div class="colour-swatch" style="background: #d4c4a8;" title="Champagne"></div>
+          <div class="colour-swatch" style="background: #4a5e3a;" title="Forest Green" data-i18n-title="wedding.colour.swatch1"></div>
+          <div class="colour-swatch" style="background: #c9a99a;" title="Dusty Rose" data-i18n-title="wedding.colour.swatch2"></div>
+          <div class="colour-swatch" style="background: #d4c4a8;" title="Champagne" data-i18n-title="wedding.colour.swatch3"></div>
         </div>
       </div>
 
@@ -270,20 +275,21 @@
 
       <!-- Friends Only Badge -->
       <div class="friends-only-badge">
-        <span>Friends<br>Only</span>
+        <span data-i18n-html="wedding.afterparty.badge">Friends<br>Only</span>
       </div>
 
-      <span class="script-label">The After Party</span>
-      <h1 class="section-heading">31st January 2027</h1>
+      <span class="script-label" data-i18n="wedding.afterparty.script">The After Party</span>
+      <h1 class="section-heading" data-i18n="wedding.afterparty.heading">31st January 2027</h1>
+      <p class="after-party-day-label" data-i18n="wedding.afterparty.dayLabel">The day after the wedding</p>
 
       <div class="after-party-divider"></div>
 
       <div class="after-party-details">
-        <p class="detail-line"><strong>TIME</strong> &nbsp; 4pm — 8pm</p>
-        <p class="detail-line"><strong>DETAILS</strong> &nbsp; Will be announced closer to date...</p>
+        <p class="detail-line"><strong data-i18n="wedding.afterparty.timeLabel">TIME</strong> &nbsp; <span data-i18n="wedding.afterparty.time">4pm — 8pm</span></p>
+        <p class="detail-line"><strong data-i18n="wedding.afterparty.detailsLabel">DETAILS</strong> &nbsp; <span data-i18n="wedding.afterparty.details">Will be announced closer to date...</span></p>
       </div>
 
-      <p class="after-party-note">Expect sea, drinks, food and great company... let us know if you're coming in the RSVP</p>
+      <p class="after-party-note" data-i18n="wedding.afterparty.note">Expect sea, drinks, food and great company... let us know if you're coming in the RSVP</p>
 
     </div>
   </div>
@@ -295,21 +301,21 @@
       <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/After1.JPG" alt="Guo Jie and Yu Zon — engagement">
     </div>
     <div class="rsvp-cta-content">
-      <span class="script-label">Will you be there?</span>
-      <h2 class="section-heading">RSVP</h2>
-      <p class="rsvp-cta-desc">We can't wait to celebrate with you. Please let us know if you'll be joining by <strong>31 July 2026</strong>.</p>
-      <a href="https://forms.gle/reDxaX2qkwteaL1HA" target="_blank" rel="noopener" class="rsvp-cta-btn">RSVP Now</a>
-      <p class="rsvp-cta-note">Any questions? Just check in with <strong>Guo Jie</strong> or <strong>Yu Zon</strong>.</p>
+      <span class="script-label" data-i18n="wedding.rsvp.script">Will you be there?</span>
+      <h2 class="section-heading" data-i18n="wedding.rsvp.heading">RSVP</h2>
+      <p class="rsvp-cta-desc" data-i18n-html="wedding.rsvp.desc">We can't wait to celebrate with you. Please let us know if you'll be joining by <strong>31 July 2026</strong>.</p>
+      <a href="https://forms.gle/reDxaX2qkwteaL1HA" target="_blank" rel="noopener" class="rsvp-cta-btn" data-i18n="wedding.rsvp.button">RSVP Now</a>
+      <p class="rsvp-cta-note" data-i18n-html="wedding.rsvp.note">Any questions? Just check in with <strong>Guo Jie</strong> or <strong>Yu Zon</strong>.</p>
     </div>
   </section>
 
   <!-- Page Navigation -->
   <nav class="page-nav">
     <a href="index.html">
-      <span class="page-nav-label">&larr; Home</span>
+      <span class="page-nav-label" data-i18n="pagenav.home">&larr; Home</span>
     </a>
     <a href="story.html">
-      <span class="page-nav-label">Our Story &rarr;</span>
+      <span class="page-nav-label" data-i18n="pagenav.weddingNext">Our Story &rarr;</span>
     </a>
   </nav>
 
@@ -317,9 +323,10 @@
 
   <!-- Music player (persistent, outside main) -->
   <div class="music-float" id="music-float">
-    <button class="music-toggle" id="music-toggle" aria-label="Play our song">
+    <span class="music-hint" id="music-hint" aria-hidden="true" data-i18n="musicHint">Play our song! →</span>
+    <button class="music-toggle" id="music-toggle" aria-label="Play our song" data-i18n-aria="music.ariaPlay">
       <span id="music-icon">&#9835;</span>
-      <span class="music-label" id="music-label">Play our song</span>
+      <span class="music-label" id="music-label" data-i18n="music.play">Play music</span>
     </button>
     <div class="music-player" id="music-player">
       <iframe class="music-iframe" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2228683682&color=%231b1917&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>
@@ -328,7 +335,7 @@
   </div>
 
   <!-- Footer -->
-  <footer class="footer"><div class="footer-monogram"><span class="footer-monogram-letter">GJ</span><span class="footer-ampersand">&amp;</span><span class="footer-monogram-letter">YZ</span></div><p class="footer-closing">See you in Langkawi</p><p class="footer-date">30 January 2027</p></footer>
+  <footer class="footer"><div class="footer-monogram"><span class="footer-monogram-letter">GJ</span><span class="footer-ampersand">&amp;</span><span class="footer-monogram-letter">YZ</span></div><p class="footer-closing" data-i18n="footer.closing">See you in Langkawi</p><p class="footer-date" data-i18n="footer.date">30 January 2027</p></footer>
   <script src="script.js"></script>
 </body>
 </html>
