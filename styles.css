@@ -541,19 +541,6 @@ a {
   50% { opacity: 0.4; }
 }
 
-/* Loading state: button visible but visibly "not yet ready" until SoundCloud's
-   READY event fires. Clicks during this window are ignored — letting the user
-   click after the widget is ready means play() lands inside the user-gesture
-   window (Chrome's autoplay policy requirement). */
-.music-toggle.loading {
-  opacity: 0.55;
-  cursor: progress;
-}
-
-.music-toggle.loading #music-icon {
-  animation: musicPulse 1.4s ease-in-out infinite;
-}
-
 .music-label {
   text-transform: uppercase;
   font-weight: 500;
