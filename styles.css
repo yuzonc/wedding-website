@@ -66,6 +66,18 @@ a {
   box-shadow: 0 1px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Nav left cluster — logo + language switch sit together on the left */
+.nav-left {
+  position: absolute;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  z-index: 11;
+}
+
 /* Nav logo — matches footer monogram (serif, light, no box) */
 .nav-logo {
   font-family: var(--font-serif);
@@ -74,17 +86,34 @@ a {
   color: var(--beige);
   letter-spacing: 0.12em;
   opacity: 0.9;
-  position: absolute;
-  left: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
   transition: opacity 0.3s ease, transform 0.3s ease;
-  z-index: 11;
 }
 
 .nav-logo:hover {
   opacity: 1;
-  transform: translateY(-50%) scale(1.04);
+  transform: scale(1.04);
+}
+
+/* Single-button language switch — shows the OTHER language (clicking flips) */
+.lang-switch {
+  background: transparent;
+  border: none;
+  padding: 0.4rem 0;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--beige);
+  opacity: 0.55;
+  transition: opacity 0.25s ease;
+}
+
+.lang-switch:hover,
+.lang-switch:focus-visible {
+  opacity: 1;
+  outline: none;
 }
 
 .nav ul {
@@ -203,45 +232,6 @@ a {
   opacity: 1;
 }
 
-/* Language toggle (EN | ZH) — sits between Book and RSVP */
-.lang-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.15rem;
-  font-family: var(--font-sans);
-  font-size: 0.6rem;
-  letter-spacing: 0.15em;
-}
-
-.lang-btn {
-  background: transparent;
-  border: none;
-  padding: 0.45rem 0.45rem;
-  font: inherit;
-  color: rgba(223, 217, 201, 0.55);
-  cursor: pointer;
-  letter-spacing: inherit;
-  font-weight: 500;
-  text-transform: uppercase;
-  transition: color 0.25s ease, opacity 0.25s ease;
-}
-
-.lang-btn:hover { color: var(--beige); }
-
-.lang-btn.active {
-  color: var(--beige);
-  font-weight: 700;
-}
-
-.lang-divider {
-  color: rgba(223, 217, 201, 0.35);
-  font-size: 0.55rem;
-}
-
-/* When nav has the dark scrolled background, the toggle stays beige — same vars */
-.nav.scrolled .lang-btn { color: rgba(223, 217, 201, 0.55); }
-.nav.scrolled .lang-btn.active { color: var(--beige); }
-.nav.scrolled .lang-btn:hover { color: var(--beige); }
 
 /* Hamburger toggle — hidden on desktop */
 .nav-toggle {
@@ -556,16 +546,18 @@ a {
   font-weight: 500;
 }
 
-/* Hidden SoundCloud player — kept in DOM so the Widget API can control it */
+/* Hidden SoundCloud player — kept 1×1 in the viewport corner so the cross-origin
+   iframe is "visible" enough that Chrome doesn't throttle/lazy-load it. The iframe
+   itself is 320×300; the 1×1 parent + overflow:hidden clips it visually. */
 .music-player {
-  position: absolute;
+  position: fixed;
+  bottom: 0;
+  right: 0;
   width: 1px;
   height: 1px;
   overflow: hidden;
-  opacity: 0;
   pointer-events: none;
-  bottom: 0;
-  right: 0;
+  z-index: 0;
 }
 
 .music-iframe {
@@ -1425,6 +1417,16 @@ a {
   z-index: 2;
   text-align: center;
   color: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  align-items: center;
+}
+
+.venue-pair {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .venue-heading {
@@ -1485,6 +1487,11 @@ a {
   position: relative;
   z-index: 2;
   text-align: center;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  align-items: center;
 }
 
 .wedding-day-vibe {
@@ -1503,21 +1510,127 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 1rem;
   margin-top: 1.5rem;
   flex-wrap: wrap;
 }
 
 .colour-swatch {
-  width: 32px;
-  height: 32px;
+  width: 38px;
+  height: 38px;
+  padding: 0;
   border-radius: 50%;
   border: 2px solid rgba(223, 217, 201, 0.3);
-  transition: transform 0.3s ease;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.colour-swatch:hover {
+.colour-swatch:hover,
+.colour-swatch:focus-visible {
   transform: scale(1.15);
+  border-color: rgba(223, 217, 201, 0.7);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  outline: none;
+}
+
+/* === Colour story modal === */
+.colour-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.colour-modal.open {
+  display: flex;
+  opacity: 1;
+}
+
+.colour-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(54, 53, 11, 0.82);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  cursor: pointer;
+}
+
+.colour-modal-card {
+  position: relative;
+  background: var(--beige);
+  color: var(--brown);
+  border-radius: 8px;
+  padding: 2.5rem 2rem 2.25rem;
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.3);
+  transform: translateY(12px) scale(0.97);
+  transition: transform 0.35s ease;
+}
+
+.colour-modal.open .colour-modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.colour-modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.65rem;
+  background: transparent;
+  border: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--brown);
+  opacity: 0.5;
+  cursor: pointer;
+  padding: 0.5rem 0.65rem;
+  transition: opacity 0.2s ease;
+}
+
+.colour-modal-close:hover { opacity: 1; }
+
+.colour-modal-swatch {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  margin: 0 auto 1.25rem;
+  box-shadow: 0 6px 20px rgba(72, 33, 23, 0.18), inset 0 0 0 2px rgba(255, 255, 255, 0.18);
+}
+
+.colour-modal-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.5vw, 2.1rem);
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 0.85rem;
+  color: var(--brown);
+}
+
+.colour-modal-desc {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--brown);
+  opacity: 0.8;
+}
+
+@media (max-width: 480px) {
+  .colour-modal-card { padding: 2.25rem 1.5rem 1.75rem; }
+  .colour-modal-swatch { width: 72px; height: 72px; }
+  .colour-modal-desc { font-size: 0.95rem; }
 }
 
 .colour-palette-label {
@@ -2545,6 +2658,65 @@ a {
 }
 
 /* --- Responsive: Tablet --- */
+/* Engage hamburger nav early so the inline menu can't crowd into the right-side CTAs.
+   Below 1024px the menu collapses into a fixed overlay; the Book / lang / RSVP buttons stay visible. */
+@media (max-width: 1024px) {
+  .nav-toggle {
+    display: block;
+    padding: 0.6rem;
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .nav > ul {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(54, 53, 11, 0.97);
+    backdrop-filter: blur(16px);
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    max-height: 100vh;
+    max-height: 100dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding: 4.5rem 2rem calc(2rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .nav > ul.open { display: flex; }
+
+  .nav a {
+    font-size: 0.7rem;
+    display: block;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(223, 217, 201, 0.08);
+  }
+
+  .nav-sub {
+    position: static;
+    transform: none;
+    background: none;
+    backdrop-filter: none;
+    opacity: 1;
+    visibility: visible;
+    padding: 0 0 0 1rem;
+    margin: 0;
+    min-width: 0;
+  }
+
+  .nav-sub a {
+    padding: 0.5rem 0;
+    font-size: 0.6rem;
+    opacity: 0.4;
+  }
+
+  /* Pull the right-side CTAs in from the edge to leave room for the hamburger */
+  .nav-ctas { right: 3.5rem; gap: 0.45rem; }
+}
+
 @media (max-width: 900px) {
   .nav ul { gap: 1.25rem; }
 
@@ -2580,15 +2752,13 @@ a {
   .nav { padding: 0.5rem 0; min-height: 56px; }
   .nav.scrolled { padding: 0.5rem 0; }
   .nav-logo {
-    left: 0.9rem;
     font-size: 1.05rem;
     letter-spacing: 0.1em;
   }
   .nav-ctas { right: 3.25rem; gap: 0.3rem; }
   .nav-book, .nav-rsvp { font-size: 0.45rem; padding: 0.35rem 0.55rem; }
-  .lang-toggle { font-size: 0.5rem; gap: 0.1rem; }
-  .lang-btn { padding: 0.35rem 0.3rem; }
-  .lang-divider { font-size: 0.45rem; }
+  .nav-left { left: 0.9rem; gap: 0.75rem; }
+  .lang-switch { font-size: 0.55rem; letter-spacing: 0.18em; }
   .nav-toggle { padding: 0.6rem; position: absolute; right: 0.25rem; top: 50%; transform: translateY(-50%); }
 
   .nav > ul {
@@ -2749,7 +2919,7 @@ a {
   .event-gap-desc { max-width: none; text-align: center; }
   .dress-code-section { padding: 2rem 0 0.5rem; margin-top: 2rem; }
   .dress-code-desc { font-size: 0.92rem; }
-  .colour-swatch { width: 28px; height: 28px; }
+  .colour-swatch { width: 36px; height: 36px; }
 
   /* Accommodation */
   .accommodation { grid-template-columns: 1fr; }
@@ -2850,7 +3020,7 @@ body.menu-open {
 @media (hover: none) {
   .photo-card:not(.flipped):hover .card-front img { transform: none; }
   .chapter-card:hover .chapter-card-bg { transform: none; }
-  .nav-logo:hover { transform: translateY(-50%); }
+  .nav-logo:hover { transform: none; }
 }
 
 

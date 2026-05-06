@@ -134,6 +134,48 @@ function initPage() {
     window._countdownInterval = window._countdownInterval || setInterval(updateCountdown, 1000);
   }
 
+  // --- Colour story modal (wedding page) ---
+  const colourModal = document.getElementById('colour-modal');
+  if (colourModal) {
+    const swatchEl = document.getElementById('colour-modal-swatch');
+    const nameEl = document.getElementById('colour-modal-name');
+    const descEl = document.getElementById('colour-modal-desc');
+
+    const openColourModal = (btn) => {
+      const bg = btn.style.background || btn.style.backgroundColor;
+      if (swatchEl) swatchEl.style.background = bg;
+
+      // Pull strings — prefer i18n lookup if Chinese is active, fall back to data attrs (English)
+      const lookup = (key, fallback) => {
+        if (window.__i18nLookup) {
+          const v = window.__i18nLookup(key);
+          if (v != null) return v;
+        }
+        return fallback;
+      };
+      if (nameEl) nameEl.textContent = lookup(btn.dataset.colourNameI18n, btn.dataset.colourName);
+      if (descEl) descEl.textContent = lookup(btn.dataset.colourDescI18n, btn.dataset.colourDesc);
+
+      colourModal.classList.add('open');
+      colourModal.setAttribute('aria-hidden', 'false');
+    };
+
+    const closeColourModal = () => {
+      colourModal.classList.remove('open');
+      colourModal.setAttribute('aria-hidden', 'true');
+    };
+
+    document.querySelectorAll('.colour-swatch').forEach(btn => {
+      btn.addEventListener('click', () => openColourModal(btn));
+    });
+    colourModal.querySelectorAll('[data-colour-modal-close]').forEach(el => {
+      el.addEventListener('click', closeColourModal);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && colourModal.classList.contains('open')) closeColourModal();
+    });
+  }
+
   // --- Tap-hint dismissal on first photo-card interaction ---
   const tapHint = document.getElementById('tap-hint');
   if (tapHint) {
@@ -327,33 +369,47 @@ function initMusic() {
     if (!window.SC || !window.SC.Widget) return;
     const widget = SC.Widget(iframe);
 
-    // Click toggles play/pause directly — no expanded panel
+    // Track widget readiness so we don't call play/pause before the iframe has
+    // its media payload (that throws "mediaPayload required").
+    let widgetReady = false;
+    let pendingPlay = false;
+
+    // Click toggles play/pause. Sync state check (so play() lands inside the
+    // user-gesture window for Chrome's autoplay policy). If the widget isn't
+    // ready yet, queue the play and let the READY handler resume it.
     musicToggle.addEventListener('click', () => {
-      widget.isPaused((paused) => {
-        if (paused) widget.play();
-        else widget.pause();
-      });
+      if (!widgetReady) {
+        pendingPlay = true;
+        return;
+      }
+      if (musicToggle.classList.contains('playing')) {
+        widget.pause();
+      } else {
+        widget.play();
+      }
     });
 
+    // Diagnostic: log any widget error + what tracks (if any) it actually loaded
+    if (SC.Widget.Events.ERROR) {
+      widget.bind(SC.Widget.Events.ERROR, (err) => {
+        console.error('[music] SoundCloud widget error:', err);
+      });
+    }
+
     widget.bind(SC.Widget.Events.READY, () => {
-      const savedPos = parseFloat(localStorage.getItem(MUSIC_KEYS.position) || '0');
-      const savedIndex = parseInt(localStorage.getItem(MUSIC_KEYS.trackIndex) || '0', 10);
+      widget.getSounds((sounds) => {
+        console.log('[music] widget READY. tracks loaded:', Array.isArray(sounds) ? sounds.length : 'none');
+      });
+      widgetReady = true;
+
+      // If we'd queued a play (user clicked while loading) or were playing on
+      // the previous page, kick it off now. play() on a fresh playlist auto-
+      // selects track 0; calling skip() before play() throws mediaPayload.
       const wasPlaying = localStorage.getItem(MUSIC_KEYS.playing) === 'true';
-
-      const resume = () => {
-        if (savedPos > 0) widget.seekTo(savedPos);
-        if (wasPlaying) {
-          widget.play();
-          musicToggle.classList.add('playing');
-        }
-      };
-
-      if (savedIndex > 0) {
-        widget.skip(savedIndex);
-        // Skip is async; give it a moment before seeking + playing
-        setTimeout(resume, 500);
-      } else {
-        resume();
+      if (wasPlaying || pendingPlay) {
+        widget.play();
+        musicToggle.classList.add('playing');
+        pendingPlay = false;
       }
     });
 
@@ -516,15 +572,27 @@ function applyI18n() {
   // <html lang="">
   document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
 
-  // Sync toggle UI
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.lang === lang);
-    btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
+  // Sync the single language switch — its label shows the OTHER language
+  // (clicking it flips to that language).
+  const otherLabel = lang === 'zh' ? 'EN' : '中文';
+  document.querySelectorAll('.lang-switch-label').forEach(el => {
+    el.textContent = otherLabel;
+  });
+  document.querySelectorAll('.lang-switch').forEach(btn => {
+    btn.setAttribute('aria-label', lang === 'zh' ? 'Switch to English' : '切換為中文');
   });
 }
 
 // Expose for the SPA router to call after page swap
 window.__applyI18n = applyI18n;
+
+// Expose a lookup helper for runtime strings (e.g. dynamic modal content).
+// Returns the Chinese value when ZH is active and the key exists; null otherwise
+// (caller falls back to English value carried in the DOM/data attributes).
+window.__i18nLookup = function(key) {
+  if (currentLang !== 'zh' || !zhDict || !key) return null;
+  return getNested(zhDict, key);
+};
 
 async function setLang(lang) {
   if (!SUPPORTED_LANGS.includes(lang)) return;
@@ -546,12 +614,13 @@ async function setLang(lang) {
 async function initI18n() {
   const initial = detectInitialLang();
 
-  // Wire up toggle clicks (delegated, so it survives SPA nav)
+  // Wire up the single language switch (delegated, so it survives SPA nav).
+  // Clicking always flips to the OTHER language.
   document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.lang-btn');
+    const btn = e.target.closest('.lang-switch');
     if (!btn) return;
     e.preventDefault();
-    setLang(btn.dataset.lang);
+    setLang(currentLang === 'zh' ? 'en' : 'zh');
   });
 
   // Apply initial language

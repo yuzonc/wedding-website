@@ -403,7 +403,10 @@
 
   <!-- Navigation -->
   <nav class="nav scrolled" id="nav">
-    <a href="index.html" class="nav-logo">GJ &amp; YZ</a>
+    <div class="nav-left">
+      <a href="index.html" class="nav-logo">GJ &amp; YZ</a>
+      <button class="lang-switch" type="button" aria-label="Switch language"><span class="lang-switch-label">中文</span></button>
+    </div>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     <ul id="nav-menu">
       <li class="nav-dropdown"><a href="wedding.html#venue" data-i18n="nav.wedding">Wedding</a><ul class="nav-sub"><li><a href="wedding.html#venue" data-i18n="nav.sub.venue">Venue &amp; Date</a></li><li><a href="wedding.html#day" data-i18n="nav.sub.day">The Day</a></li><li><a href="wedding.html#afterparty" data-i18n="nav.sub.afterparty">After Party</a></li></ul></li>
@@ -413,11 +416,6 @@
     </ul>
     <div class="nav-ctas">
       <a href="faqs.html#accommodation" class="nav-book" data-i18n="nav.cta.bookShort">Book</a>
-      <div class="lang-toggle" role="group" aria-label="Language">
-        <button class="lang-btn" data-lang="en" type="button" aria-pressed="true">EN</button>
-        <span class="lang-divider" aria-hidden="true">|</span>
-        <button class="lang-btn" data-lang="zh" type="button" aria-pressed="false">ZH</button>
-      </div>
       <a href="https://forms.gle/reDxaX2qkwteaL1HA" target="_blank" rel="noopener" class="nav-rsvp" data-i18n="nav.cta.rsvp">RSVP</a>
     </div>
   </nav>
@@ -548,6 +546,11 @@
         <p data-i18n="proposal.block1">Guo Jie had been planning this Switzerland trip for months. He was "working late" while secretly putting together a proposal plan. Every detail, every backup plan, every scenario, except one. When we got to Switzerland, it was gloomy. The day before the proposal, it rained. And rained. And rained. Guo Jie is not religious at all, but that week, he prayed to every god he knew.</p>
       </div>
 
+      <!-- YZ POV — bridging beat -->
+      <div class="proposal-block reveal">
+        <p data-i18n-html="proposal.block2">Yu Zon, blissfully unaware, was actually loving the rain. On a train past a lake the day before, she'd turned to Guo Jie: <em>"Don't you think the rain adds an extra layer to the scenery?"</em> He smiled. He did not think so, absolutely not.</p>
+      </div>
+
       <!-- Raining in Switzerland video -->
       <div class="proposal-video-banner reveal">
         <video class="autoplay-video" muted loop playsinline preload="metadata">
@@ -556,11 +559,10 @@
         <div class="video-caption" data-i18n="proposal.video1">It rained. And rained. And rained.</div>
       </div>
 
-      <!-- YZ POV — bridging beat -->
+      <!-- Tripod intro -->
       <div class="proposal-block reveal">
-        <p data-i18n-html="proposal.block2">Yu Zon, blissfully unaware, was actually loving the rain. On a train past a lake the day before, she'd turned to Guo Jie: <em>"Don't you think the rain adds an extra layer to the scenery?"</em> He smiled. He did not think so, absolutely not.</p>
+        <p data-i18n="proposal.tripodIntro">Guo Jie bought a tripod for this trip. He told Yu Zon to coordinate outfits each day so that they could take couple pictures — he wanted to print them and put them into a photoframe after the trip. (The tripod is linked to the next part of the story...)</p>
       </div>
-      
 
       <!-- Photo row: Before (portrait, with caption) -->
       <div class="proposal-photo-row proposal-photo-row--portrait reveal">
@@ -568,7 +570,7 @@
         <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/Before2.jpeg" alt="Before the proposal">
         <img loading="lazy" decoding="async" src="assets/Actual Pic-Video folder/Proposal Switzerland Trip/Before3.jpeg" alt="Before the proposal">
       </div>
-      <p class="proposal-photo-caption reveal" data-i18n-html="proposal.photo1"><em>Guo Jie bought a tripod for this trip and he took a lot of nice photos, rain or sun. (The tripod is linked to the next part of the story...)</em></p>
+      <p class="proposal-photo-caption reveal" data-i18n-html="proposal.photo1"><em>Guo Jie has been into photography for a long time now. He took a lot of nice photos, rain or sun!</em></p>
 
 
 
@@ -710,7 +712,7 @@
       <span class="music-label" id="music-label" data-i18n="music.play">Play music</span>
     </button>
     <div class="music-player" id="music-player">
-      <iframe class="music-iframe" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2228683682&color=%231b1917&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>
+      <iframe class="music-iframe" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/2228683682&color=%231b1917&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>
       <div class="music-credit"><a href="https://soundcloud.com/yu-zon-c" title="Yu Zon" target="_blank" rel="noopener">Yu Zon</a> · <a href="https://soundcloud.com/yu-zon-c/sets/sing-a-song-of-love" title="sing a song of love" target="_blank" rel="noopener">sing a song of love</a></div>
     </div>
   </div>

@@ -135,7 +135,10 @@
 
   <!-- Navigation -->
   <nav class="nav scrolled" id="nav">
-    <a href="index.html" class="nav-logo">GJ &amp; YZ</a>
+    <div class="nav-left">
+      <a href="index.html" class="nav-logo">GJ &amp; YZ</a>
+      <button class="lang-switch" type="button" aria-label="Switch language"><span class="lang-switch-label">中文</span></button>
+    </div>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     <ul id="nav-menu">
       <li class="nav-dropdown"><a href="wedding.html#venue" data-i18n="nav.wedding">Wedding</a><ul class="nav-sub"><li><a href="wedding.html#venue" data-i18n="nav.sub.venue">Venue &amp; Date</a></li><li><a href="wedding.html#day" data-i18n="nav.sub.day">The Day</a></li><li><a href="wedding.html#afterparty" data-i18n="nav.sub.afterparty">After Party</a></li></ul></li>
@@ -145,11 +148,6 @@
     </ul>
     <div class="nav-ctas">
       <a href="faqs.html#accommodation" class="nav-book" data-i18n="nav.cta.bookShort">Book</a>
-      <div class="lang-toggle" role="group" aria-label="Language">
-        <button class="lang-btn" data-lang="en" type="button" aria-pressed="true">EN</button>
-        <span class="lang-divider" aria-hidden="true">|</span>
-        <button class="lang-btn" data-lang="zh" type="button" aria-pressed="false">ZH</button>
-      </div>
       <a href="https://forms.gle/reDxaX2qkwteaL1HA" target="_blank" rel="noopener" class="nav-rsvp" data-i18n="nav.cta.rsvp">RSVP</a>
     </div>
   </nav>
@@ -169,8 +167,10 @@
   <div id="venue" class="venue-image" style="background-image: url('assets/HOTEL PICTURE/caption.jpg');">
     <div class="venue-overlay"></div>
     <div class="venue-text">
-      <h2 class="venue-heading reveal" data-i18n="wedding.venue.heading">Where &amp; When</h2>
-      <p class="venue-name reveal" data-i18n="wedding.venue.name">Pelangi Beach Resort &amp; Spa</p>
+      <div class="venue-pair reveal">
+        <h2 class="venue-heading" data-i18n="wedding.venue.heading">Where</h2>
+        <p class="venue-name" data-i18n="wedding.venue.name">Pelangi Beach Resort &amp; Spa</p>
+      </div>
     </div>
   </div>
 
@@ -196,8 +196,10 @@
   <div id="day" class="wedding-day-scene">
     <div class="wedding-day-scene-overlay"></div>
     <div class="wedding-day-scene-text">
-      <span class="script-label" data-i18n="wedding.day.script">The Wedding Day</span>
-      <h1 class="section-heading" data-i18n="wedding.day.heading">30th January 2027</h1>
+      <div class="venue-pair reveal">
+        <h2 class="venue-heading" data-i18n="wedding.day.script">When</h2>
+        <p class="venue-name" data-i18n="wedding.day.heading">30th January 2027 (Saturday)</p>
+      </div>
     </div>
   </div>
 
@@ -258,9 +260,27 @@
         <p class="dress-code-desc" data-i18n="wedding.colour.desc">Wear what feels right within these tones.</p>
 
         <div class="colour-palette">
-          <div class="colour-swatch" style="background: #4a5e3a;" title="Forest Green" data-i18n-title="wedding.colour.swatch1"></div>
-          <div class="colour-swatch" style="background: #c9a99a;" title="Dusty Rose" data-i18n-title="wedding.colour.swatch2"></div>
-          <div class="colour-swatch" style="background: #d4c4a8;" title="Champagne" data-i18n-title="wedding.colour.swatch3"></div>
+          <button type="button" class="colour-swatch" style="background: #4a5e3a;"
+            data-colour-key="forest"
+            data-colour-name="Forest Green"
+            data-colour-name-i18n="wedding.colour.swatch1"
+            data-colour-desc="The colour of the nature Guo Jie grew up with."
+            data-colour-desc-i18n="wedding.colour.desc1"
+            aria-label="Forest Green — tap for the story behind it"></button>
+          <button type="button" class="colour-swatch" style="background: #c9a99a;"
+            data-colour-key="rose"
+            data-colour-name="Dusty Rose"
+            data-colour-name-i18n="wedding.colour.swatch2"
+            data-colour-desc="If you could feel like a colour, this is what Yu Zon felt like when Guo Jie proposed."
+            data-colour-desc-i18n="wedding.colour.desc2"
+            aria-label="Dusty Rose — tap for the story behind it"></button>
+          <button type="button" class="colour-swatch" style="background: #d4c4a8;"
+            data-colour-key="champagne"
+            data-colour-name="Champagne"
+            data-colour-name-i18n="wedding.colour.swatch3"
+            data-colour-desc="You're always welcome to wear the colour of a celebration!"
+            data-colour-desc-i18n="wedding.colour.desc3"
+            aria-label="Champagne — tap for the story behind it"></button>
         </div>
       </div>
 
@@ -319,6 +339,17 @@
     </a>
   </nav>
 
+  <!-- Colour story modal -->
+  <div class="colour-modal" id="colour-modal" aria-hidden="true">
+    <div class="colour-modal-backdrop" data-colour-modal-close></div>
+    <div class="colour-modal-card" role="dialog" aria-modal="true" aria-labelledby="colour-modal-name">
+      <button type="button" class="colour-modal-close" data-colour-modal-close aria-label="Close">&times;</button>
+      <div class="colour-modal-swatch" id="colour-modal-swatch"></div>
+      <h3 class="colour-modal-name" id="colour-modal-name"></h3>
+      <p class="colour-modal-desc" id="colour-modal-desc"></p>
+    </div>
+  </div>
+
   </main>
 
   <!-- Music player (persistent, outside main) -->
@@ -329,7 +360,7 @@
       <span class="music-label" id="music-label" data-i18n="music.play">Play music</span>
     </button>
     <div class="music-player" id="music-player">
-      <iframe class="music-iframe" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2228683682&color=%231b1917&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>
+      <iframe class="music-iframe" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/2228683682&color=%231b1917&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>
       <div class="music-credit"><a href="https://soundcloud.com/yu-zon-c" title="Yu Zon" target="_blank" rel="noopener">Yu Zon</a> · <a href="https://soundcloud.com/yu-zon-c/sets/sing-a-song-of-love" title="sing a song of love" target="_blank" rel="noopener">sing a song of love</a></div>
     </div>
   </div>

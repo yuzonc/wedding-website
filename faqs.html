@@ -273,7 +273,10 @@
 
   <!-- Navigation -->
   <nav class="nav scrolled" id="nav">
-    <a href="index.html" class="nav-logo">GJ &amp; YZ</a>
+    <div class="nav-left">
+      <a href="index.html" class="nav-logo">GJ &amp; YZ</a>
+      <button class="lang-switch" type="button" aria-label="Switch language"><span class="lang-switch-label">中文</span></button>
+    </div>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     <ul id="nav-menu">
       <li class="nav-dropdown"><a href="wedding.html#venue" data-i18n="nav.wedding">Wedding</a><ul class="nav-sub"><li><a href="wedding.html#venue" data-i18n="nav.sub.venue">Venue &amp; Date</a></li><li><a href="wedding.html#day" data-i18n="nav.sub.day">The Day</a></li><li><a href="wedding.html#afterparty" data-i18n="nav.sub.afterparty">After Party</a></li></ul></li>
@@ -283,11 +286,6 @@
     </ul>
     <div class="nav-ctas">
       <a href="faqs.html#accommodation" class="nav-book" data-i18n="nav.cta.bookShort">Book</a>
-      <div class="lang-toggle" role="group" aria-label="Language">
-        <button class="lang-btn" data-lang="en" type="button" aria-pressed="true">EN</button>
-        <span class="lang-divider" aria-hidden="true">|</span>
-        <button class="lang-btn" data-lang="zh" type="button" aria-pressed="false">ZH</button>
-      </div>
       <a href="https://forms.gle/reDxaX2qkwteaL1HA" target="_blank" rel="noopener" class="nav-rsvp" data-i18n="nav.cta.rsvp">RSVP</a>
     </div>
   </nav>
@@ -456,8 +454,7 @@
         <div class="langkawi-card reveal">
           <div class="langkawi-card-img">
             <video class="autoplay-video" muted loop playsinline preload="metadata">
-              <source src="assets/Actual Pic-Video folder/Langkawi/drive_boat.mov" type="video/quicktime">
-              <source src="assets/Actual Pic-Video folder/Langkawi/drive_boat.mov" type="video/mp4">
+              <source src="assets/Actual Pic-Video folder/Langkawi/drive_boat.mp4" type="video/mp4">
             </video>
           </div>
           <h3 data-i18n="langkawi.whatToDo.c1Title">Mangrove Tour</h3>
@@ -529,17 +526,17 @@
       <p class="langkawi-section-intro reveal" data-i18n="langkawi.local.intro">Or you can choose to just slow down like Guo Jie does when he's back home! Take it easy, enjoy the island pace, and just chill.</p>
       <div class="langkawi-cards">
         <div class="langkawi-card reveal">
-          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_1820.jpeg" alt="Café hopping" loading="lazy"></div>
+          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/cafe-hopping.jpeg" alt="Café hopping" loading="lazy"></div>
           <h3 data-i18n="langkawi.local.c1Title">Café hopping</h3>
           <p data-i18n-html="langkawi.local.c1Desc">Langkawi has plenty of relaxed cafés worth exploring. Some favourites include <strong>Golden Bamboo Café</strong>, <strong>Smiling Buffalo</strong>, and <strong>Paloh Restaurant &amp; Bar</strong> at Temple Tree Hotel.</p>
         </div>
         <div class="langkawi-card reveal">
-          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_2182.jpeg" alt="Massage and wellness" loading="lazy"></div>
+          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/massage.jpeg" alt="Massage and wellness" loading="lazy"></div>
           <h3 data-i18n="langkawi.local.c2Title">Massage &amp; wellness</h3>
           <p data-i18n-html="langkawi.local.c2Desc">Treat yourself to a massage or spa session — either at your hotel or around the Cenang Beach area. <strong>Alun-Alun Spa</strong> is a popular option nearby.</p>
         </div>
         <div class="langkawi-card reveal">
-          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/IMG_1814.jpeg" alt="Beach stroll and sunset" loading="lazy"></div>
+          <div class="langkawi-card-img"><img src="assets/Actual Pic-Video folder/Langkawi/sunset.jpeg" alt="Beach stroll and sunset" loading="lazy"></div>
           <h3 data-i18n="langkawi.local.c3Title">Beach stroll &amp; sunset</h3>
           <p data-i18n="langkawi.local.c3Desc">Take a slow walk along the beach, grab a coconut drink (or alcohol — reminder: duty-free), and just sit back to enjoy the sea breeze and sunset.</p>
         </div>
@@ -567,7 +564,7 @@
       <span class="music-label" id="music-label" data-i18n="music.play">Play music</span>
     </button>
     <div class="music-player" id="music-player">
-      <iframe class="music-iframe" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2228683682&color=%231b1917&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>
+      <iframe class="music-iframe" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/2228683682&color=%231b1917&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>
       <div class="music-credit"><a href="https://soundcloud.com/yu-zon-c" title="Yu Zon" target="_blank" rel="noopener">Yu Zon</a> · <a href="https://soundcloud.com/yu-zon-c/sets/sing-a-song-of-love" title="sing a song of love" target="_blank" rel="noopener">sing a song of love</a></div>
     </div>
   </div>
