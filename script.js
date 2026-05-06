@@ -369,15 +369,20 @@ function initMusic() {
     if (!window.SC || !window.SC.Widget) return;
     const widget = SC.Widget(iframe);
 
-    // Click toggles play/pause via widget.isPaused. The Widget API queues
-    // commands internally until the iframe's READY handshake completes, and
-    // the iframe is declared with allow="autoplay" so a queued play() that
-    // lands after the click's synchronous gesture window still succeeds.
+    // Track play state locally so the click handler can call play()/pause()
+    // SYNCHRONOUSLY inside the user-gesture window. widget.isPaused() is
+    // async (postMessage round-trip) and Safari + mobile browsers drop the
+    // user-activation token across that boundary, silently blocking the
+    // queued play(). The PLAY/PAUSE/FINISH events below keep this flag honest.
+    let isPlaying = localStorage.getItem(MUSIC_KEYS.playing) === 'true';
     musicToggle.addEventListener('click', () => {
-      widget.isPaused((paused) => {
-        if (paused) widget.play();
-        else widget.pause();
-      });
+      if (isPlaying) {
+        widget.pause();
+        isPlaying = false;
+      } else {
+        widget.play();
+        isPlaying = true;
+      }
     });
 
     if (SC.Widget.Events.ERROR) {
@@ -406,6 +411,7 @@ function initMusic() {
     });
 
     widget.bind(SC.Widget.Events.PLAY, () => {
+      isPlaying = true;
       localStorage.setItem(MUSIC_KEYS.playing, 'true');
       musicToggle.classList.add('playing');
       if (musicLabel) musicLabel.textContent = 'Pause';
@@ -416,6 +422,7 @@ function initMusic() {
     });
 
     widget.bind(SC.Widget.Events.PAUSE, () => {
+      isPlaying = false;
       localStorage.setItem(MUSIC_KEYS.playing, 'false');
       musicToggle.classList.remove('playing');
       if (musicLabel) musicLabel.textContent = 'Play music';
