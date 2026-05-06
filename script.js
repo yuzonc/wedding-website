@@ -369,27 +369,17 @@ function initMusic() {
     if (!window.SC || !window.SC.Widget) return;
     const widget = SC.Widget(iframe);
 
-    // Track widget readiness so we don't call play/pause before the iframe has
-    // its media payload (that throws "mediaPayload required").
-    let widgetReady = false;
-    let pendingPlay = false;
-
-    // Click toggles play/pause. Sync state check (so play() lands inside the
-    // user-gesture window for Chrome's autoplay policy). If the widget isn't
-    // ready yet, queue the play and let the READY handler resume it.
+    // Click toggles play/pause via widget.isPaused. The Widget API queues
+    // commands internally until the iframe's READY handshake completes, and
+    // the iframe is declared with allow="autoplay" so a queued play() that
+    // lands after the click's synchronous gesture window still succeeds.
     musicToggle.addEventListener('click', () => {
-      if (!widgetReady) {
-        pendingPlay = true;
-        return;
-      }
-      if (musicToggle.classList.contains('playing')) {
-        widget.pause();
-      } else {
-        widget.play();
-      }
+      widget.isPaused((paused) => {
+        if (paused) widget.play();
+        else widget.pause();
+      });
     });
 
-    // Diagnostic: log any widget error + what tracks (if any) it actually loaded
     if (SC.Widget.Events.ERROR) {
       widget.bind(SC.Widget.Events.ERROR, (err) => {
         console.error('[music] SoundCloud widget error:', err);
@@ -397,19 +387,11 @@ function initMusic() {
     }
 
     widget.bind(SC.Widget.Events.READY, () => {
-      widget.getSounds((sounds) => {
-        console.log('[music] widget READY. tracks loaded:', Array.isArray(sounds) ? sounds.length : 'none');
-      });
-      widgetReady = true;
-
-      // If we'd queued a play (user clicked while loading) or were playing on
-      // the previous page, kick it off now. play() on a fresh playlist auto-
-      // selects track 0; calling skip() before play() throws mediaPayload.
+      // Resume previous-page state on SPA navigation.
       const wasPlaying = localStorage.getItem(MUSIC_KEYS.playing) === 'true';
-      if (wasPlaying || pendingPlay) {
+      if (wasPlaying) {
         widget.play();
         musicToggle.classList.add('playing');
-        pendingPlay = false;
       }
     });
 
