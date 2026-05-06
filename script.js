@@ -369,19 +369,19 @@ function initMusic() {
     if (!window.SC || !window.SC.Widget) return;
     const widget = SC.Widget(iframe);
 
-    // Track widget readiness so we don't call play/pause before the iframe has
-    // its media payload (that throws "mediaPayload required").
+    // Track widget readiness so we don't call play() before the iframe has its
+    // media payload (that throws "mediaPayload required").
     let widgetReady = false;
-    let pendingPlay = false;
+    musicToggle.classList.add('loading');
 
-    // Click toggles play/pause. Sync state check (so play() lands inside the
-    // user-gesture window for Chrome's autoplay policy). If the widget isn't
-    // ready yet, queue the play and let the READY handler resume it.
+    // Click toggles play/pause. play() must run synchronously inside the click
+    // (Chrome's autoplay policy requires the user-gesture context). If the user
+    // clicks before the widget is ready, we don't queue it — queueing would mean
+    // calling play() later from outside the gesture window, which Chrome blocks
+    // silently. Instead the button stays in the .loading state so the user can
+    // see it isn't ready yet, and a second click after READY plays cleanly.
     musicToggle.addEventListener('click', () => {
-      if (!widgetReady) {
-        pendingPlay = true;
-        return;
-      }
+      if (!widgetReady) return;
       if (musicToggle.classList.contains('playing')) {
         widget.pause();
       } else {
@@ -397,19 +397,16 @@ function initMusic() {
     }
 
     widget.bind(SC.Widget.Events.READY, () => {
-      widget.getSounds((sounds) => {
-        console.log('[music] widget READY. tracks loaded:', Array.isArray(sounds) ? sounds.length : 'none');
-      });
       widgetReady = true;
+      musicToggle.classList.remove('loading');
 
-      // If we'd queued a play (user clicked while loading) or were playing on
-      // the previous page, kick it off now. play() on a fresh playlist auto-
-      // selects track 0; calling skip() before play() throws mediaPayload.
+      // If music was already playing on a previous page (SPA nav case), resume.
+      // We don't kick off play here for a "click before ready" case — autoplay
+      // policy blocks it. The user's next click will play cleanly in-gesture.
       const wasPlaying = localStorage.getItem(MUSIC_KEYS.playing) === 'true';
-      if (wasPlaying || pendingPlay) {
+      if (wasPlaying) {
         widget.play();
         musicToggle.classList.add('playing');
-        pendingPlay = false;
       }
     });
 
