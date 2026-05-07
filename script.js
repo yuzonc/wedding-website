@@ -364,57 +364,39 @@ function initMusic() {
 
   if (!iframe) return;
 
-  // Wire the click handler IMMEDIATELY — not inside setupWidget. The SoundCloud
-  // Widget API script is async-loaded; on slower connections it can take 1–3s.
-  // If the click handler is registered inside setupWidget(), the user's first
-  // click on a slow phone hits a button with no listener and silently does
-  // nothing (their second click hits the now-attached handler — that's the
-  // "second click works" bug). State variables are hoisted here so the click
-  // handler can read them; setupWidget assigns `widget` once SC.Widget loads.
-  let widget = null;
-  let widgetReady = false;
-  let isPlaying = localStorage.getItem(MUSIC_KEYS.playing) === 'true';
-  let pendingClick = false;
-
-  musicToggle.addEventListener('click', () => {
-    if (!widgetReady) {
-      // Widget hasn't finished loading. Record that the user clicked; the
-      // READY handler below will toggle to the user's intended state.
-      pendingClick = true;
-      return;
-    }
-    if (isPlaying) {
-      widget.pause();
-      isPlaying = false;
-    } else {
-      widget.play();
-      isPlaying = true;
-    }
-  });
-
   // Load SoundCloud Widget API once, then bind position tracking + restore
   const setupWidget = () => {
     if (!window.SC || !window.SC.Widget) return;
-    widget = SC.Widget(iframe);
+    const widget = SC.Widget(iframe);
 
-    if (SC.Widget.Events.ERROR) {
-      widget.bind(SC.Widget.Events.ERROR, (err) => {
-        console.error('[music] SoundCloud widget error:', err);
+    // Click toggles play/pause directly — no expanded panel
+    musicToggle.addEventListener('click', () => {
+      widget.isPaused((paused) => {
+        if (paused) widget.play();
+        else widget.pause();
       });
-    }
+    });
 
     widget.bind(SC.Widget.Events.READY, () => {
-      widgetReady = true;
-      // Resolve desired state: if user clicked before ready, toggle; otherwise
-      // resume whatever was playing on the previous page (SPA nav case).
+      const savedPos = parseFloat(localStorage.getItem(MUSIC_KEYS.position) || '0');
+      const savedIndex = parseInt(localStorage.getItem(MUSIC_KEYS.trackIndex) || '0', 10);
       const wasPlaying = localStorage.getItem(MUSIC_KEYS.playing) === 'true';
-      const shouldPlay = pendingClick ? !wasPlaying : wasPlaying;
-      pendingClick = false;
-      if (shouldPlay) widget.play();
-      // Note: PLAY event below sets isPlaying + .playing class once the audio
-      // actually starts. If the queued play is blocked by Safari's autoplay
-      // policy (no user gesture left), nothing fires — and the next click,
-      // now in-gesture with widgetReady=true, plays cleanly.
+
+      const resume = () => {
+        if (savedPos > 0) widget.seekTo(savedPos);
+        if (wasPlaying) {
+          widget.play();
+          musicToggle.classList.add('playing');
+        }
+      };
+
+      if (savedIndex > 0) {
+        widget.skip(savedIndex);
+        // Skip is async; give it a moment before seeking + playing
+        setTimeout(resume, 500);
+      } else {
+        resume();
+      }
     });
 
     let lastSaved = 0;
@@ -428,7 +410,6 @@ function initMusic() {
     });
 
     widget.bind(SC.Widget.Events.PLAY, () => {
-      isPlaying = true;
       localStorage.setItem(MUSIC_KEYS.playing, 'true');
       musicToggle.classList.add('playing');
       if (musicLabel) musicLabel.textContent = 'Pause';
@@ -439,7 +420,6 @@ function initMusic() {
     });
 
     widget.bind(SC.Widget.Events.PAUSE, () => {
-      isPlaying = false;
       localStorage.setItem(MUSIC_KEYS.playing, 'false');
       musicToggle.classList.remove('playing');
       if (musicLabel) musicLabel.textContent = 'Play music';
