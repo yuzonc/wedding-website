@@ -369,6 +369,19 @@ function initMusic() {
     if (!window.SC || !window.SC.Widget) return;
     const widget = SC.Widget(iframe);
 
+    // SoundCloud's getSounds() returns only LOADED tracks (5 by default for
+    // playlists), not the full playlist. Cache the largest count we've seen
+    // so the FINISH handler can tell "real end of playlist" from "edge of the
+    // loaded window."
+    let maxKnownSounds = 0;
+    const refreshSoundCount = () => {
+      widget.getSounds((sounds) => {
+        if (Array.isArray(sounds) && sounds.length > maxKnownSounds) {
+          maxKnownSounds = sounds.length;
+        }
+      });
+    };
+
     // Click toggles play/pause directly — no expanded panel
     musicToggle.addEventListener('click', () => {
       widget.isPaused((paused) => {
@@ -378,6 +391,7 @@ function initMusic() {
     });
 
     widget.bind(SC.Widget.Events.READY, () => {
+      refreshSoundCount();
       const savedPos = parseFloat(localStorage.getItem(MUSIC_KEYS.position) || '0');
       const savedIndex = parseInt(localStorage.getItem(MUSIC_KEYS.trackIndex) || '0', 10);
       const wasPlaying = localStorage.getItem(MUSIC_KEYS.playing) === 'true';
@@ -417,6 +431,8 @@ function initMusic() {
       widget.getCurrentSoundIndex((idx) => {
         if (typeof idx === 'number') cachedIndex = idx;
       });
+      // Widget loads more tracks as playback progresses — refresh our cap.
+      refreshSoundCount();
     });
 
     widget.bind(SC.Widget.Events.PAUSE, () => {
@@ -429,16 +445,26 @@ function initMusic() {
     widget.bind(SC.Widget.Events.FINISH, () => {
       // Track ended; reset position so next track starts from its beginning
       localStorage.setItem(MUSIC_KEYS.position, '0');
+      refreshSoundCount();
 
-      // Loop back to track 1 if we just finished the last track in the playlist
-      widget.getCurrentSoundIndex((idx) => {
-        widget.getSounds((sounds) => {
-          if (typeof idx === 'number' && Array.isArray(sounds) && idx >= sounds.length - 1) {
-            widget.skip(0);
-            // Skip is async — give it a beat before play() so the new track is queued
-            setTimeout(() => widget.play(), 300);
-          }
-        });
+      // We want the widget to auto-advance through the playlist naturally, and
+      // only loop back to track 1 after the TRUE last track. The cached max
+      // tells us "definitely more ahead"; if we're at-or-past it, the cache
+      // may just be lagging — confirm by checking whether the widget moves on
+      // its own before forcing a loop.
+      widget.getCurrentSoundIndex((idxAtFinish) => {
+        if (typeof idxAtFinish !== 'number') return;
+        if (idxAtFinish < maxKnownSounds - 1) return; // more tracks ahead, let it advance
+
+        setTimeout(() => {
+          widget.getCurrentSoundIndex((idxAfter) => {
+            if (typeof idxAfter === 'number' && idxAfter === idxAtFinish) {
+              // Widget did not auto-advance — truly at end. Loop back.
+              widget.skip(0);
+              setTimeout(() => widget.play(), 300);
+            }
+          });
+        }, 800);
       });
     });
 
