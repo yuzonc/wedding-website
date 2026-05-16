@@ -368,16 +368,20 @@ function initMusic() {
   const setupWidget = () => {
     if (!window.SC || !window.SC.Widget) return;
     const widget = SC.Widget(iframe);
+    console.log('[music-debug] setupWidget: widget created');
 
     // SoundCloud's getSounds() returns only LOADED tracks (5 by default for
     // playlists), not the full playlist. Cache the largest count we've seen
     // so the FINISH handler can tell "real end of playlist" from "edge of the
     // loaded window."
     let maxKnownSounds = 0;
-    const refreshSoundCount = () => {
+    const refreshSoundCount = (label) => {
       widget.getSounds((sounds) => {
+        const len = Array.isArray(sounds) ? sounds.length : -1;
+        console.log('[music-debug] getSounds@' + (label || '?') + ' length=' + len + ' maxKnown=' + maxKnownSounds);
         if (Array.isArray(sounds) && sounds.length > maxKnownSounds) {
           maxKnownSounds = sounds.length;
+          console.log('[music-debug] maxKnownSounds bumped to', maxKnownSounds);
         }
       });
     };
@@ -391,7 +395,8 @@ function initMusic() {
     });
 
     widget.bind(SC.Widget.Events.READY, () => {
-      refreshSoundCount();
+      console.log('[music-debug] READY event');
+      refreshSoundCount('READY');
       const savedPos = parseFloat(localStorage.getItem(MUSIC_KEYS.position) || '0');
       const savedIndex = parseInt(localStorage.getItem(MUSIC_KEYS.trackIndex) || '0', 10);
       const wasPlaying = localStorage.getItem(MUSIC_KEYS.playing) === 'true';
@@ -429,13 +434,15 @@ function initMusic() {
       if (musicLabel) musicLabel.textContent = 'Pause';
       musicToggle.setAttribute('aria-label', 'Pause music');
       widget.getCurrentSoundIndex((idx) => {
+        console.log('[music-debug] PLAY event, currentSoundIndex=', idx);
         if (typeof idx === 'number') cachedIndex = idx;
       });
       // Widget loads more tracks as playback progresses — refresh our cap.
-      refreshSoundCount();
+      refreshSoundCount('PLAY');
     });
 
     widget.bind(SC.Widget.Events.PAUSE, () => {
+      console.log('[music-debug] PAUSE event');
       localStorage.setItem(MUSIC_KEYS.playing, 'false');
       musicToggle.classList.remove('playing');
       if (musicLabel) musicLabel.textContent = 'Play music';
@@ -443,23 +450,25 @@ function initMusic() {
     });
 
     widget.bind(SC.Widget.Events.FINISH, () => {
+      console.log('[music-debug] FINISH event fired');
       // Track ended; reset position so next track starts from its beginning
       localStorage.setItem(MUSIC_KEYS.position, '0');
-      refreshSoundCount();
+      refreshSoundCount('FINISH');
 
-      // We want the widget to auto-advance through the playlist naturally, and
-      // only loop back to track 1 after the TRUE last track. The cached max
-      // tells us "definitely more ahead"; if we're at-or-past it, the cache
-      // may just be lagging — confirm by checking whether the widget moves on
-      // its own before forcing a loop.
       widget.getCurrentSoundIndex((idxAtFinish) => {
+        console.log('[music-debug] FINISH idxAtFinish=' + idxAtFinish + ' maxKnown=' + maxKnownSounds);
         if (typeof idxAtFinish !== 'number') return;
-        if (idxAtFinish < maxKnownSounds - 1) return; // more tracks ahead, let it advance
+        if (idxAtFinish < maxKnownSounds - 1) {
+          console.log('[music-debug] FINISH: cache says more tracks ahead, letting widget auto-advance');
+          return;
+        }
 
+        console.log('[music-debug] FINISH: at-or-past cached end. Deferring 800ms to verify.');
         setTimeout(() => {
           widget.getCurrentSoundIndex((idxAfter) => {
+            console.log('[music-debug] FINISH+800ms idxAfter=' + idxAfter + ' (was ' + idxAtFinish + ')');
             if (typeof idxAfter === 'number' && idxAfter === idxAtFinish) {
-              // Widget did not auto-advance — truly at end. Loop back.
+              console.log('[music-debug] No auto-advance — looping back to 0');
               widget.skip(0);
               setTimeout(() => widget.play(), 300);
             }
