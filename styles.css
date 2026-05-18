@@ -3306,6 +3306,26 @@ body.menu-open {
   box-shadow: 0 4px 18px rgba(72, 33, 23, 0.12);
 }
 
+/* Standalone single-photo block */
+.proposal-photo-single {
+  display: flex;
+  justify-content: center;
+  margin: 2.5rem 0;
+}
+
+.proposal-photo-single img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 18px rgba(72, 33, 23, 0.12);
+  transition: transform 0.5s ease;
+}
+
+.proposal-photo-single img:hover {
+  transform: scale(1.02);
+}
+
 .proposal-photo-caption {
   font-family: var(--font-serif);
   font-size: 1rem;
